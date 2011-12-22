@@ -53,9 +53,11 @@ public class ui
         //elements of button's box
         JButton left2right = new JButton("-->");
         JButton right2left = new JButton("<--");
+        boxButtons.add(boxButtons.createGlue());
         boxButtons.add(left2right);
         boxButtons.add(boxButtons.createRigidArea(new Dimension(0, 20)));
         boxButtons.add(right2left);
+        boxButtons.add(boxButtons.createGlue());
 
         //elements of second unit box
         JLabel titleRight = new JLabel("Unit 2");
@@ -71,7 +73,9 @@ public class ui
         //element of center box
         boxCenter.add(boxCenter.createGlue());
         boxCenter.add(boxUnit1);
+        boxCenter.add(boxCenter.createHorizontalStrut(20));
         boxCenter.add(boxButtons);
+        boxCenter.add(boxCenter.createHorizontalStrut(20));
         boxCenter.add(boxUnit2);
         boxCenter.add(boxCenter.createGlue());
 
