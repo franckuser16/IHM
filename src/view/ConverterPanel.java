@@ -17,6 +17,7 @@ import javax.swing.border.LineBorder;
  *
  * @author jeremy
  */
+@SuppressWarnings("serial")
 public class ConverterPanel extends JPanel
 {
     private JLabel title;

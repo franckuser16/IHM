@@ -36,49 +36,49 @@ public class ui
         converter.setPreferredSize(new Dimension(450, 200));
 
         //box which contains title
-        boxNorth.add(boxNorth.createGlue());
+        boxNorth.add(Box.createGlue());
         boxNorth.add(title);
-        boxNorth.add(boxNorth.createGlue());
+        boxNorth.add(Box.createGlue());
 
         //elements of first unit box
         JLabel titleLeft = new JLabel("Unit 1");
         JComboBox listLeft = new JComboBox();
         JTextField textLeft = new JTextField("0.0");
-        boxUnit1.add(boxUnit1.createRigidArea(new Dimension(0, 20)));
+        boxUnit1.add(Box.createRigidArea(new Dimension(0, 20)));
         boxUnit1.add(titleLeft);
-        boxUnit1.add(boxUnit1.createRigidArea(new Dimension(0, 10)));
+        boxUnit1.add(Box.createRigidArea(new Dimension(0, 10)));
         boxUnit1.add(listLeft);
-        boxUnit1.add(boxUnit1.createRigidArea(new Dimension(0, 20)));
+        boxUnit1.add(Box.createRigidArea(new Dimension(0, 20)));
         boxUnit1.add(textLeft);
 
         //elements of button's box
         JButton left2right = new JButton("-->");
         JButton right2left = new JButton("<--");
-        boxButtons.add(boxButtons.createGlue());
+        boxButtons.add(Box.createGlue());
         boxButtons.add(left2right);
-        boxButtons.add(boxButtons.createRigidArea(new Dimension(0, 20)));
+        boxButtons.add(Box.createRigidArea(new Dimension(0, 20)));
         boxButtons.add(right2left);
-        boxButtons.add(boxButtons.createGlue());
+        boxButtons.add(Box.createGlue());
 
         //elements of second unit box
         JLabel titleRight = new JLabel("Unit 2");
         JComboBox listRight = new JComboBox();
         JTextField textRight = new JTextField("0.0");
-        boxUnit2.add(boxUnit2.createRigidArea(new Dimension(0, 20)));
+        boxUnit2.add(Box.createRigidArea(new Dimension(0, 20)));
         boxUnit2.add(titleRight);
-        boxUnit2.add(boxUnit2.createRigidArea(new Dimension(0, 10)));
+        boxUnit2.add(Box.createRigidArea(new Dimension(0, 10)));
         boxUnit2.add(listRight);
-        boxUnit2.add(boxUnit2.createRigidArea(new Dimension(0, 20)));
+        boxUnit2.add(Box.createRigidArea(new Dimension(0, 20)));
         boxUnit2.add(textRight);
 
         //element of center box
-        boxCenter.add(boxCenter.createGlue());
+        boxCenter.add(Box.createGlue());
         boxCenter.add(boxUnit1);
-        boxCenter.add(boxCenter.createHorizontalStrut(20));
+        boxCenter.add(Box.createHorizontalStrut(20));
         boxCenter.add(boxButtons);
-        boxCenter.add(boxCenter.createHorizontalStrut(20));
+        boxCenter.add(Box.createHorizontalStrut(20));
         boxCenter.add(boxUnit2);
-        boxCenter.add(boxCenter.createGlue());
+        boxCenter.add(Box.createGlue());
 
         converter.add(boxNorth, BorderLayout.NORTH);
         converter.add(boxCenter, BorderLayout.CENTER);
