@@ -2,3 +2,7 @@
 .settings
 .classpath
 bin
+*.swp
+build.xml
+build
+dist
