@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ihm1;
 
 import java.awt.Color;
 import javax.swing.BorderFactory;
@@ -310,7 +309,11 @@ public class ConverterPanel extends JPanel
         JFrame myFrame = new JFrame("Checkers");
         myFrame.setLocationRelativeTo(null);
         myFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);   
+
+        ConverterPanel panel1 = new ConverterPanel();
         
+        myFrame.add(panel1.createLabel("Titre"));
+
         myFrame.pack();
         myFrame.setVisible(true);               
     }        
