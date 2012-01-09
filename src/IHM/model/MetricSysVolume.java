@@ -1,4 +1,4 @@
-package IHM.model;
+package model;
 /**
  *
  * @author jeremy

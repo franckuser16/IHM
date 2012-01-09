@@ -1,8 +1,9 @@
-package IHM.model;
+package model;
 
 import java.awt.Dimension;
 
-import IHM.model.Converter;
+import model.Converter;
+
 
 /*
  * To change this template, choose Tools | Templates
