@@ -25,6 +25,8 @@ public class ui
     private static Box boxUnit2 = new Box(BoxLayout.Y_AXIS);
     private static Box boxButtons = new Box(BoxLayout.Y_AXIS);
     
+    private final static Dimension sizeControls = new Dimension(250, 25);
+    
     public static void createAndShowGUI()
     {
         converter.setLocationRelativeTo(null);
@@ -38,14 +40,23 @@ public class ui
 
         //elements of first unit box
         JLabel titleLeft = new JLabel("Unit 1");
+        
         JComboBox listLeft = new JComboBox();
+        listLeft.setPreferredSize(sizeControls);
+        listLeft.setMaximumSize(listLeft.getPreferredSize());
+        
         JFormattedTextField textLeft = new JFormattedTextField(NumberFormat.getNumberInstance());
-        boxUnit1.add(Box.createRigidArea(new Dimension(0, 20)));
+        textLeft.setPreferredSize(sizeControls);        
+        textLeft.setMaximumSize(textLeft.getPreferredSize());
+        
+        //boxUnit1.add(Box.createRigidArea(new Dimension(0, 20)));
+        boxUnit1.add(Box.createGlue());
         boxUnit1.add(titleLeft);
         boxUnit1.add(Box.createRigidArea(new Dimension(0, 10)));
         boxUnit1.add(listLeft);
         boxUnit1.add(Box.createRigidArea(new Dimension(0, 20)));
         boxUnit1.add(textLeft);
+        boxUnit1.add(Box.createGlue());
 
         //elements of button's box
         JButton left2right = new JButton("-->");
@@ -58,9 +69,17 @@ public class ui
 
         //elements of second unit box
         JLabel titleRight = new JLabel("Unit 2");
+        
         JComboBox listRight = new JComboBox();
+        listRight.setPreferredSize(sizeControls);
+        listRight.setMaximumSize(listRight.getPreferredSize());
+        
         JFormattedTextField textRight = new JFormattedTextField(NumberFormat.getNumberInstance());
-        boxUnit2.add(Box.createRigidArea(new Dimension(0, 20)));
+        textRight.setPreferredSize(sizeControls);
+        textRight.setMaximumSize(textRight.getPreferredSize());
+        
+        //boxUnit2.add(Box.createRigidArea(new Dimension(0, 20)));
+        boxUnit2.add(Box.createGlue());
         boxUnit2.add(titleRight);
         boxUnit2.add(Box.createRigidArea(new Dimension(0, 10)));
         boxUnit2.add(listRight);
@@ -85,7 +104,6 @@ public class ui
 
     public static void main(String[] args)
     {
-        //formule "magique" pour l'instant
         javax.swing.SwingUtilities.invokeLater(new Runnable()
         {
             public void run()
