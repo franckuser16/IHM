@@ -8,6 +8,7 @@ public class main
         
         //here you can modify look and feel of all the elements 
         view1.setTitleLeft(new JLabel("Meter"));
+        view1.setTitle(new JLabel("Mon nouveau titre"));
         
         view1.buildUI();
     }

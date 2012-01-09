@@ -3,14 +3,18 @@
 import javax.swing.JLabel;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.text.NumberFormat;
+
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
@@ -19,13 +23,18 @@ import javax.swing.JFrame;
 public class ui
 {
 	private static JFrame converter = new JFrame("Converter");
-    private Box boxUnit1 = new Box(BoxLayout.Y_AXIS);
-    private Box boxUnit2 = new Box(BoxLayout.Y_AXIS);
-    private Box boxButtons = new Box(BoxLayout.Y_AXIS);
+    private Box boxUnit1 = new Box(BoxLayout.Y_AXIS);	//unit on left
+    private Box boxUnit2 = new Box(BoxLayout.Y_AXIS);	//unit on right
+    private Box boxNorth = new Box(BoxLayout.X_AXIS);	//box which contains title
+    private Box boxButtons = new Box(BoxLayout.Y_AXIS);	//box which contains button to convert
+    private Box boxCenter = new Box(BoxLayout.X_AXIS);	//box which contains boxUnit1, boxUnit2 and boxButtons
     
-    //attributes with accessors
-    private Box boxNorth = new Box(BoxLayout.X_AXIS);
-    private Box boxCenter = new Box(BoxLayout.X_AXIS);
+    JButton left2right;
+    JButton right2left;
+    
+	private final static Dimension sizeControls = new Dimension(250, 25);
+    
+    //attributes with Getters/Setters
     private JLabel title = new JLabel("Metric to Imperial Length Converter");
     
     private JLabel titleLeft = new JLabel("Unit 1");
@@ -35,8 +44,6 @@ public class ui
     private JLabel titleRight = new JLabel("Unit 2");
     private JComboBox listRight = new JComboBox();
     private JFormattedTextField textRight = new JFormattedTextField(NumberFormat.getNumberInstance());
-
-	private final static Dimension sizeControls = new Dimension(250, 25);
     
 	/**
 	 * Create all the element of a default converter
@@ -56,13 +63,8 @@ public class ui
         textLeft.setMaximumSize(textLeft.getPreferredSize());
 
         //elements of button's box
-        JButton left2right = new JButton("-->");
-        JButton right2left = new JButton("<--");
-        boxButtons.add(Box.createGlue());
-        boxButtons.add(left2right);
-        boxButtons.add(Box.createRigidArea(new Dimension(0, 20)));
-        boxButtons.add(right2left);
-        boxButtons.add(Box.createGlue());
+        left2right = new JButton("-->");
+        right2left = new JButton("<--");
 
         //elements of second unit box        
         listRight.setPreferredSize(sizeControls);
@@ -79,7 +81,7 @@ public class ui
      * It paste the elements together
      */
     public void buildUI()
-    {
+    {	
     	//box which contains title
         boxNorth.add(Box.createGlue());
         boxNorth.add(title);
@@ -102,15 +104,33 @@ public class ui
         boxUnit2.add(Box.createRigidArea(new Dimension(0, 20)));
         boxUnit2.add(textRight);
         boxUnit2.add(Box.createGlue());
+        
+        boxButtons.add(Box.createGlue());
+        boxButtons.add(left2right);
+        boxButtons.add(Box.createRigidArea(new Dimension(0, 20)));
+        boxButtons.add(right2left);
+        boxButtons.add(Box.createGlue());
 
-        //element of center box
+        //element of center box (boxButtons, boxUnit1 and boxUnit2)
         boxCenter.add(Box.createGlue());
         boxCenter.add(boxUnit1);
         boxCenter.add(Box.createHorizontalStrut(20));
         boxCenter.add(boxButtons);
         boxCenter.add(Box.createHorizontalStrut(20));
         boxCenter.add(boxUnit2);
-        boxCenter.add(Box.createGlue());
+        boxCenter.add(Box.createGlue());    
+       
+        /*
+        boxUnit1.setPreferredSize(new Dimension(listLeft.getWidth(), 100));
+        boxUnit2.setPreferredSize(new Dimension(listRight.getWidth(), 100));
+        boxButtons.setPreferredSize(new Dimension(left2right.getWidth(), 100));
+        
+        boxUnit1.setBorder(BorderFactory.createLineBorder(Color.black));
+        boxUnit2.setBorder(BorderFactory.createLineBorder(Color.cyan));
+        boxButtons.setBorder(BorderFactory.createLineBorder(Color.red));
+        */
+        
+        converter.setMinimumSize(converter.getPreferredSize());
         
         //add boxes to frame
         converter.add(boxNorth, BorderLayout.NORTH);
@@ -118,24 +138,6 @@ public class ui
         converter.pack();
         converter.setVisible(true);
     }
-
-    /**
-     * 
-     * @return the box North which contains the title 
-     */
-	public Box getBoxNorth() 
-	{
-		return boxNorth;
-	}
-
-	/**
-	 * 
-	 * @return the center box which contains all the controls of conversion
-	 */
-	public Box getBoxCenter()
-	{
-		return boxCenter;
-	}
 	
 	/**
 	 * 
@@ -153,12 +155,6 @@ public class ui
 	public void setTitle(JLabel title)
 	{
 		this.title = title;
-		//delete the old title 
-		this.boxNorth.removeAll();
-		//insert the new
-		boxNorth.add(Box.createGlue());
-        boxNorth.add(title);
-        boxNorth.add(Box.createGlue());
 	}
 
 	/**
@@ -179,51 +175,91 @@ public class ui
 		this.titleLeft = titleLeft;
 	}
 
+	/**
+	 *
+	 * @return left combo box which contains all units
+	 */
 	public JComboBox getListLeft()
 	{
 		return listLeft;
 	}
 
+	/**
+	 * Set left combo box to add units
+	 * @param listLeft: the new combo box
+	 */
 	public void setListLeft(JComboBox listLeft)
 	{
 		this.listLeft = listLeft;
 	}
 
+	/**
+	 * 
+	 * @return the left text field
+	 */
 	public JFormattedTextField getTextLeft()
 	{
 		return textLeft;
 	}
 
+	/**
+	 * Set the left text field
+	 * @param textLeft: the new value
+	 */
 	public void setTextLeft(JFormattedTextField textLeft)
 	{
 		this.textLeft = textLeft;
 	}
 
+	/**
+	 * 
+	 * @return title (unit string) of right box 
+	 */
 	public JLabel getTitleRight()
 	{
 		return titleRight;
 	}
 
+	/**
+	 * Set title (unit string) of right box
+	 * @param titleLeft
+	 */
 	public void setTitleRight(JLabel titleRight)
 	{
 		this.titleRight = titleRight;
 	}
 
+	/**
+	 *
+	 * @return right combo box which contains all units
+	 */
 	public JComboBox getListRight()
 	{
 		return listRight;
 	}
 
+	/**
+	 * Set right combo box to add units
+	 * @param listRight: the new combo box
+	 */
 	public void setListRight(JComboBox listRight)
 	{
 		this.listRight = listRight;
 	}
 
+	/**
+	 * 
+	 * @return the right text field
+	 */
 	public JFormattedTextField getTextRight()
 	{
 		return textRight;
 	}
 
+	/**
+	 * Set the right text field
+	 * @param textRight: the new value
+	 */
 	public void setTextRight(JFormattedTextField textRight)
 	{
 		this.textRight = textRight;
