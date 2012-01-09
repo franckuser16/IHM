@@ -1,4 +1,4 @@
-package view;
+package IHM.view;
 
 import java.awt.Color;
 import javax.swing.BorderFactory;
