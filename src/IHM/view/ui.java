@@ -1,15 +1,15 @@
-package IHM.view;
+//package IHM.view;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Dimension;
+import java.text.NumberFormat;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JTextField;
-
+import javax.swing.JFormattedTextField;
 
 /**
  *
@@ -39,7 +39,7 @@ public class ui
         //elements of first unit box
         JLabel titleLeft = new JLabel("Unit 1");
         JComboBox listLeft = new JComboBox();
-        JTextField textLeft = new JTextField("0.0");
+        JFormattedTextField textLeft = new JFormattedTextField(NumberFormat.getNumberInstance());
         boxUnit1.add(Box.createRigidArea(new Dimension(0, 20)));
         boxUnit1.add(titleLeft);
         boxUnit1.add(Box.createRigidArea(new Dimension(0, 10)));
@@ -59,13 +59,14 @@ public class ui
         //elements of second unit box
         JLabel titleRight = new JLabel("Unit 2");
         JComboBox listRight = new JComboBox();
-        JTextField textRight = new JTextField("0.0");
+        JFormattedTextField textRight = new JFormattedTextField(NumberFormat.getNumberInstance());
         boxUnit2.add(Box.createRigidArea(new Dimension(0, 20)));
         boxUnit2.add(titleRight);
         boxUnit2.add(Box.createRigidArea(new Dimension(0, 10)));
         boxUnit2.add(listRight);
         boxUnit2.add(Box.createRigidArea(new Dimension(0, 20)));
         boxUnit2.add(textRight);
+        boxUnit2.add(Box.createGlue());
 
         //element of center box
         boxCenter.add(Box.createGlue());
