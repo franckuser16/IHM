@@ -14,7 +14,11 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 
 /**
  *
@@ -22,19 +26,34 @@ import javax.swing.JPanel;
  */
 public class ui
 {
+	/*
+     * attributes without Getters/Setters
+     */
 	private static JFrame converter = new JFrame("Converter");
     private Box boxUnit1 = new Box(BoxLayout.Y_AXIS);	//unit on left
     private Box boxUnit2 = new Box(BoxLayout.Y_AXIS);	//unit on right
-    private Box boxNorth = new Box(BoxLayout.X_AXIS);	//box which contains title
     private Box boxButtons = new Box(BoxLayout.Y_AXIS);	//box which contains button to convert
+    
+    private Box boxNorth = new Box(BoxLayout.X_AXIS);	//box which contains title
     private Box boxCenter = new Box(BoxLayout.X_AXIS);	//box which contains boxUnit1, boxUnit2 and boxButtons
     
-    JButton left2right;
-    JButton right2left;
+    //For the menu of the application
+    private JMenuBar menuBar = new JMenuBar();
+    private JMenu menu = new JMenu("Menu");
+    private JMenuItem menu_view1 = new JMenuItem("View 1");
+    private JMenuItem menu_view2 = new JMenuItem("View 2");
+    private JMenuItem menu_quit = new JMenuItem("Quit");
     
+    //buttons to convert
+    private JButton left2right;
+    private JButton right2left;
+    
+    //size of combo boxes and text fields
 	private final static Dimension sizeControls = new Dimension(250, 25);
-    
-    //attributes with Getters/Setters
+  
+    /*
+     * attributes with Getters/Setters
+     */
     private JLabel title = new JLabel("Metric to Imperial Length Converter");
     
     private JLabel titleLeft = new JLabel("Unit 1");
@@ -70,10 +89,8 @@ public class ui
         listRight.setPreferredSize(sizeControls);
         listRight.setMaximumSize(listRight.getPreferredSize());
         
-        //JFormattedTextField textRight = new JFormattedTextField(NumberFormat.getNumberInstance());
         textRight.setPreferredSize(sizeControls);
         textRight.setMaximumSize(textRight.getPreferredSize());
-             
     }
     
     /**
@@ -130,11 +147,19 @@ public class ui
         boxButtons.setBorder(BorderFactory.createLineBorder(Color.red));
         */
         
-        converter.setMinimumSize(converter.getPreferredSize());
+        //Menu
+        menu.add(menu_view1);
+        menu.add(menu_view2);
+        menu.add(new JSeparator());
+        menu.add(menu_quit);
+        menuBar.add(menu);                
         
-        //add boxes to frame
+        //add boxes and menu to frame
+        converter.setJMenuBar(menuBar);
         converter.add(boxNorth, BorderLayout.NORTH);
         converter.add(boxCenter, BorderLayout.CENTER);
+        
+        converter.setMinimumSize(converter.getPreferredSize());
         converter.pack();
         converter.setVisible(true);
     }
