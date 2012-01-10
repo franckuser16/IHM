@@ -3,7 +3,7 @@ package model;
  *
  * @author jeremy
  */
-public class ImperialSysVolume
+public class ImperialSysVolume extends NonSI
 {
 
 }

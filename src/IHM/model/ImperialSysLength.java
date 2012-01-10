@@ -3,7 +3,7 @@ package model;
  *
  * @author jeremy
  */
-public class ImperialSysLength
+public class ImperialSysLength extends NonSI
 {
 
 }

@@ -3,7 +3,7 @@ package model;
  *
  * @author jeremy
  */
-public class MetricSysVolume
+public class MetricSysVolume extends SI
 {
 
 }

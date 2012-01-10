@@ -3,7 +3,7 @@ package model;
  *
  * @author jeremy
  */
-public class MetricSysLength
+public class MetricSysLength extends SI
 {
 
 }

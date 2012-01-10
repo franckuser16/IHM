@@ -3,7 +3,8 @@ package model;
  *
  * @author jeremy
  */
-public class NonSI
+public abstract class NonSI extends Unit
 {
+
 
 }

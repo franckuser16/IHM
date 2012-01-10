@@ -16,16 +16,17 @@ import model.Converter;
  */
 public abstract class Unit
 {
+
     private Dimension dim;
     private int quantity;
     private String reference;
-    private Converter convert;
+    //pas besoin de Converter en param, il est retourné par getConverterTo()
+    //private Converter converter;
 
     public Unit()
     {
-
     }
-    
+
     public boolean isCompatible(Unit unit)
     {
         return this.getDimension().equals(unit.getDimension());
@@ -33,11 +34,20 @@ public abstract class Unit
 
     public Converter getConverter()
     {
-        return convert;
+        return this.converter;
+    }
+
+    public Converter getConverterTo(Unit unitOut)
+    {
+        return Converter.createConverter(this, unitOut);
     }
 
     public Dimension getDimension()
     {
-        return dim;
+        return this.dim;
+    }
+
+    public long toReference()
+    {
     }
 }
