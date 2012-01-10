@@ -219,7 +219,7 @@ public class ui
 	}
 
 	/**
-	 * 
+	 *
 	 * @return the left text field
 	 */
 	public JFormattedTextField getTextLeft()
