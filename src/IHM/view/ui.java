@@ -65,7 +65,7 @@ public class ui
     private JFormattedTextField textRight = new JFormattedTextField(NumberFormat.getNumberInstance());
     
 	/**
-	 * Create all the element of a default converter
+	 * Set all the element of a default converter
 	 */
     public ui()
     {
@@ -122,6 +122,7 @@ public class ui
         boxUnit2.add(textRight);
         boxUnit2.add(Box.createGlue());
         
+        //box which contains buttons to convert
         boxButtons.add(Box.createGlue());
         boxButtons.add(left2right);
         boxButtons.add(Box.createRigidArea(new Dimension(0, 20)));
@@ -141,11 +142,10 @@ public class ui
         boxUnit1.setPreferredSize(new Dimension(listLeft.getWidth(), 100));
         boxUnit2.setPreferredSize(new Dimension(listRight.getWidth(), 100));
         boxButtons.setPreferredSize(new Dimension(left2right.getWidth(), 100));
-        
+        */
         boxUnit1.setBorder(BorderFactory.createLineBorder(Color.black));
         boxUnit2.setBorder(BorderFactory.createLineBorder(Color.cyan));
         boxButtons.setBorder(BorderFactory.createLineBorder(Color.red));
-        */
         
         //Menu
         menu.add(menu_view1);
