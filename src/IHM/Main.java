@@ -14,14 +14,13 @@ public class Main
         //here you can modify look and feel of all the elements 
         
         view1.setTitleLeft(new JLabel("Meter"));
-        view1.setTitle(new JLabel("Mon nouveau titre"));
+        //view1.setTitle(new JLabel("Mon nouveau titre"));
         
         Object[] units = new Object[]{"m","cm","mm","µm"};
         JComboBox leftCombo = new JComboBox(units);
         leftCombo.setPreferredSize(new Dimension(250, 25));
         leftCombo.setMaximumSize(leftCombo.getPreferredSize());
-        view1.setListLeft(leftCombo);
-        
+        view1.setListLeft(leftCombo);        
         
         view1.buildUI();
     }

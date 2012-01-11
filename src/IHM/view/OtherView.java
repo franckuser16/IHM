@@ -1,10 +1,8 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.text.NumberFormat;
 
@@ -20,13 +18,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JSeparator;
 
-import controller.Controller_DefaultView;
 
-/**
- *
- * @author jeremy
- */
-public class DefaultView
+public class OtherView
 {
 	/*
      * attributes without Getters/Setters
@@ -50,7 +43,7 @@ public class DefaultView
     /*
      * attributes with Getters/Setters
      */
-    private JLabel title = new JLabel();
+    private JLabel title = new JLabel("Converter");
     
     //Composition of first unit box
     private JLabel titleLeft = new JLabel("Unit 1");
@@ -74,16 +67,12 @@ public class DefaultView
 	/**
 	 * Set all the element of a default converter
 	 */
-    public DefaultView()
+    public OtherView()
     {
     	//about JFrame...
     	converter.setLocationRelativeTo(null);
         converter.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         converter.setPreferredSize(new Dimension(450, 200));
-        
-        title.setFont(new Font("Calibri", Font.TYPE1_FONT, 20));
-        title.setForeground(Color.ORANGE);
-        title.setText("Converter");
     	
         //elements of first unit box        
         listLeft.setPreferredSize(sizeControls);
@@ -116,12 +105,6 @@ public class DefaultView
     	/*
     	 * listeners
     	 */
-    	left2right.addActionListener(new Controller_DefaultView(this));
-    	right2left.addActionListener(new Controller_DefaultView(this));
-    	menu_quit.addActionListener(new Controller_DefaultView(this));
-    	menu_view2.addActionListener(new Controller_DefaultView(this));
-    	menu_view1.addActionListener(new Controller_DefaultView(this));
-    	
     	//open menu when you press ALT + M
     	menu.setMnemonic(KeyEvent.VK_M);
     	//ALT + L to convert left to right
@@ -386,10 +369,6 @@ public class DefaultView
 	{
 		this.menu_quit = menu_quit;
 	}
+	
 
-	//Getters JFrame
-	public JFrame getConverter()
-	{
-		return converter;
-	}
 }
