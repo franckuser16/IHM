@@ -71,7 +71,7 @@ public class OtherView
     {
     	//about JFrame...
     	converter.setLocationRelativeTo(null);
-        converter.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        converter.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         converter.setPreferredSize(new Dimension(450, 200));
     	
         //elements of first unit box        

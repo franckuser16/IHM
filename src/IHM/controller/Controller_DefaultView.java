@@ -2,15 +2,10 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
-import javax.swing.JOptionPane;
-
 import view.DefaultView;
 import view.OtherView;
 
-public class Controller_DefaultView implements ActionListener, KeyListener
+public class Controller_DefaultView implements ActionListener
 {
 	private final DefaultView dView;
 	
@@ -35,39 +30,14 @@ public class Controller_DefaultView implements ActionListener, KeyListener
 		
 		else if(e.getSource() == dView.getMenu_view2())
 		{
-			//JOptionPane.showMessageDialog(dView.getMenu_view2().getParent(), "I want the second view");
 			OtherView view = new OtherView();
 			view.buildUI();
 		}			
 		
 		else if(e.getSource() == dView.getMenu_view1())
 		{
-			//JOptionPane.showMessageDialog(dView.getMenu_view1().getParent(), "I want the first view");
 			DefaultView view = new DefaultView();
 			view.buildUI();
 		}			
-	}
-
-	//Methods for KeyListener
-	@Override
-	public void keyPressed(KeyEvent e)
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e)
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e)
-	{
-		// TODO Auto-generated method stub
-		
-	}
-	
+	}	
 }

@@ -78,7 +78,7 @@ public class DefaultView
     {
     	//about JFrame...
     	converter.setLocationRelativeTo(null);
-        converter.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        converter.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         converter.setPreferredSize(new Dimension(450, 200));
         
         title.setFont(new Font("Calibri", Font.TYPE1_FONT, 20));
