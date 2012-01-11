@@ -95,7 +95,7 @@ public class DefaultView
     public void buildUI()
     {	
     	/*
-    	//mise en place des écouteurs
+    	//listeners
     	left2right.setActionCommand("left2right");
     	left2right.addActionListener(l)
     	*/
