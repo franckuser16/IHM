@@ -2,7 +2,7 @@ import javax.swing.JLabel;
 
 import view.DefaultView;
 
-public class main 
+public class Main 
 {	
 	public static void createAndShowGUI()
     {

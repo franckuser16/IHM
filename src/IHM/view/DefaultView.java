@@ -3,6 +3,7 @@ package view;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.text.NumberFormat;
 import javax.swing.BorderFactory;
@@ -16,6 +17,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JSeparator;
+
+import controller.Controller_DefaultView;
 
 /**
  *
@@ -77,7 +80,7 @@ public class DefaultView
         
         textLeft.setPreferredSize(sizeControls);        
         textLeft.setMaximumSize(textLeft.getPreferredSize());
-
+        
         //elements of button's box
         left2right = new JButton("-->");
         right2left = new JButton("<--");
@@ -96,11 +99,12 @@ public class DefaultView
      */
     public void buildUI()
     {	
+    	Controller_DefaultView controller = new Controller_DefaultView();
+    	
     	/*
-    	//listeners
-    	left2right.setActionCommand("left2right");
-    	left2right.addActionListener(l)
-    	*/
+    	 * listeners
+    	 */
+    	converter.addKeyListener(controller);
     	
     	//box which contains title
         boxNorth.add(Box.createGlue());
