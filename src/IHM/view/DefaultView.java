@@ -81,6 +81,7 @@ public class DefaultView
         converter.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         converter.setPreferredSize(new Dimension(450, 200));
         
+        //title of application
         title.setFont(new Font("Calibri", Font.TYPE1_FONT, 20));
         title.setForeground(Color.ORANGE);
         title.setText("Converter");
