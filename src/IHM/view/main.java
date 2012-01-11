@@ -4,7 +4,7 @@ public class main
 {	
 	public static void createAndShowGUI()
     {
-        ui view1 = new ui();
+        DefaultView view1 = new DefaultView();
         
         //here you can modify look and feel of all the elements 
         view1.setTitleLeft(new JLabel("Meter"));

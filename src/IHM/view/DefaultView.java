@@ -1,12 +1,10 @@
-//package IHM.view;
+
 
 import javax.swing.JLabel;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.text.NumberFormat;
-
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -17,14 +15,13 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
 /**
  *
  * @author jeremy
  */
-public class ui
+public class DefaultView
 {
 	/*
      * attributes without Getters/Setters
@@ -67,7 +64,7 @@ public class ui
 	/**
 	 * Set all the element of a default converter
 	 */
-    public ui()
+    public DefaultView()
     {
     	//about JFrame...
     	converter.setLocationRelativeTo(null);
@@ -99,6 +96,12 @@ public class ui
      */
     public void buildUI()
     {	
+    	/*
+    	//mise en place des écouteurs
+    	left2right.setActionCommand("left2right");
+    	left2right.addActionListener(l)
+    	*/
+    	
     	//box which contains title
         boxNorth.add(Box.createGlue());
         boxNorth.add(title);
