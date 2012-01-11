@@ -41,6 +41,7 @@ public class Controller_DefaultView implements ActionListener
 			OtherView view = new OtherView();
 			view.buildUI();
 			
+			//close old window
 			dView.getConverter().dispose();
 		}			
 		
@@ -62,8 +63,9 @@ public class Controller_DefaultView implements ActionListener
 	         * 
 	         */
 			view.buildUI();
+			
+			//close old window
+			dView.getConverter().dispose();
 		}	
-		
-		dView.getConverter().dispose();
 	}	
 }

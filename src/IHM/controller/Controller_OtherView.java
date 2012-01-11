@@ -35,8 +35,9 @@ public class Controller_OtherView implements ActionListener
 		else if(e.getSource() == oView.getMenu_view2())
 		{
 			OtherView view = new OtherView();
-			view.buildUI();
+			view.buildUI();						
 			
+			//close old window
 			oView.getConverter().dispose();
 		}			
 		
@@ -59,6 +60,7 @@ public class Controller_OtherView implements ActionListener
 	         */
 			view.buildUI();
 			
+			//close old window
 			oView.getConverter().dispose();
 		}			
 	}	
