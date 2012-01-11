@@ -8,5 +8,4 @@ import IHM.model.Unit;
 public abstract class NonSI extends Unit
 {
 
-
 }
