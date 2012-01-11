@@ -1,5 +1,7 @@
 import javax.swing.JLabel;
 
+import view.DefaultView;
+
 public class main 
 {	
 	public static void createAndShowGUI()
