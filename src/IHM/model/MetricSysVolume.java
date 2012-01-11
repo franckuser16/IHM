@@ -1,4 +1,6 @@
 package model;
+
+import IHM.model.SI;
 /**
  *
  * @author jeremy
@@ -6,4 +8,7 @@ package model;
 public class MetricSysVolume extends SI
 {
 
+	public MetricSysVolume()
+	{
+	}
 }

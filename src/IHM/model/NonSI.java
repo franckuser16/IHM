@@ -1,4 +1,6 @@
 package model;
+
+import IHM.model.Unit;
 /**
  *
  * @author jeremy

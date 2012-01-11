@@ -1,8 +1,8 @@
-package model;
+package IHM.model;
 
 import java.awt.Dimension;
 
-import model.Converter;
+import IHM.model.Converter;
 
 
 /*
@@ -25,17 +25,29 @@ public abstract class Unit
 
     public Unit()
     {
+			this.dim = new Dimension();
+			this.quantity = 0;
+			this.reference = "";
     }
+
+	public Unit(Dimension dim, int quantity, String reference)
+	{
+			this.dim = dim;
+			this.quantity = quantity;
+			this.reference = reference;
+	}
 
     public boolean isCompatible(Unit unit)
     {
         return this.getDimension().equals(unit.getDimension());
     }
 
+	/*
     public Converter getConverter()
     {
         return this.converter;
     }
+	*/
 
     public Converter getConverterTo(Unit unitOut)
     {
@@ -47,7 +59,13 @@ public abstract class Unit
         return this.dim;
     }
 
+	public int getQuantity()
+	{
+		return this.quantity;
+	}
+
     public long toReference()
     {
+			return 0;
     }
 }

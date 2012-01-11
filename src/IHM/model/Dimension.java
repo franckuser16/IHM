@@ -1,4 +1,4 @@
-package model;
+package IHM.model;
 /**
  *
  * @author jeremy
@@ -6,25 +6,25 @@ package model;
 public class Dimension
 {
 
-    public static final LENGTH = 0;
-    public static final AREA = 1;
-    public static final VOLUME = 2;
-    public static final HEAT = 3;
+    public static final int LENGTH = 0;
+    public static final int AREA = 1;
+    public static final int VOLUME = 2;
+    public static final int HEAT = 3;
 
     private int nature;
 
     public Dimension(int nature)
     {
-	this.nature = nature;
+		this.nature = nature;
     }
     
-    public boolean equals(Objetc dimOut)
+    public boolean equals(Object dimOut)
     {
-        return this.nature.equals(((Dimension)dimOut).getNature());
+        return this.nature == ((Dimension)dimOut).getNature();
     }
 
     public int getNature()
     {
-	return this.nature;
+		return this.nature;
     }
 }
