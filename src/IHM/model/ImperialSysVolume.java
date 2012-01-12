@@ -6,11 +6,11 @@ package IHM.model;
 public class ImperialSysVolume extends NonSI
 {
 
-		public void fromReference(long qtOfRef)
+		public void fromReference(double qtOfRef)
 		{
 		}
 
-		public long toReference()
+		public double toReference()
 		{
 				return 0;
 		}

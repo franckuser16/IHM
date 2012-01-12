@@ -28,14 +28,14 @@ public abstract class SI extends Unit
 		this.pas = pas;
 	}
 
-	public long toReference()
+	public double toReference()
 	{
-		return (this.getQuantity() * this.prefix) / this.prefix_ref;
+		return (this.getQuantity() * this.prefix) / this.prefix_ref; //Math.pow(10, this.prefix_ref);
 	}
 
-	public void fromReference(long qtOfRef)
+	public void fromReference(double qtOfRef)
 	{
-		this.setQuantity( (qtOfRef / this.prefix) * this.prefix_ref );
+		this.setQuantity( (long) ((qtOfRef / this.prefix) * this.prefix_ref) ); //Math.pow(10, this.prefix_ref)) );
 	}
 
 	public long getPrefix()

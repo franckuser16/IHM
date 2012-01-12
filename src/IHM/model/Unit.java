@@ -70,12 +70,12 @@ public abstract class Unit
 		this.quantity = quantity;
 	}
 
-	public abstract long toReference();
+	public abstract double toReference();
 
-	public abstract void fromReference(long qtOfRef);
+	public abstract void fromReference(double qtOfRef);
 
 	public String toString()
 	{
-		return "Quantity: " + this.getQuantity;
+		return "Quantity: " + this.getQuantity();
 	}
 }

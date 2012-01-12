@@ -23,8 +23,8 @@ public class Converter {
 
 	public Unit convert()
 	{
-		long unitInQtOfRef = unitIn.toReference();
-		long unitOutQtOfRef = unitInQtOfRef / this.getKofConversion();
+		double unitInQtOfRef = unitIn.toReference();
+		double unitOutQtOfRef = unitInQtOfRef / this.getKofConversion();
 		unitOut.fromReference(unitOutQtOfRef);
 
 		return unitOut;
