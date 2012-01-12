@@ -18,7 +18,7 @@ public class MetricSysLength extends SI
 		this(0, 0);
 	}
 
-	public MetricSysLength(long quantity, int prefix)
+	public MetricSysLength(double quantity, int prefix)
 	{
 		super(new Dimension(Dimension.LENGTH), quantity, "meter", prefix, 1, 10);
 	}
@@ -26,10 +26,10 @@ public class MetricSysLength extends SI
 	public static void main(String[] args)
 	{
 			MetricSysLength unitA = new MetricSysLength(120, 10);
-			MetricSysLength unitB = new MetricSysLength(0, 100);
+			MetricSysVolume unitB = new MetricSysVolume(0, 100);
 
 			Converter cvt = unitA.getConverterTo(unitB);
-			unitB = (MetricSysLength)cvt.convert();
+			unitB = (MetricSysVolume)cvt.convert();
 			System.out.println(unitB);
 	}
 

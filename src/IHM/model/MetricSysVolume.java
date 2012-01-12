@@ -8,7 +8,8 @@ import IHM.model.SI;
 public class MetricSysVolume extends SI
 {
 
-	public MetricSysVolume()
+	public MetricSysVolume(double quantity, int prefix)
 	{
+		super(new Dimension(Dimension.VOLUME), quantity, "metercubic", prefix, 1, 1000);
 	}
 }

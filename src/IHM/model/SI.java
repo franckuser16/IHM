@@ -15,12 +15,12 @@ public abstract class SI extends Unit
 	{
 	}
 
-	public SI(Dimension dim, long quantity, String reference)
+	public SI(Dimension dim, double quantity, String reference)
 	{
 		super(dim, quantity, reference);
 	}
 
-	public SI(Dimension dim, long quantity, String reference, long prefix, long prefix_ref, long pas)
+	public SI(Dimension dim, double quantity, String reference, long prefix, long prefix_ref, long pas)
 	{
 		super(dim, quantity, reference);
 		this.prefix = prefix;

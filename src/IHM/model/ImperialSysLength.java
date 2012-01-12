@@ -19,7 +19,7 @@ public class ImperialSysLength extends NonSI
 			this.ratio_to_reference = ratio_to_reference;
 		}
 
-		public double toReference(long quantity){
+		public double toReference(double quantity){
 
 			return quantity/this.ratio_to_reference;
 		}
