@@ -3,13 +3,11 @@ package controller;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
 import view.DefaultView;
 import view.OtherView;
 
@@ -38,6 +36,11 @@ public class Controller_OtherView implements ActionListener, ListSelectionListen
 		else if(e.getSource() == oView.getMenu_view2())
 		{
 			OtherView view = new OtherView();
+			
+			//--- beginning modifications
+			
+			//--- end modifications
+			
 			view.buildUI();						
 			
 			//close old window
@@ -48,9 +51,8 @@ public class Controller_OtherView implements ActionListener, ListSelectionListen
 		else if(e.getSource() == oView.getMenu_view1())
 		{
 			DefaultView view = new DefaultView();
-			/*
-	         * here you can modify look and feel of all the elements 
-	         */
+			
+			//--- beginning modifications
 	        view.setTitleLeft(new JLabel("Meter"));
 	        
 	        Object[] units = new Object[]{"m","cm","mm","µm"};
@@ -58,9 +60,8 @@ public class Controller_OtherView implements ActionListener, ListSelectionListen
 	        leftCombo.setPreferredSize(new Dimension(250, 25));
 	        leftCombo.setMaximumSize(leftCombo.getPreferredSize());
 	        view.setListLeft(leftCombo);
-	        /*
-	         * 
-	         */
+        	//--- end modifications
+	        
 			view.buildUI();
 			
 			//close old window

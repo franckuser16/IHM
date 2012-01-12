@@ -5,13 +5,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-
 import view.DefaultView;
 import view.OtherView;
 
+/**
+*
+* @author Jérémy Filhoulaud
+*/
 public class Controller_DefaultView implements ActionListener, ItemListener
 {
 	private final DefaultView dView;
@@ -21,7 +23,7 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 		dView = dv;
 	}
 	
-	//Methods for ActionListener
+	//Method for ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
@@ -41,6 +43,11 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 		else if(e.getSource() == dView.getMenu_view2())
 		{
 			OtherView view = new OtherView();
+			
+			//--- beginning modifications
+			
+			//--- end modifications
+			
 			view.buildUI();
 			
 			//close old window
@@ -51,9 +58,8 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 		else if(e.getSource() == dView.getMenu_view1())
 		{
 			DefaultView view = new DefaultView();
-			/*
-	         * here you can modify look and feel of all the elements 
-	         */
+			
+			//--- beginning modifications
 	        view.setTitleLeft(new JLabel("Meter"));
 	        
 	        Object[] units = new Object[]{"m","cm","mm","µm"};
@@ -61,9 +67,8 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 	        leftCombo.setPreferredSize(new Dimension(250, 25));
 	        leftCombo.setMaximumSize(leftCombo.getPreferredSize());
 	        view.setListLeft(leftCombo);
-	        /*
-	         * 
-	         */
+	        //--- end modifications
+	        
 			view.buildUI();
 			
 			//close old window
@@ -71,17 +76,17 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 		}	
 	}
 
-	//for the JComboBox
+	//Method for the JComboBox
 	@Override
 	public void itemStateChanged(ItemEvent arg0)
 	{
-		if(arg0.getSource() == dView.getListLeft())
+		if(arg0.getSource() == dView.getListLeft())						//Left JComboBox
 		{
 			dView.getTextLeft().setText(arg0.getItem().toString());
 		}
 		else
 		{
-			dView.getTextRight().setText(arg0.getItem().toString());
+			dView.getTextRight().setText(arg0.getItem().toString());	//Right JComboBox
 		}
 		
 	}	

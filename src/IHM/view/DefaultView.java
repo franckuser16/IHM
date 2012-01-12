@@ -18,31 +18,30 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JSeparator;
 
 import controller.Controller_DefaultView;
 
 /**
  *
- * @author jeremy
+ * @author Jérémy Filhoulaud
  */
 public class DefaultView
 {
 	/*
      * attributes without Getters/Setters
      */
-	private JFrame converter = new JFrame("Converter");
-	
-	//For the menu of the application
-    private JMenuBar menuBar = new JMenuBar();
-    private JMenu menu = new JMenu("Menu");
-    
+	private JFrame converter = new JFrame("Converter");    
     private Box boxUnit1 = new Box(BoxLayout.PAGE_AXIS);	//unit box on left
     private Box boxUnit2 = new Box(BoxLayout.PAGE_AXIS);	//unit box on right
     private Box boxButtons = new Box(BoxLayout.Y_AXIS);	//box which contains button to convert
-    
     private Box boxNorth = new Box(BoxLayout.X_AXIS);	//box which contains title
     private Box boxCenter = new Box(BoxLayout.X_AXIS);	//box which contains boxUnit1, boxUnit2 and boxButtons
+    
+	//For the menu of the application
+    private JMenuBar menuBar = new JMenuBar();
+    private JMenu menu = new JMenu("Menu");
     
     //size of combo boxes and text fields
 	private final static Dimension sizeControls = new Dimension(250, 25);
@@ -67,8 +66,8 @@ public class DefaultView
     private JButton right2left;
     
     //menu items
-    private JMenuItem menu_view1 = new JMenuItem("View 1");
-    private JMenuItem menu_view2 = new JMenuItem("View 2");
+    private JRadioButtonMenuItem menu_view1 = new JRadioButtonMenuItem("View 1");
+    private JRadioButtonMenuItem menu_view2 = new JRadioButtonMenuItem("View 2");
     private JMenuItem menu_quit = new JMenuItem("Quit");
 
 	/**
@@ -96,14 +95,13 @@ public class DefaultView
         //elements of button's box
         left2right = new JButton("-->");
         right2left = new JButton("<--");
-        //not focusable because there are keyboard shortcut (ATL + L & ALT + R)
+        //not focusable because there are keyboard shortcuts (ATL + L & ALT + R)
         left2right.setFocusable(false);
         right2left.setFocusable(false);
 
-        //elements of second unit box        
+        //size of JComboBox
         listRight.setPreferredSize(sizeControls);
         listRight.setMaximumSize(listRight.getPreferredSize());
-        
         textRight.setPreferredSize(sizeControls);
         textRight.setMaximumSize(textRight.getPreferredSize());
     }
@@ -114,8 +112,11 @@ public class DefaultView
      */
     public void buildUI()
     {	
+    	menu_view1.setSelected(true);
+    	menu_view1.setEnabled(false);
+    	
     	/*
-    	 * listeners
+    	 * add all listeners
     	 */
     	left2right.addActionListener(new Controller_DefaultView(this));
     	right2left.addActionListener(new Controller_DefaultView(this));
@@ -125,14 +126,15 @@ public class DefaultView
     	listLeft.addItemListener(new Controller_DefaultView(this));
     	listRight.addItemListener(new Controller_DefaultView(this));
     	
-    	//open menu when you press ALT + M
-    	menu.setMnemonic(KeyEvent.VK_M);
-    	//ALT + L to convert left to right
-    	left2right.setMnemonic(KeyEvent.VK_L);
-    	//ALT + R to convert right to left
-    	right2left.setMnemonic(KeyEvent.VK_R);
+    	//keyboard shorcut
+    	menu.setMnemonic(KeyEvent.VK_M);			//ALT + M to open menu    	
+    	left2right.setMnemonic(KeyEvent.VK_L);		//ALT + L to convert left to right    	
+    	right2left.setMnemonic(KeyEvent.VK_R);		//ALT + R to convert right to left    	
+    	menu_view1.setMnemonic(KeyEvent.VK_1);		//ALT + 1 for view 1    	
+    	menu_view2.setMnemonic(KeyEvent.VK_2);		//ALT + 2 for view 2    	
+    	menu_quit.setMnemonic(KeyEvent.VK_Q);		//ALT + Q to quit
     	
-    	//align elements 
+    	//align controls in boxes
     	titleRight.setAlignmentX(Component.CENTER_ALIGNMENT);
         titleLeft.setAlignmentX(Component.CENTER_ALIGNMENT);
         listLeft.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -180,16 +182,6 @@ public class DefaultView
         boxCenter.add(Box.createHorizontalStrut(20));
         boxCenter.add(boxUnit2);
         boxCenter.add(Box.createGlue());    
-       
-        /*
-        boxUnit1.setPreferredSize(new Dimension(listLeft.getWidth(), 100));
-        boxUnit2.setPreferredSize(new Dimension(listRight.getWidth(), 100));
-        boxButtons.setPreferredSize(new Dimension(left2right.getWidth(), 100));
-        
-        boxUnit1.setBorder(BorderFactory.createLineBorder(Color.black));
-        boxUnit2.setBorder(BorderFactory.createLineBorder(Color.cyan));
-        boxButtons.setBorder(BorderFactory.createLineBorder(Color.red));
-        */
         
         //Menu
         menu.add(menu_view1);
@@ -219,7 +211,7 @@ public class DefaultView
 
     /**
      * To set the title of the converter
-     * @param title: the new title
+     * @param title: the new JLabel
      */
 	public void setTitle(JLabel title)
 	{
@@ -237,7 +229,7 @@ public class DefaultView
 
 	/**
 	 * Set title (unit string) of left box
-	 * @param titleLeft
+	 * @param titleLeft: the new JLabel
 	 */
 	public void setTitleLeft(JLabel titleLeft)
 	{
@@ -255,7 +247,7 @@ public class DefaultView
 
 	/**
 	 * Set left combo box to add units
-	 * @param listLeft: the new combo box
+	 * @param listLeft: the new JComboBox
 	 */
 	public void setListLeft(JComboBox listLeft)
 	{
@@ -273,7 +265,7 @@ public class DefaultView
 
 	/**
 	 * Set the left text field
-	 * @param textLeft: the new value
+	 * @param textLeft: the new JFormattedTextField
 	 */
 	public void setTextLeft(JFormattedTextField textLeft)
 	{
@@ -291,7 +283,7 @@ public class DefaultView
 
 	/**
 	 * Set title (unit string) of right box
-	 * @param titleLeft
+	 * @param titleLeft: the new JLabel
 	 */
 	public void setTitleRight(JLabel titleRight)
 	{
@@ -309,7 +301,7 @@ public class DefaultView
 
 	/**
 	 * Set right combo box to add units
-	 * @param listRight: the new combo box
+	 * @param listRight: the new JComboBox
 	 */
 	public void setListRight(JComboBox listRight)
 	{
@@ -327,70 +319,107 @@ public class DefaultView
 
 	/**
 	 * Set the right text field
-	 * @param textRight: the new value
+	 * @param textRight: the new JFormattedTextField
 	 */
 	public void setTextRight(JFormattedTextField textRight)
 	{
 		this.textRight = textRight;
 	}
 	
-	/*
-	 * Getters and Setters for convert buttons
+	/**
+	 * 
+	 * @return the button which makes conversion from left to right
 	 */
 	public JButton getLeft2right()
 	{
 		return left2right;
 	}
 
+	/**
+	 * Set the button which makes conversion from left to right
+	 * @param left2right: the new JButton
+	 */
 	public void setLeft2right(JButton left2right)
 	{
 		this.left2right = left2right;
 	}
 
+	/**
+	 * 
+	 * @return the button which makes conversion from right to left
+	 */
 	public JButton getRight2left()
 	{
 		return right2left;
 	}
 
+	/**
+	 * Set the button which makes conversion from right to left
+	 * @param right2left: the new JButton
+	 */
 	public void setRight2left(JButton right2left)
 	{
 		this.right2left = right2left;
 	}
 
-	/*
-	 * Getters and Setters for items menu
+	/**
+	 * 
+	 * @return the item in menu which represents the first view
 	 */
-	public JMenuItem getMenu_view1()
+	public JRadioButtonMenuItem getMenu_view1()
 	{
 		return menu_view1;
 	}
 
-	public void setMenu_view1(JMenuItem menu_view1)
+	/**
+	 * Set the item in menu which represents the first view
+	 * @param menu_view1: the new JRadioButtonMenuItem
+	 */
+	public void setMenu_view1(JRadioButtonMenuItem menu_view1)
 	{
 		this.menu_view1 = menu_view1;
 	}
 
-	public JMenuItem getMenu_view2()
+	/**
+	 * 
+	 * @return the item in menu which represents the second view
+	 */
+	public JRadioButtonMenuItem getMenu_view2()
 	{
 		return menu_view2;
 	}
 
-	public void setMenu_view2(JMenuItem menu_view2)
+	/**
+	 * Set the item in menu which represents the second view
+	 * @param menu_view2: the new JRadioButtonMenuItem
+	 */
+	public void setMenu_view2(JRadioButtonMenuItem menu_view2)
 	{
 		this.menu_view2 = menu_view2;
 	}
 
+	/**
+	 * 
+	 * @return the item in menu which represents application's closure
+	 */
 	public JMenuItem getMenu_quit()
 	{
 		return menu_quit;
 	}
 
+	/**
+	 * Set the item in menu which represents application's closure
+	 * @param menu_quit: the new JMenuItem
+	 */
 	public void setMenu_quit(JMenuItem menu_quit)
 	{
 		this.menu_quit = menu_quit;
 	}
 
-	//Getters JFrame
+	/**
+	 * 
+	 * @return the main JFrame
+	 */
 	public JFrame getConverter()
 	{
 		return converter;
