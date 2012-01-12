@@ -1,4 +1,4 @@
-package model;
+package IHM.model;
 /**
  *
  * @author jeremy
@@ -19,9 +19,18 @@ public class ImperialSysLength extends NonSI
 			this.ratio_to_reference = ratio_to_reference;
 		}
 
-		public double toReference(int quantity){
+		public double toReference(long quantity){
 
 			return quantity/this.ratio_to_reference;
 		}
+
 	}
+		public void fromReference(long qtOfRef)
+		{
+		}
+
+		public long toReference()
+		{
+				return 0;
+		}
 }

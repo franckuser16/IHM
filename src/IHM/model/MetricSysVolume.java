@@ -1,4 +1,4 @@
-package model;
+package IHM.model;
 
 import IHM.model.SI;
 /**

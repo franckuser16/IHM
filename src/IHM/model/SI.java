@@ -15,12 +15,12 @@ public abstract class SI extends Unit
 	{
 	}
 
-	public SI(Dimension dim, int quantity, String reference)
+	public SI(Dimension dim, long quantity, String reference)
 	{
 		super(dim, quantity, reference);
 	}
 
-	public SI(Dimension dim, int quantity, String reference, long prefix, long prefix_ref, long pas)
+	public SI(Dimension dim, long quantity, String reference, long prefix, long prefix_ref, long pas)
 	{
 		super(dim, quantity, reference);
 		this.prefix = prefix;
@@ -30,7 +30,12 @@ public abstract class SI extends Unit
 
 	public long toReference()
 	{
-		return this.getQuantity() * this.prefix / this.prefix_ref;
+		return (this.getQuantity() * this.prefix) / this.prefix_ref;
+	}
+
+	public void fromReference(long qtOfRef)
+	{
+		this.setQuantity( (qtOfRef / this.prefix) * this.prefix_ref );
 	}
 
 	public long getPrefix()

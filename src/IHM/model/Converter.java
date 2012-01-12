@@ -9,7 +9,7 @@ public class Converter {
 	private Unit unitIn;
 	private Unit unitOut;
 
-	public Converter(Unit unitIn, Unit unitOut)
+	private Converter(Unit unitIn, Unit unitOut)
 	{
 		this.unitIn = unitIn;
 		this.unitOut = unitOut;
@@ -22,7 +22,16 @@ public class Converter {
 
 	public Unit convert()
 	{
-		return new MetricSysLength(1,1);
+		long unitInQtOfRef = unitIn.toReference();
+		long unitOutQtOfRef = unitInQtOfRef / this.getKofConversion();
+		unitOut.fromReference(unitOutQtOfRef);
+
+		return unitOut;
+	}
+
+	public long getKofConversion()
+	{
+		return 1;
 	}
 
 }

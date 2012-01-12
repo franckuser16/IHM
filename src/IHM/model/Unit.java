@@ -19,7 +19,7 @@ public abstract class Unit
 	private static final String NULL_REFERENCE = "";
 
 	private Dimension dim;
-	private int quantity;
+	private long quantity;
 	private String reference;
 	//pas besoin de Converter en param, il est retourné par getConverterTo()
 	//private Converter converter;
@@ -31,7 +31,7 @@ public abstract class Unit
 		this.reference = NULL_REFERENCE;
 	}
 
-	public Unit(Dimension dim, int quantity, String reference)
+	public Unit(Dimension dim, long quantity, String reference)
 	{
 		this.dim = dim;
 		this.quantity = quantity;
@@ -60,13 +60,21 @@ public abstract class Unit
 		return this.dim;
 	}
 
-	public int getQuantity()
+	public long getQuantity()
 	{
 		return this.quantity;
 	}
 
-	public long toReference()
+	public void setQuantity(long quantity)
 	{
-		return 0;
+		this.quantity = quantity;
+	}
+
+	public abstract long toReference();
+
+	public abstract void fromReference(long qtOfRef);
+
+	public static void main(String[] args)
+	{
 	}
 }
