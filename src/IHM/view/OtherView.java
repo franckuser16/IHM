@@ -93,9 +93,7 @@ public class OtherView
          */
         String[] data = {"one", "two", "three", "four", "teeeeeeeeeeest"};
         fromList.setListData(data);
-        toList.setListData(data);
-        
-        
+        toList.setListData(data);   
     }
     
     /**
