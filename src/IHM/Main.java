@@ -1,31 +1,15 @@
-import java.awt.Dimension;
-
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-
-import view.DefaultView;
+import view.OtherView;
 
 public class Main 
 {	
 	public static void createAndShowGUI()
     {
-        DefaultView view1 = new DefaultView();
+        OtherView view = new OtherView(false);
+        view.buildUI();
         
-        /*
-         * here you can modify look and feel of all the elements 
-         */
-        view1.setTitleLeft(new JLabel("Meter"));
-        
-        Object[] units = new Object[]{"m","cm","mm","µm"};
-        JComboBox leftCombo = new JComboBox(units);
-        leftCombo.setPreferredSize(new Dimension(250, 25));
-        leftCombo.setMaximumSize(leftCombo.getPreferredSize());
-        view1.setListLeft(leftCombo);
-        /*
-         * 
-         */
-        
-        view1.buildUI();
+        //This does the same thing as if a user have click on "View1" in the menu.
+        //So it initializes the application via the controller; 
+        view.getMenu_view1().doClick();
     }
 
     public static void main(String[] args)

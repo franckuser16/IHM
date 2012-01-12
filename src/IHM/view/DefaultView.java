@@ -33,11 +33,13 @@ public class DefaultView
      * attributes without Getters/Setters
      */
 	private JFrame converter = new JFrame("Converter");    
-    private Box boxUnit1 = new Box(BoxLayout.PAGE_AXIS);	//unit box on left
-    private Box boxUnit2 = new Box(BoxLayout.PAGE_AXIS);	//unit box on right
-    private Box boxButtons = new Box(BoxLayout.Y_AXIS);	//box which contains button to convert
-    private Box boxNorth = new Box(BoxLayout.X_AXIS);	//box which contains title
-    private Box boxCenter = new Box(BoxLayout.X_AXIS);	//box which contains boxUnit1, boxUnit2 and boxButtons
+    private Box boxUnit1 = new Box(BoxLayout.PAGE_AXIS);		//unit box on left
+    private Box boxUnit2 = new Box(BoxLayout.PAGE_AXIS);		//unit box on right
+    private Box boxButtons = new Box(BoxLayout.PAGE_AXIS);		//box which contains button to convert
+    private Box boxError = new Box(BoxLayout.LINE_AXIS);		//box which contains error label
+    private Box boxNorth = new Box(BoxLayout.LINE_AXIS);		//box which contains title
+    private Box boxConversion = new Box(BoxLayout.LINE_AXIS);	//box which contains boxUnit1, boxUnit2 and boxButtons
+    private Box boxCenter = new Box(BoxLayout.PAGE_AXIS);		//box which contains boxError & boxConversion
     
 	//For the menu of the application
     private JMenuBar menuBar = new JMenuBar();
@@ -50,6 +52,7 @@ public class DefaultView
      * attributes with Getters/Setters
      */
     private JLabel title = new JLabel();
+    private JLabel errors = new JLabel();
     
     //Composition of first unit box
     private JLabel titleLeft = new JLabel("Unit 1");
@@ -69,14 +72,17 @@ public class DefaultView
     private JRadioButtonMenuItem menu_view1 = new JRadioButtonMenuItem("View 1");
     private JRadioButtonMenuItem menu_view2 = new JRadioButtonMenuItem("View 2");
     private JMenuItem menu_quit = new JMenuItem("Quit");
+    
+    private boolean frameVisibility; 
 
 	/**
 	 * Set all the element of a default converter
 	 */
-    public DefaultView()
+    public DefaultView(boolean visibility)
     {
+    	frameVisibility = visibility;
+    	
     	//about JFrame...
-    	converter.setLocationRelativeTo(null);
         converter.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         converter.setPreferredSize(new Dimension(450, 200));
         
@@ -84,6 +90,9 @@ public class DefaultView
         title.setFont(new Font("Calibri", Font.TYPE1_FONT, 20));
         title.setForeground(Color.ORANGE);
         title.setText("Converter");
+        
+        //look&feel errors messages
+        errors.setForeground(Color.RED);
     	
         //elements of first unit box        
         listLeft.setPreferredSize(sizeControls);
@@ -95,9 +104,6 @@ public class DefaultView
         //elements of button's box
         left2right = new JButton("-->");
         right2left = new JButton("<--");
-        //not focusable because there are keyboard shortcuts (ATL + L & ALT + R)
-        left2right.setFocusable(false);
-        right2left.setFocusable(false);
 
         //size of JComboBox
         listRight.setPreferredSize(sizeControls);
@@ -147,7 +153,12 @@ public class DefaultView
     	//box which contains title
         boxNorth.add(Box.createGlue());
         boxNorth.add(title);
-        boxNorth.add(Box.createGlue());                
+        boxNorth.add(Box.createGlue());
+        
+        //box which contains error message
+        boxError.add(Box.createGlue());
+        boxError.add(errors);
+        boxError.add(Box.createGlue());
         
         //add all the elements in first unit box
         boxUnit1.add(Box.createGlue());
@@ -174,14 +185,21 @@ public class DefaultView
         boxButtons.add(right2left);
         boxButtons.add(Box.createGlue());
 
-        //element of center box (boxButtons, boxUnit1 and boxUnit2)
+        //elements of conversion box (boxButtons, boxUnit1 and boxUnit2)
+        boxConversion.add(Box.createGlue());
+        boxConversion.add(boxUnit1);
+        boxConversion.add(Box.createHorizontalStrut(20));
+        boxConversion.add(boxButtons);
+        boxConversion.add(Box.createHorizontalStrut(20));
+        boxConversion.add(boxUnit2);
+        boxConversion.add(Box.createGlue());  
+        
+        //elements of center box (boxError & boxConversion)
         boxCenter.add(Box.createGlue());
-        boxCenter.add(boxUnit1);
-        boxCenter.add(Box.createHorizontalStrut(20));
-        boxCenter.add(boxButtons);
-        boxCenter.add(Box.createHorizontalStrut(20));
-        boxCenter.add(boxUnit2);
-        boxCenter.add(Box.createGlue());    
+        boxCenter.add(boxError);
+        boxCenter.add(Box.createGlue());
+        boxCenter.add(boxConversion);
+        boxCenter.add(Box.createGlue());
         
         //Menu
         menu.add(menu_view1);
@@ -196,13 +214,14 @@ public class DefaultView
         converter.add(boxCenter, BorderLayout.CENTER);
         
         converter.setMinimumSize(converter.getPreferredSize());
+        converter.setLocationRelativeTo(null);
         converter.pack();
-        converter.setVisible(true);
+        converter.setVisible(frameVisibility);
     }
 	
 	/**
 	 * 
-	 * @return the title of the frame
+	 * @return the title of the converter
 	 */
     public JLabel getTitle()
 	{
@@ -210,7 +229,7 @@ public class DefaultView
 	}
 
     /**
-     * To set the title of the converter
+     * Set the title of the converter
      * @param title: the new JLabel
      */
 	public void setTitle(JLabel title)
@@ -424,4 +443,24 @@ public class DefaultView
 	{
 		return converter;
 	}
+
+	/**
+	 * 
+	 * @return error label on application
+	 */
+	public JLabel getErrors()
+	{
+		return errors;
+	}
+
+	/**
+	 * Set the error label of the application
+	 * @param errors: the new JLabel
+	 */
+	public void setErrors(JLabel errors)
+	{
+		this.errors = errors;
+	}
+	
+	
 }

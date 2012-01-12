@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,11 +30,42 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 	{
 		//we have click on "left2right" button
 		if(e.getSource() == dView.getLeft2right())
-			dView.getTextRight().setText("left to right");
-		
+		{
+			if(dView.getTextLeft().getText().isEmpty())
+			{
+				//show error indications
+				dView.getErrors().setText("Veuillez renseigner une valeur.");
+				dView.getTextLeft().setBackground(Color.PINK);
+			}
+			
+			else
+			{
+				//hide error indications
+				dView.getErrors().setText("");
+				dView.getTextLeft().setBackground(Color.WHITE);
+				
+				//conversion
+			}
+		}
+			
 		//we have click on "right2left" button
 		else if(e.getSource() == dView.getRight2left())
-			dView.getTextLeft().setText("right to left");
+		{
+			if(dView.getTextRight().getText().isEmpty())
+			{
+				//show error indications
+				dView.getErrors().setText("Veuillez renseigner une valeur.");
+				dView.getTextRight().setBackground(Color.PINK);
+			}
+			else
+			{
+				//hide error indications
+				dView.getErrors().setText("");
+				dView.getTextRight().setBackground(Color.WHITE);
+				
+				//conversion
+			}
+		}
 		
 		//we have choose "Quit" in the menu
 		else if(e.getSource() == dView.getMenu_quit())
@@ -42,7 +74,7 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 		//show the OtherView
 		else if(e.getSource() == dView.getMenu_view2())
 		{
-			OtherView view = new OtherView();
+			OtherView view = new OtherView(true);
 			
 			//--- beginning modifications
 			
@@ -57,7 +89,7 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 		//show the DefaultView
 		else if(e.getSource() == dView.getMenu_view1())
 		{
-			DefaultView view = new DefaultView();
+			DefaultView view = new DefaultView(true);
 			
 			//--- beginning modifications
 	        view.setTitleLeft(new JLabel("Meter"));

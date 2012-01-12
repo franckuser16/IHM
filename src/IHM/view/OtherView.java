@@ -2,6 +2,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
@@ -30,12 +31,13 @@ public class OtherView{
      * attributes without Getters/Setters
      */
 	private JFrame converter = new JFrame("Converter");
-	private Box boxTitle = new Box(BoxLayout.LINE_AXIS);	//unit box on left
-    private Box boxAmount = new Box(BoxLayout.LINE_AXIS);	//unit box on left
-    private Box boxFrom = new Box(BoxLayout.LINE_AXIS);	//unit box on right
-    private Box boxTo = new Box(BoxLayout.LINE_AXIS);	//box which contains button to convert
-    private Box boxConvert = new Box(BoxLayout.LINE_AXIS);	//box which contains button to convert
-    private Box boxResult = new Box(BoxLayout.LINE_AXIS);	//box which contains button to convert
+	private Box boxTitle = new Box(BoxLayout.LINE_AXIS);
+	private Box boxError = new Box(BoxLayout.LINE_AXIS);
+    private Box boxAmount = new Box(BoxLayout.LINE_AXIS);
+    private Box boxFrom = new Box(BoxLayout.LINE_AXIS);
+    private Box boxTo = new Box(BoxLayout.LINE_AXIS);
+    private Box boxConvert = new Box(BoxLayout.LINE_AXIS);
+    private Box boxResult = new Box(BoxLayout.LINE_AXIS);
     
     //For the menu of the application
     private JMenuBar menuBar = new JMenuBar();
@@ -47,6 +49,7 @@ public class OtherView{
      * attributes with Getters/Setters
      */
     private JLabel title = new JLabel();
+    private JLabel errors = new JLabel();
     
     private JLabel amountLabel = new JLabel("Amount: ");
     private JFormattedTextField amountText = new JFormattedTextField(NumberFormat.getNumberInstance());
@@ -67,20 +70,26 @@ public class OtherView{
     private JRadioButtonMenuItem menu_view1 = new JRadioButtonMenuItem("View 1");
     private JRadioButtonMenuItem menu_view2 = new JRadioButtonMenuItem("View 2");
     private JMenuItem menu_quit = new JMenuItem("Quit");
+    
+    private boolean frameVisibility;
 
 	/**
 	 * Set all the element of a default converter
 	 */
-    public OtherView(){
+    public OtherView(boolean visibility){
+    	frameVisibility = visibility;
+    	
     	//about JFrame...
-    	converter.setLocationRelativeTo(null);
         converter.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        converter.setPreferredSize(new Dimension(350, 400));
+        converter.setPreferredSize(new Dimension(390, 440));
         
         //title of application
         title.setFont(new Font("Calibri", Font.TYPE1_FONT, 20));
         title.setForeground(Color.ORANGE);
         title.setText("Converter");
+        
+        //look&feel errors messages
+        errors.setForeground(Color.RED);
     	        
         //text field for amount
         amountText.setPreferredSize(new Dimension(250, 25));
@@ -114,6 +123,8 @@ public class OtherView{
     	menu_view2.setSelected(true);
     	menu_view2.setEnabled(false);
     	
+    	boxError.setAlignmentX(Component.CENTER_ALIGNMENT);
+    	
     	//only ONE selection on the list
     	fromList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         toList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -143,6 +154,10 @@ public class OtherView{
     	boxTitle.add(title);
     	boxTitle.add(Box.createGlue());
     	
+    	boxError.add(Box.createGlue());
+    	boxError.add(errors);
+    	boxError.add(Box.createGlue());
+    	
     	boxAmount.add(Box.createGlue());
     	boxAmount.add(amountLabel);
     	boxAmount.add(amountText);
@@ -167,6 +182,7 @@ public class OtherView{
     	boxResult.add(Box.createGlue());
     	
     	mainBox.add(boxTitle);
+    	mainBox.add(boxError);
     	mainBox.add(boxAmount);
     	mainBox.add(boxFrom);
     	mainBox.add(boxTo);
@@ -185,8 +201,9 @@ public class OtherView{
         converter.add(mainBox, BorderLayout.CENTER);
         
         converter.setMinimumSize(converter.getPreferredSize());
+        converter.setLocationRelativeTo(null);
         converter.pack();
-        converter.setVisible(true);
+        converter.setVisible(frameVisibility);
     }
 
 	public JButton getConvert(){
@@ -247,5 +264,21 @@ public class OtherView{
 
 	public JFrame getConverter(){
 		return converter;
+	}
+
+	public JLabel getErrors(){
+		return errors;
+	}
+
+	public void setErrors(JLabel errors){
+		this.errors = errors;
+	}
+
+	public JFormattedTextField getAmountText(){
+		return amountText;
+	}
+
+	public void setAmountText(JFormattedTextField amountText){
+		this.amountText = amountText;
 	}
 }
