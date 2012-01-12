@@ -117,6 +117,8 @@ public class OtherView
     	menu_view2.addActionListener(new Controller_OtherView(this));
     	menu_view1.addActionListener(new Controller_OtherView(this));
     	convert.addActionListener(new Controller_OtherView(this));
+    	fromList.addListSelectionListener(new Controller_OtherView(this));
+    	toList.addListSelectionListener(new Controller_OtherView(this));
     	
     	//open menu when you press ALT + M
     	menu.setMnemonic(KeyEvent.VK_M);
@@ -223,6 +225,26 @@ public class OtherView
 		this.result = result;
 	}
     
+	public JList getFromList()
+	{
+		return fromList;
+	}
+
+	public void setFromList(JList fromList)
+	{
+		this.fromList = fromList;
+	}
+
+	public JList getToList()
+	{
+		return toList;
+	}
+
+	public void setToList(JList toList)
+	{
+		this.toList = toList;
+	}
+
 	//Getters JFrame
 	public JFrame getConverter()
 	{

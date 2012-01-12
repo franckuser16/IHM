@@ -122,6 +122,8 @@ public class DefaultView
     	menu_quit.addActionListener(new Controller_DefaultView(this));
     	menu_view2.addActionListener(new Controller_DefaultView(this));
     	menu_view1.addActionListener(new Controller_DefaultView(this));
+    	listLeft.addItemListener(new Controller_DefaultView(this));
+    	listRight.addItemListener(new Controller_DefaultView(this));
     	
     	//open menu when you press ALT + M
     	menu.setMnemonic(KeyEvent.VK_M);

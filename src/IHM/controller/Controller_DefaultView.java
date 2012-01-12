@@ -3,6 +3,8 @@ package controller;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -10,7 +12,7 @@ import javax.swing.JLabel;
 import view.DefaultView;
 import view.OtherView;
 
-public class Controller_DefaultView implements ActionListener
+public class Controller_DefaultView implements ActionListener, ItemListener
 {
 	private final DefaultView dView;
 	
@@ -67,5 +69,20 @@ public class Controller_DefaultView implements ActionListener
 			//close old window
 			dView.getConverter().dispose();
 		}	
+	}
+
+	//for the JComboBox
+	@Override
+	public void itemStateChanged(ItemEvent arg0)
+	{
+		if(arg0.getSource() == dView.getListLeft())
+		{
+			dView.getTextLeft().setText(arg0.getItem().toString());
+		}
+		else
+		{
+			dView.getTextRight().setText(arg0.getItem().toString());
+		}
+		
 	}	
 }

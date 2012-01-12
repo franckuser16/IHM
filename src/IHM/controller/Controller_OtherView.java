@@ -6,11 +6,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import view.DefaultView;
 import view.OtherView;
 
-public class Controller_OtherView implements ActionListener
+public class Controller_OtherView implements ActionListener, ListSelectionListener
 {
 	private final OtherView oView;
 	
@@ -63,5 +66,23 @@ public class Controller_OtherView implements ActionListener
 			//close old window
 			oView.getConverter().dispose();
 		}			
+	}
+
+	@Override
+	public void valueChanged(ListSelectionEvent arg0)
+	{
+		JList l = (JList)arg0.getSource();
+		
+		//"from" list
+		if(arg0.getSource() == oView.getFromList())
+		{			
+			oView.getResult().setText(l.getSelectedValue().toString());
+		}
+		//"to" list
+		else
+		{
+			oView.getResult().setText(l.getSelectedValue().toString());
+		}
+		
 	}	
 }
