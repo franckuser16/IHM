@@ -30,6 +30,7 @@ public class MetricSysLength extends SI
 
 			Converter cvt = unitA.getConverterTo(unitB);
 			unitB = (MetricSysLength)cvt.convert();
+			System.out.println(unitB);
 	}
 
 }

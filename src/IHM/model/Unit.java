@@ -74,7 +74,8 @@ public abstract class Unit
 
 	public abstract void fromReference(long qtOfRef);
 
-	public static void main(String[] args)
+	public String toString()
 	{
+		return "Quantity: " + this.getQuantity;
 	}
 }
