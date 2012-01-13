@@ -15,12 +15,14 @@ import IHM.model.Dimension;
  */
 public abstract class Unit
 {
-	private static final int NULL_QUANTITY = 0;
+	private static final double NULL_QUANTITY = 0;
 	private static final String NULL_REFERENCE = "";
+	private static final double NO_CONVERSION = -1;
 
 	private Dimension dim;
 	private double quantity;
 	private String reference;
+	private double KofConversion;
 	//pas besoin de Converter en param, il est retourné par getConverterTo()
 	//private Converter converter;
 
@@ -28,14 +30,16 @@ public abstract class Unit
 	{
 		this.dim = new Dimension(Dimension.NO_DIMENSION);
 		this.quantity = Unit.NULL_QUANTITY;
-		this.reference = NULL_REFERENCE;
+		this.reference = Unit.NULL_REFERENCE;
+		this.KofConversion = Unit.NO_CONVERSION;
 	}
 
-	public Unit(Dimension dim, double quantity, String reference)
+	public Unit(Dimension dim, double quantity, String reference, double KofConversion)
 	{
 		this.dim = dim;
 		this.quantity = quantity;
 		this.reference = reference;
+		this.KofConversion = KofConversion;
 	}
 
 	public boolean isCompatible(Unit unit)
@@ -49,6 +53,11 @@ public abstract class Unit
 	   return this.converter;
 	   }
 	   */
+
+	public double getKofConversion()
+	{
+		return this.KofConversion;
+	}
 
 	public Converter getConverterTo(Unit unitOut)
 	{

@@ -13,6 +13,8 @@ import IHM.model.ImperialSysLength;
  */
 public class MetricSysLength extends SI
 {
+	private static final double MSL_K_CONV = 1;
+	
 	public MetricSysLength()
 	{
 		this(0, 0);
@@ -20,7 +22,7 @@ public class MetricSysLength extends SI
 
 	public MetricSysLength(double quantity, int prefix)
 	{
-		super(new Dimension(Dimension.LENGTH), quantity, "meter", prefix, 1, 10);
+		super(new Dimension(Dimension.LENGTH), quantity, MetricSysLength.MSL_K_CONV, "meter", prefix, 1, 10);
 	}
 
 	public static void main(String[] args)

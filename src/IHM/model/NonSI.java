@@ -7,5 +7,18 @@ import IHM.model.Unit;
  */
 public abstract class NonSI extends Unit
 {
+	public NonSI(Dimension dim, double quantity, String reference, double KofConversion)
+	{
+		super(dim, quantity, reference, KofConversion);
+	}
 
+	public double toReference()
+	{
+
+	}
+
+	public void fromReference(double qtOfRef)
+	{
+			
+	}
 }

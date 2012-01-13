@@ -5,26 +5,30 @@ package IHM.model;
  */
 public class ImperialSysLength extends NonSI
 {
-	public enum Unities {
+		private static final double ISL_K_CONV = 123;
 
-		Inch (1.0),
-		Foot (12.0),
-		Yard (36.0),
-		Mile (63360.0);
+		private enum ISL_Units {
 
-		private final double ratio_to_reference;
+				Inch (1.0),
+				Foot (12.0),
+				Yard (36.0),
+				Mile (63360.0);
 
-		Unities(double ratio_to_reference)
+				private final double ratio_to_reference;
+
+				ISL_Units(double ratio_to_reference)
+				{
+						this.ratio_to_reference = ratio_to_reference;
+				}
+
+		} 
+
+		public ImperialSysLength(double quantity, String name) 
 		{
-			this.ratio_to_reference = ratio_to_reference;
+				super(new Dimension(Dimension.LENGTH), quantity, name, ImperialSysLength.ISL_K_CONV);
+				//selectionner le bonne valeur d'enum depuis la reference
 		}
 
-		public double toReference(double quantity){
-
-			return quantity/this.ratio_to_reference;
-		}
-
-	}
 		public void fromReference(double qtOfRef)
 		{
 		}
