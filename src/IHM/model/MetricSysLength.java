@@ -22,7 +22,7 @@ public class MetricSysLength extends SI
 
 	public MetricSysLength(double quantity, int prefix)
 	{
-		super(new Dimension(Dimension.LENGTH), quantity, MetricSysLength.MSL_K_CONV, "meter", prefix, 1, 10);
+		super(new Dimension(Dimension.LENGTH), quantity, "meter", MetricSysLength.MSL_K_CONV, prefix, 1, 10);
 	}
 
 	public static void main(String[] args)

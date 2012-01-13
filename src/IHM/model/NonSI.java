@@ -14,7 +14,7 @@ public abstract class NonSI extends Unit
 
 	public double toReference()
 	{
-
+		return 0;
 	}
 
 	public void fromReference(double qtOfRef)

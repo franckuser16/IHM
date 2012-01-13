@@ -27,15 +27,9 @@ public class Converter {
 	public Unit convert()
 	{
 		double unitInQtOfRef = unitIn.toReference();
-		double unitOutQtOfRef = unitInQtOfRef / this.getKofConversion();
+		double unitOutQtOfRef = ( (unitInQtOfRef * unitIn.getKofConversion()) / unitOut.getKofConversion() );
 		unitOut.fromReference(unitOutQtOfRef);
 
 		return unitOut;
 	}
-
-	public long getKofConversion()
-	{
-		return 1;
-	}
-
 }

@@ -17,7 +17,7 @@ public abstract class SI extends Unit
 
 	public SI(Dimension dim, double quantity, String reference, double KofConversion)
 	{
-		super(dim, quantity, reference);
+		super(dim, quantity, reference, KofConversion);
 	}
 
 	public SI(Dimension dim, double quantity, String reference, double KofConversion, long prefix, long prefix_ref, long pas)
