@@ -7,9 +7,10 @@ import IHM.model.SI;
  */
 public class MetricSysVolume extends SI
 {
-
+	private static final double MSL_K_CONV = 1;
+	
 	public MetricSysVolume(double quantity, int prefix)
 	{
-		super(new Dimension(Dimension.VOLUME), quantity, "metercubic", prefix, 1, 1000);
+		super(new Dimension(Dimension.VOLUME), quantity, "metercubic", MetricSysVolume.MSL_K_CONV, prefix, 1, 1000);
 	}
 }

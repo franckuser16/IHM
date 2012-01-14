@@ -83,6 +83,9 @@ public abstract class Unit
 
 	public abstract void fromReference(double qtOfRef);
 
+	//a implementer
+	//public abstract String[] enumerate();
+	
 	public String toString()
 	{
 		return "Quantity: " + this.getQuantity();

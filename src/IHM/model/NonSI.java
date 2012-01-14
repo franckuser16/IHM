@@ -7,9 +7,12 @@ import IHM.model.Unit;
  */
 public abstract class NonSI extends Unit
 {
-	public NonSI(Dimension dim, double quantity, String reference, double KofConversion)
+	private enum MesSystem {}
+	
+	public NonSI(Dimension dim, double quantity, String reference, double KofConversion, enum MesSystem)
 	{
 		super(dim, quantity, reference, KofConversion);
+		this.MesSystem = MesSystem;
 	}
 
 	public double toReference()
