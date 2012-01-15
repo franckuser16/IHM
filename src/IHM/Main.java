@@ -1,11 +1,14 @@
-import view.OtherView;
+import view.DefaultView;
 
 public class Main 
 {	
 	public static void createAndShowGUI()
     {
-        OtherView view = new OtherView(false);
+        DefaultView view = new DefaultView(false);
+        
         view.buildUI();
+        
+        view.getMenu_view1().setEnabled(true);
         
         //This does the same thing as if a user have click on "View1" in the menu.
         //So it initializes the application via the controller; 

@@ -43,6 +43,7 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 				//hide error indications
 				dView.getErrors().setText("");
 				dView.getTextLeft().setBackground(Color.WHITE);
+				dView.getTextRight().setBackground(Color.WHITE);
 				
 				//conversion
 			}
@@ -62,6 +63,7 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 				//hide error indications
 				dView.getErrors().setText("");
 				dView.getTextRight().setBackground(Color.WHITE);
+				dView.getTextLeft().setBackground(Color.WHITE);
 				
 				//conversion
 			}
