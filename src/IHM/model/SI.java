@@ -1,9 +1,5 @@
 package model;
 
-/**
- *
- * @author jeremy
- */
 public abstract class SI extends Unit
 {
 	private enum prefix{
