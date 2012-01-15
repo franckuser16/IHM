@@ -20,18 +20,18 @@ public class MetricSysLength extends SI
 		this(0, 0);
 	}
 
-	public MetricSysLength(double quantity, int prefix)
+	public MetricSysLength(double quantity, double prefix)
 	{
 		super(new Dimension(Dimension.LENGTH), quantity, "meter", MetricSysLength.MSL_K_CONV, prefix, 1, 10);
 	}
 
 	public static void main(String[] args)
 	{
-			MetricSysLength unitA = new MetricSysLength(120, 10);
-			MetricSysVolume unitB = new MetricSysVolume(0, 100);
+			MetricSysLength unitA = new MetricSysLength(120, 0.001);
+			ImperialSysLength unitB = new ImperialSysLength(0, "Mile");
 
 			Converter cvt = unitA.getConverterTo(unitB);
-			unitB = (MetricSysVolume)cvt.convert();
+			unitB = (ImperialSysLength)cvt.convert();
 			System.out.println(unitB);
 	}
 

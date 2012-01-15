@@ -1,5 +1,7 @@
 package IHM.model;
 
+import java.util.HashMap;
+
 import IHM.model.Unit;
 /**
  *
@@ -7,9 +9,9 @@ import IHM.model.Unit;
  */
 public abstract class NonSI extends Unit
 {
-	private NonSIMesSys MesSystem;
+	private HashMap<String, Double> MesSystem;
 	
-	public NonSI(Dimension dim, double quantity, String reference, double KofConversion, NonSIMesSys MesSystem)
+	public NonSI(Dimension dim, double quantity, String reference, double KofConversion, HashMap<String, Double> MesSystem)
 	{
 		super(dim, quantity, reference, KofConversion);
 		this.MesSystem = MesSystem;
@@ -17,10 +19,11 @@ public abstract class NonSI extends Unit
 
 	public double toReference()
 	{
-		return this.MesSystem.toReference(this.quantity);
+		return this.getQuantity() * this.MesSystem.get(this.getReference());
+	}
 
 	public void fromReference(double qtOfRef)
 	{
-		this.setQuantity(this.MesSystem.fromReference(qtOfRef));
-	}
+		this.setQuantity(qtOfRef / this.MesSystem.get(this.getReference()));
+	}	
 }

@@ -7,9 +7,9 @@ import IHM.model.Unit;
  */
 public abstract class SI extends Unit
 {
-	private long prefix;
-	private long prefix_ref;
-	private long pas;
+	private double prefix;
+	private double prefix_ref;
+	private double pas;
 	//liste des prefix deca...
 	//permettant la création du nom en fct des param prefix et reference
 
@@ -22,7 +22,7 @@ public abstract class SI extends Unit
 		super(dim, quantity, reference, KofConversion);
 	}
 
-	public SI(Dimension dim, double quantity, String reference, double KofConversion, long prefix, long prefix_ref, long pas)
+	public SI(Dimension dim, double quantity, String reference, double KofConversion, double prefix, double prefix_ref, double pas)
 	{
 		super(dim, quantity, reference, KofConversion);
 		this.prefix = prefix;
@@ -40,7 +40,7 @@ public abstract class SI extends Unit
 		this.setQuantity( (long) ((qtOfRef / this.prefix) * this.prefix_ref) ); //Math.pow(10, this.prefix_ref)) );
 	}
 
-	public long getPrefix()
+	public double getPrefix()
 	{
 		return this.prefix;
 	}

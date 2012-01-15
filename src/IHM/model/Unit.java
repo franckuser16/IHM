@@ -90,4 +90,12 @@ public abstract class Unit
 	{
 		return "Quantity: " + this.getQuantity();
 	}
+
+	public String getReference() {
+		return this.reference;
+	}
+
+	public void setReference(String reference) {
+		this.reference = reference;
+	}
 }
