@@ -9,7 +9,28 @@ public abstract class SI extends Unit
 {
 	private enum PREFIX{
 		
-		yocto(Math.pow( 	
+		YOCTO	("yocto",	-24);
+		ZEPTO	("zepto",	-21);
+		ATTO	("atto",	-18);
+		FEMTO	("femto", 	-15);
+		PICO	("pico",	-12);
+		NANO	("nano,"	-9);
+		MICRO	("micro",	-6);
+		MILLI	("mili",	-3);
+		CENTI
+		DイI
+		DイA
+		HECTO
+		KILO
+		MエA
+		GIGA
+		TコA
+		PサA
+		EXA
+		ZETTA
+		YOTTA
+		
+		yocto
 		zepto
 		atto
 		femto
