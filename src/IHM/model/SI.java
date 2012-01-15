@@ -1,63 +1,47 @@
-package IHM.model;
+package model;
 
-import IHM.model.Unit;
 /**
  *
  * @author jeremy
  */
 public abstract class SI extends Unit
 {
-	private enum PREFIX{
+	private enum prefix{
 		
-		YOCTO	("yocto",	-24);
-		ZEPTO	("zepto",	-21);
-		ATTO	("atto",	-18);
-		FEMTO	("femto", 	-15);
-		PICO	("pico",	-12);
-		NANO	("nano,"	-9);
-		MICRO	("micro",	-6);
-		MILLI	("mili",	-3);
-		CENTI
-		DイI
-		DイA
-		HECTO
-		KILO
-		MエA
-		GIGA
-		TコA
-		PサA
-		EXA
-		ZETTA
-		YOTTA
-		
-		yocto
-		zepto
-		atto
-		femto
-		pico
-		nano	
-		micro
-		milli
-		centi
-		d残i
-		d残a
-		hecto
-		kilo
-		m使a
-		giga
-		t屍a
-		p師a
-		exa
-		zetta
-		yotta
+		YOCTO	(-24),
+		ZEPTO	(-21),
+		ATTO	(-18),
+		FEMTO	(-15),
+		PICO	(-12),
+		NANO	(-9),
+		MICRO	(-6),
+		MILLI	(-3),
+		CENTI	(-2),
+		DECI	(-1),
+		DECA	(1),
+		HECTO	(2),
+		KILO	(3),
+		MEGA	(6),
+		GIGA	(9),
+		TERA	(12),
+		PETA	(15),
+		EXA		(18),
+		ZETTA	(21),
+		YOTTA	(24);
 
+		private int power;
+
+		prefix(int power)
+		{
+			this.power = power;
+		}
 	}
 	
 	private double prefix;
 	private double prefix_ref;
 	private double pas;
 	//liste des prefix deca...
-	//permettant la cr斬tion du nom en fct des param prefix et reference
+	//permettant la cr?ation du nom en fct des param prefix et reference
 
 	public SI()
 	{

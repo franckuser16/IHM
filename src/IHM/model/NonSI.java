@@ -1,12 +1,7 @@
-package IHM.model;
+package model;
 
 import java.util.HashMap;
 
-import IHM.model.Unit;
-/**
- *
- * @author jeremy
- */
 public abstract class NonSI extends Unit
 {
 	private HashMap<String, Double> MesSystem;
@@ -25,5 +20,10 @@ public abstract class NonSI extends Unit
 	public void fromReference(double qtOfRef)
 	{
 		this.setQuantity(qtOfRef / this.MesSystem.get(this.getReference()));
-	}	
+	}
+	
+	public String[] getList()
+	{
+		return (String[])MesSystem.keySet().toArray();
+	}
 }
