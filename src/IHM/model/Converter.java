@@ -17,7 +17,7 @@ public class Converter {
 
 	public static Converter createConverter(Unit unitIn, Unit unitOut)
 	{
-		//trouver o√π placer le isCompatible
+		//trouver où placer le isCompatible
 		if (unitIn.isCompatible(unitOut))
 			return new Converter(unitIn, unitOut);
 		else

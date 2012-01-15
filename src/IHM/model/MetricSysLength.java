@@ -14,15 +14,12 @@ import IHM.model.ImperialSysLength;
 public class MetricSysLength extends SI
 {
 	private static final double MSL_K_CONV = 1;
-	
-	public MetricSysLength()
-	{
-		this(0, 0);
-	}
+	private static final Dimension MSL_DIMENSION = new Dimension(Dimension.LENGTH);
 
+	
 	public MetricSysLength(double quantity, double prefix)
 	{
-		super(new Dimension(Dimension.LENGTH), quantity, "meter", MetricSysLength.MSL_K_CONV, prefix, 1, 10);
+		super(MetricSysLength.MSL_DIMENSION, quantity, "meter", MetricSysLength.MSL_K_CONV, prefix, 1, 10);
 	}
 
 	public static void main(String[] args)
@@ -33,6 +30,14 @@ public class MetricSysLength extends SI
 			Converter cvt = unitA.getConverterTo(unitB);
 			unitB = (ImperialSysLength)cvt.convert();
 			System.out.println(unitB);
+			
+			MetricSysVolume unitC = new MetricSysVolume(367, 10);
+			ImperialSysVolume unitD = new ImperialSysVolume(0, "Cubic inch");
+
+			Converter cvt1 = unitC.getConverterTo(unitD);
+			unitD = (ImperialSysVolume)cvt1.convert();
+			System.out.println(unitD);
+			
 	}
 
 }
