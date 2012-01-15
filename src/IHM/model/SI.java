@@ -7,6 +7,31 @@ import IHM.model.Unit;
  */
 public abstract class SI extends Unit
 {
+	private enum PREFIX{
+		
+		yocto(Math.pow( 	
+		zepto
+		atto
+		femto
+		pico
+		nano	
+		micro
+		milli
+		centi
+		déci
+		déca
+		hecto
+		kilo
+		méga
+		giga
+		téra
+		péta
+		exa
+		zetta
+		yotta
+
+	}
+	
 	private double prefix;
 	private double prefix_ref;
 	private double pas;

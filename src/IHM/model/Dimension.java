@@ -10,6 +10,7 @@ public class Dimension
 	public static final int AREA = 1;
 	public static final int VOLUME = 2;
 	public static final int HEAT = 3;
+	public static final int PRESSURE = 4;
 
 	private int nature;
 
