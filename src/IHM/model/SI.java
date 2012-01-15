@@ -10,6 +10,8 @@ public abstract class SI extends Unit
 	private long prefix;
 	private long prefix_ref;
 	private long pas;
+	//liste des prefix deca...
+	//permettant la création du nom en fct des param prefix et reference
 
 	public SI()
 	{
