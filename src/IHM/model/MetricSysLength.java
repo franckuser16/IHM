@@ -4,11 +4,11 @@ public class MetricSysLength extends SI
 {
 	private static final double MSL_K_CONV = 1;
 	private static final Dimension MSL_DIMENSION = new Dimension(Dimension.LENGTH);
-
+	private static final String MSL_NAME = "meter";
 	
 	public MetricSysLength(double quantity, String prefix)
 	{
-		super(MetricSysLength.MSL_DIMENSION, quantity, "meter", MetricSysLength.MSL_K_CONV, prefix, "none", 1);
+		super(MetricSysLength.MSL_DIMENSION, quantity, MetricSysLength.MSL_NAME, MetricSysLength.MSL_K_CONV, prefix, "none", 1);
 	}
 
 	public static void main(String[] args)

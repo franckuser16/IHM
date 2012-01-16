@@ -30,7 +30,7 @@ public abstract class NonSI extends Unit
 		this.setQuantity(qtOfRef / MesSystem.get(this.getReference()));
 	}
 	
-	public static Object[] getList()
+	public Object[] getList()
 	{
 		return MesSystem.keySet().toArray();
 	}

@@ -24,4 +24,5 @@ public class ImperialSysVolume extends NonSI
 		super(ImperialSysVolume.ISV_DIMENSION, quantity, name, ImperialSysVolume.ISV_K_CONV, ISV_Units);
 		//selectionner la bonne valeur d'enum depuis la reference
 	}
+	
 }

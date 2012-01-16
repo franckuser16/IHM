@@ -75,4 +75,6 @@ public abstract class Unit
 	public void setReference(String reference) {
 		this.reference = reference;
 	}
+	
+	public abstract Object[] getList();
 }

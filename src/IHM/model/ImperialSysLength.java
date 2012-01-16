@@ -21,7 +21,7 @@ public class ImperialSysLength extends NonSI
 
 	public ImperialSysLength(double quantity, String name) 
 	{
-		//!!! name est employ� comme reference : faux
+		//!!! name est employe comme reference : faux
 		super(ImperialSysLength.ISL_DIMENSION, quantity, name, ImperialSysLength.ISL_K_CONV, ISL_Units);
 		//selectionner la bonne valeur d'enum depuis la reference
 	}

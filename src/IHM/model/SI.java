@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public abstract class SI extends Unit
@@ -16,7 +17,7 @@ public abstract class SI extends Unit
 		put ("milli",	-3);
 		put ("centi",	-2);
 		put ("deci",	-1);
-		put	("none",	0);
+		put ("none",	0);
 		put ("deca",	1);
 		put ("hecto",	2);
 		put ("kilo",	3);
@@ -33,15 +34,6 @@ public abstract class SI extends Unit
 	private double prefix_ref;
 	private double pas;
 	
-	public SI()
-	{
-	}
-
-	public SI(Dimension dim, double quantity, String reference, double KofConversion)
-	{
-		super(dim, quantity, reference, KofConversion);
-	}
-
 	public SI(Dimension dim, double quantity, String reference, double KofConversion, String prefix, String prefix_ref, double pas)
 	{
 		super(dim, quantity, reference, KofConversion);
@@ -65,9 +57,15 @@ public abstract class SI extends Unit
 		return this.prefix;
 	}	
 
-	public static Object[] getList()
+	public Object[] getList()
 	{
 		//faire un mashup de reference et des prefix
-		return SI.PREFIX.keySet().toArray();
+		//return SI.PREFIX.keySet().toArray();
+		ArrayList<String> liste = new ArrayList<String>();
+		
+		for (int i=0; i<SI.PREFIX.size(); i++)
+			liste.add(SI.PREFIX.keySet().toArray()[i] + "-" + this.getReference());
+		
+		return liste.toArray();
 	}
 }
