@@ -116,8 +116,8 @@ public class OtherView{
     }
     
     /**
-     * This method should be call when you have finish modification on controls.
-     * It paste the elements together
+     * This method should be call when you have finished modifications on controls.
+     * It pastes elements together
      */
     public void buildUI(){	
     	menu_view2.setSelected(true);
