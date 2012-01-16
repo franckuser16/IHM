@@ -3,8 +3,15 @@ package model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * @author franck
+ *
+ */
 public abstract class SI extends Unit
 {
+	/**
+	 * 
+	 */
 	private static final HashMap<String, Integer> PREFIX = new HashMap<String, Integer>(){ {
 		
 		put ("yocto",	-24);
@@ -34,6 +41,15 @@ public abstract class SI extends Unit
 	private double prefix_ref;
 	private double pas;
 	
+	/**
+	 * @param dim
+	 * @param quantity
+	 * @param reference
+	 * @param KofConversion
+	 * @param prefix
+	 * @param prefix_ref
+	 * @param pas
+	 */
 	public SI(Dimension dim, double quantity, String reference, double KofConversion, String prefix, String prefix_ref, double pas)
 	{
 		super(dim, quantity, reference, KofConversion);
@@ -42,21 +58,33 @@ public abstract class SI extends Unit
 		this.prefix_ref = Math.pow(10, (SI.PREFIX.get(prefix_ref) * this.pas));
 	}
 
+	/* (non-Javadoc)
+	 * @see model.Unit#toReference()
+	 */
 	public double toReference()
 	{
 		return (this.getQuantity() * this.prefix) / this.prefix_ref;
 	}
 
+	/* (non-Javadoc)
+	 * @see model.Unit#fromReference(double)
+	 */
 	public void fromReference(double qtOfRef)
 	{
 		this.setQuantity( (long) ((qtOfRef / this.prefix) * this.prefix_ref) );
 	}
 
+	/**
+	 * @return
+	 */
 	public double getPrefix()
 	{
 		return this.prefix;
 	}	
 
+	/* (non-Javadoc)
+	 * @see model.Unit#getList()
+	 */
 	public Object[] getList()
 	{
 		//faire un mashup de reference et des prefix

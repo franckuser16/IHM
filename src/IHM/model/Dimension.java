@@ -1,5 +1,9 @@
 package model;
 
+/**
+ * @author franck
+ *
+ */
 public class Dimension
 {
 	public static final int NO_DIMENSION = -1;
@@ -15,16 +19,25 @@ public class Dimension
 
 	private int nature;
 
+	/**
+	 * @param nature
+	 */
 	public Dimension(int nature)
 	{
 		this.nature = nature;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	public boolean equals(Object dimOut)
 	{
 		return this.nature == ((Dimension)dimOut).getNature();
 	}
 
+	/**
+	 * @return
+	 */
 	public int getNature()
 	{
 		return this.nature;
