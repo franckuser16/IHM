@@ -27,6 +27,15 @@ public class MetricSysLength extends SI
 			unitD = (ImperialSysVolume)cvt1.convert();
 			System.out.println(unitD);
 			
+			for (int i=0; i<unitA.getList().length;i++)
+				System.out.println(unitA.getList()[i]);
+			for (int i=0; i<unitB.getList().length;i++)
+				System.out.println(unitB.getList()[i]);
+			for (int i=0; i<unitC.getList().length;i++)
+				System.out.println(unitC.getList()[i]);
+			for (int i=0; i<unitD.getList().length;i++)
+				System.out.println(unitD.getList()[i]);
+			
 	}
 
 }

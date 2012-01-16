@@ -4,13 +4,13 @@ import java.util.HashMap;
 
 public abstract class NonSI extends Unit
 {
-	private static HashMap<String, Double> MesSystem;
+	private HashMap<String, Double> MesSystem;
 	
-	public static HashMap<String, Double> getMesSystem() {
+	public HashMap<String, Double> getMesSystem() {
 		return MesSystem;
 	}
 
-	public static void setMesSystem(HashMap<String, Double> mesSystem) {
+	public void setMesSystem(HashMap<String, Double> mesSystem) {
 		MesSystem = mesSystem;
 	}
 
