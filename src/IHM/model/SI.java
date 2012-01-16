@@ -58,6 +58,23 @@ public abstract class SI extends Unit
 		this.prefix_ref = Math.pow(10, (SI.PREFIX.get(prefix_ref) * this.pas));
 	}
 
+	/**
+	 * @param dim
+	 * @param quantity
+	 * @param reference
+	 * @param KofConversion
+	 * @param prefix_power
+	 * @param prefix_ref
+	 * @param pas
+	 */
+	public SI(Dimension dim, double quantity, String reference, double KofConversion, Double prefix_power, String prefix_ref, double pas)
+	{
+		super(dim, quantity, reference, KofConversion);
+		this.pas = pas;
+		this.prefix = Math.pow(10, (prefix_power * this.pas));
+		this.prefix_ref = Math.pow(10, (SI.PREFIX.get(prefix_ref) * this.pas));
+	}
+	
 	/* (non-Javadoc)
 	 * @see model.Unit#toReference()
 	 */

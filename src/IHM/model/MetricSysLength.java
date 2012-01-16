@@ -18,10 +18,18 @@ public class MetricSysLength extends SI
 	{
 		super(MetricSysLength.MSL_DIMENSION, quantity, MetricSysLength.MSL_NAME, MetricSysLength.MSL_K_CONV, prefix, "none", 1);
 	}
+	/**
+	 * @param quantity
+	 * @param prefix
+	 */
+	public MetricSysLength(double quantity, double prefix_power)
+	{
+		super(MetricSysLength.MSL_DIMENSION, quantity, MetricSysLength.MSL_NAME, MetricSysLength.MSL_K_CONV, prefix_power, "none", 1);
+	}
 
 	public static void main(String[] args)
 	{
-			MetricSysLength unitA = new MetricSysLength(120, "centi");
+			MetricSysLength unitA = new MetricSysLength(120, -2);
 			ImperialSysLength unitB = new ImperialSysLength(0, "Mile");
 			
 			Converter cvt = unitA.getConverterTo(unitB);
@@ -35,7 +43,7 @@ public class MetricSysLength extends SI
 			unitD = (ImperialSysVolume)cvt1.convert();
 			System.out.println(unitD);
 			
-			for (int i=0; i<unitA.getList().length;i++)
+			/*for (int i=0; i<unitA.getList().length;i++)
 				System.out.println(unitA.getList()[i]);
 			for (int i=0; i<unitB.getList().length;i++)
 				System.out.println(unitB.getList()[i]);
@@ -43,7 +51,7 @@ public class MetricSysLength extends SI
 				System.out.println(unitC.getList()[i]);
 			for (int i=0; i<unitD.getList().length;i++)
 				System.out.println(unitD.getList()[i]);
-			
+			*/
 	}
 
 }

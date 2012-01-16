@@ -18,4 +18,13 @@ public class MetricSysVolume extends SI
 	{
 		super(MetricSysVolume.MSV_DIMENSION, quantity, MetricSysVolume.MSV_NAME, MetricSysVolume.MSV_K_CONV, prefix, "centi", 3);
 	}
+	
+	/**
+	 * @param quantity
+	 * @param prefix
+	 */
+	public MetricSysVolume(double quantity, double prefix_power)
+	{
+		super(MetricSysVolume.MSV_DIMENSION, quantity, MetricSysVolume.MSV_NAME, MetricSysVolume.MSV_K_CONV, prefix_power, "centi", 3);
+	}
 }
