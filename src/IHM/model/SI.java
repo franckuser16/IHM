@@ -12,6 +12,7 @@ public abstract class SI extends Unit
 	/**
 	 * 
 	 */
+	@SuppressWarnings("serial")
 	private static final HashMap<String, Integer> PREFIX = new HashMap<String, Integer>(){ {
 		
 		put ("yocto",	-24);

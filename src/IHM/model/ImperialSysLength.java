@@ -14,6 +14,7 @@ public class ImperialSysLength extends NonSI
 	/**
 	 * 
 	 */
+	@SuppressWarnings("serial")
 	private static final HashMap<String, Double> ISL_Units = new HashMap<String, Double>() {{
 
 		put ("Inch", new Double(1.0));

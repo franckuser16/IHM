@@ -15,6 +15,7 @@ public class ImperialSysVolume extends NonSI
 	/**
 	 * 
 	 */
+	@SuppressWarnings("serial")
 	private static final HashMap<String, Double> ISV_Units = new HashMap<String, Double>() {{
 
 		put ("Fluid dram",	new Double(0.125));
