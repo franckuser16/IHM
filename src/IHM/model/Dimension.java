@@ -1,8 +1,5 @@
-package IHM.model;
-/**
- *
- * @author jeremy
- */
+package model;
+
 public class Dimension
 {
 	public static final int NO_DIMENSION = -1;

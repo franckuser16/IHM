@@ -1,4 +1,4 @@
-package IHM.model;
+package model;
 
 /**
  *
@@ -17,7 +17,7 @@ public class Converter {
 
 	public static Converter createConverter(Unit unitIn, Unit unitOut)
 	{
-		//trouver où placer le isCompatible
+		//trouver oÔøΩ placer le isCompatible
 		if (unitIn.isCompatible(unitOut))
 			return new Converter(unitIn, unitOut);
 		else

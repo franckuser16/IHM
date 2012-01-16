@@ -4,26 +4,34 @@ import java.util.HashMap;
 
 public abstract class NonSI extends Unit
 {
-	private HashMap<String, Double> MesSystem;
+	private static HashMap<String, Double> MesSystem;
 	
+	public static HashMap<String, Double> getMesSystem() {
+		return MesSystem;
+	}
+
+	public static void setMesSystem(HashMap<String, Double> mesSystem) {
+		MesSystem = mesSystem;
+	}
+
 	public NonSI(Dimension dim, double quantity, String reference, double KofConversion, HashMap<String, Double> MesSystem)
 	{
 		super(dim, quantity, reference, KofConversion);
-		this.MesSystem = MesSystem;
+		setMesSystem(MesSystem);
 	}
 
 	public double toReference()
 	{
-		return this.getQuantity() * this.MesSystem.get(this.getReference());
+		return this.getQuantity() * MesSystem.get(this.getReference());
 	}
 
 	public void fromReference(double qtOfRef)
 	{
-		this.setQuantity(qtOfRef / this.MesSystem.get(this.getReference()));
+		this.setQuantity(qtOfRef / MesSystem.get(this.getReference()));
 	}
 	
-	public String[] getList()
+	public static Object[] getList()
 	{
-		return (String[])MesSystem.keySet().toArray();
+		return MesSystem.keySet().toArray();
 	}
 }

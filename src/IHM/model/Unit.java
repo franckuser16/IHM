@@ -1,18 +1,5 @@
-package IHM.model;
+package model;
 
-import IHM.model.Converter;
-import IHM.model.Dimension;
-
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author jeremy
- */
 public abstract class Unit
 {
 	private static final double NULL_QUANTITY = 0;
@@ -23,7 +10,7 @@ public abstract class Unit
 	private double quantity;
 	private String reference;
 	private double KofConversion;
-	//pas besoin de Converter en param, il est retourné par getConverterTo()
+	//pas besoin de Converter en param, il est retourne par getConverterTo()
 	//private Converter converter;
 
 	public Unit()
@@ -46,13 +33,6 @@ public abstract class Unit
 	{
 		return this.getDimension().equals(unit.getDimension());
 	}
-
-	/*
-	   public Converter getConverter()
-	   {
-	   return this.converter;
-	   }
-	   */
 
 	public double getKofConversion()
 	{
@@ -83,9 +63,6 @@ public abstract class Unit
 
 	public abstract void fromReference(double qtOfRef);
 
-	//a implementer
-	//public abstract String[] enumerate();
-	
 	public String toString()
 	{
 		return "Quantity: " + this.getQuantity();
@@ -98,6 +75,4 @@ public abstract class Unit
 	public void setReference(String reference) {
 		this.reference = reference;
 	}
-	
-	public abstract String[] getList();
 }
