@@ -201,9 +201,8 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 		//unit left ComboBox
 		else if(arg0.getSource() == dView.getListLeft())						//Left Unit JComboBox
 		{
-//			String[] tabLeft = arg0.getItem().toString().split("-");
-//			this.unitLeft = tabLeft[0];
-			this.unitLeft = arg0.getItem().toString();
+			String[] tabLeft = arg0.getItem().toString().split("-");
+			this.unitLeft = tabLeft[0];
 		}
 		//unit right ComboBox
 		else if(arg0.getSource() == dView.getListRight())						//Right Unit JComboBox
