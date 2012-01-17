@@ -30,12 +30,22 @@ public class Controller_OtherView implements ActionListener, ListSelectionListen
 				oView.getErrors().setText("Veuillez renseigner une valeur.");
 				oView.getAmountText().setBackground(Color.PINK);
 			}
-			else if(oView.getFromList().isSelectionEmpty()){
-				oView.getErrors().setText("Veuillez sélectionner une valeur dans la liste \"From\"");
+			else if(oView.getFromListSystem().isSelectionEmpty())
+			{
+				oView.getErrors().setText("Veuillez sélectionner une valeur dans la liste \"From\" system");
 			}
-			else if(oView.getToList().isSelectionEmpty()){
-				oView.getErrors().setText("Veuillez sélectionner une valeur dans la liste \"To\"");
-			} 
+			else if(oView.getToListSystem().isSelectionEmpty())
+			{
+				oView.getErrors().setText("Veuillez sélectionner une valeur dans la liste \"To\" system");
+			}
+			else if(oView.getFromListUnits().isSelectionEmpty())
+			{
+				oView.getErrors().setText("Veuillez sélectionner une valeur dans la liste \"From\" units");
+			}
+			else if(oView.getToListUnits().isSelectionEmpty())
+			{
+				oView.getErrors().setText("Veuillez sélectionner une valeur dans la liste \"To\" units");
+			}
 			else{
 				//hide error indications
 				oView.getErrors().setText("");
@@ -85,13 +95,25 @@ public class Controller_OtherView implements ActionListener, ListSelectionListen
 	public void valueChanged(ListSelectionEvent arg0){
 		JList l = (JList)arg0.getSource();
 		
-		//"from" list
-		if(arg0.getSource() == oView.getFromList()){			
-			oView.getResult().setText(l.getSelectedValue().toString());
+		//"from" list System
+		if(arg0.getSource() == oView.getFromListSystem())
+		{			
+//			oView.getResult().setText(l.getSelectedValue().toString());
 		}
-		//"to" list
-		else{
-			oView.getResult().setText(l.getSelectedValue().toString());
+		//"to" list System
+		else if(arg0.getSource() == oView.getToListSystem())
+		{
+//			oView.getResult().setText(l.getSelectedValue().toString());
+		}
+		//"from" list Units
+		else if(arg0.getSource() == oView.getFromListUnits())
+		{			
+//			oView.getResult().setText(l.getSelectedValue().toString());
+		}
+		//"to" list Units
+		else if(arg0.getSource() == oView.getToListUnits())
+		{
+//			oView.getResult().setText(l.getSelectedValue().toString());
 		}
 		
 	}	

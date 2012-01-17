@@ -6,12 +6,10 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
-import java.text.NumberFormat;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -21,6 +19,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
 import controller.Controller_OtherView;
@@ -52,15 +51,19 @@ public class OtherView{
     private JLabel errors = new JLabel();
     
     private JLabel amountLabel = new JLabel("Amount: ");
-    private JFormattedTextField amountText = new JFormattedTextField(NumberFormat.getNumberInstance());
+    private JTextField amountText = new JTextField();
     
     private JLabel fromLabel = new JLabel("From: ");
-    private JList fromList = new JList();
-    private JScrollPane fromPane = new JScrollPane(fromList);
+    private JList fromListSystem = new JList();
+    private JScrollPane fromPaneSystem = new JScrollPane(fromListSystem);
+    private JList fromListUnits = new JList();
+    private JScrollPane fromPaneUnits = new JScrollPane(fromListUnits);
     
     private JLabel toLabel = new JLabel("To: ");
-    private JList toList = new JList();
-    private JScrollPane toPane = new JScrollPane(toList);
+    private JList toListSystem = new JList();
+    private JScrollPane toPaneSystem = new JScrollPane(toListSystem);
+    private JList toListUnits = new JList();
+    private JScrollPane toPaneUnits = new JScrollPane(toListUnits);
     
     private JButton convert = new JButton("Convert");
     
@@ -81,7 +84,7 @@ public class OtherView{
     	
     	//about JFrame...
         converter.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        converter.setPreferredSize(new Dimension(390, 440));
+        converter.setPreferredSize(new Dimension(450, 440));
         
         //title of application
         title.setFont(new Font("Calibri", Font.TYPE1_FONT, 20));
@@ -98,21 +101,15 @@ public class OtherView{
         //remove focusable's option for conversion's button
         convert.setFocusable(false);
         
-        /*
-         * Pour les tests
-         */
-        String[] data = {"one", "two", "three", "four", "teeeeeeeeeeest"};
-        fromList.setListData(data);
-        toList.setListData(data);   
-        /*
-         * 
-         */
-        
         //set size for JList
-        fromPane.setPreferredSize(new Dimension(250, 80));
-        fromPane.setMaximumSize(fromPane.getPreferredSize());
-        toPane.setPreferredSize(new Dimension(250, 80));
-        toPane.setMaximumSize(fromPane.getPreferredSize());
+        fromPaneSystem.setPreferredSize(new Dimension(250, 80));
+        fromPaneSystem.setMaximumSize(fromPaneSystem.getPreferredSize());
+        toPaneSystem.setPreferredSize(new Dimension(250, 80));
+        toPaneSystem.setMaximumSize(fromPaneSystem.getPreferredSize());
+        fromPaneUnits.setPreferredSize(new Dimension(250, 80));
+        fromPaneUnits.setMaximumSize(fromPaneSystem.getPreferredSize());
+        toPaneUnits.setPreferredSize(new Dimension(250, 80));
+        toPaneUnits.setMaximumSize(fromPaneSystem.getPreferredSize());
     }
     
     /**
@@ -126,18 +123,25 @@ public class OtherView{
     	boxError.setAlignmentX(Component.CENTER_ALIGNMENT);
     	
     	//only ONE selection on the list
-    	fromList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        toList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        fromList.setVisibleRowCount(1);
-        toList.setVisibleRowCount(1);
+    	fromListSystem.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        toListSystem.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+//        fromListSystem.setVisibleRowCount(1);
+//        toListSystem.setVisibleRowCount(1);
+        fromListUnits.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        toListUnits.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+//        fromListUnits.setVisibleRowCount(1);
+//        toListUnits.setVisibleRowCount(1);
         
     	//listeners
-        menu_quit.addActionListener(new Controller_OtherView(this));
-    	menu_view2.addActionListener(new Controller_OtherView(this));
-    	menu_view1.addActionListener(new Controller_OtherView(this));
-    	convert.addActionListener(new Controller_OtherView(this));
-    	fromList.addListSelectionListener(new Controller_OtherView(this));
-    	toList.addListSelectionListener(new Controller_OtherView(this));
+        Controller_OtherView controller = new Controller_OtherView(this);
+        menu_quit.addActionListener(controller);
+    	menu_view2.addActionListener(controller);
+    	menu_view1.addActionListener(controller);
+    	convert.addActionListener(controller);
+    	fromListSystem.addListSelectionListener(controller);
+    	toListSystem.addListSelectionListener(controller);
+    	fromListUnits.addListSelectionListener(controller);
+    	toListUnits.addListSelectionListener(controller);
     	
     	//open menu when you press ALT + M
     	menu.setMnemonic(KeyEvent.VK_M);
@@ -165,12 +169,14 @@ public class OtherView{
     	
     	boxFrom.add(Box.createGlue());
     	boxFrom.add(fromLabel);
-    	boxFrom.add(fromPane);
+    	boxFrom.add(fromPaneSystem);
+    	boxFrom.add(fromPaneUnits);
     	boxFrom.add(Box.createGlue());
     	
     	boxTo.add(Box.createGlue());
     	boxTo.add(toLabel);
-    	boxTo.add(toPane);
+    	boxTo.add(toPaneSystem);
+    	boxTo.add(toPaneUnits);
     	boxTo.add(Box.createGlue());
     	
     	boxConvert.add(Box.createGlue());
@@ -245,21 +251,45 @@ public class OtherView{
 	public void setResult(JLabel result){
 		this.result = result;
 	}
-    
-	public JList getFromList(){
-		return fromList;
+
+	public JList getFromListSystem()
+	{
+		return fromListSystem;
 	}
 
-	public void setFromList(JList fromList){
-		this.fromList = fromList;
+	public void setFromListSystem(JList fromListSystem)
+	{
+		this.fromListSystem = fromListSystem;
 	}
 
-	public JList getToList(){
-		return toList;
+	public JList getFromListUnits()
+	{
+		return fromListUnits;
 	}
 
-	public void setToList(JList toList){
-		this.toList = toList;
+	public void setFromListUnits(JList fromListUnits)
+	{
+		this.fromListUnits = fromListUnits;
+	}
+
+	public JList getToListSystem()
+	{
+		return toListSystem;
+	}
+
+	public void setToListSystem(JList toListSystem)
+	{
+		this.toListSystem = toListSystem;
+	}
+
+	public JList getToListUnits()
+	{
+		return toListUnits;
+	}
+
+	public void setToListUnits(JList toListUnits)
+	{
+		this.toListUnits = toListUnits;
 	}
 
 	public JFrame getConverter(){
@@ -274,11 +304,11 @@ public class OtherView{
 		this.errors = errors;
 	}
 
-	public JFormattedTextField getAmountText(){
+	public JTextField getAmountText(){
 		return amountText;
 	}
 
-	public void setAmountText(JFormattedTextField amountText){
+	public void setAmountText(JTextField amountText){
 		this.amountText = amountText;
 	}
 }

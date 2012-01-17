@@ -156,6 +156,7 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 		{
 			try
 			{
+				//instantiate class given in system JcomboBox
 				Class<?> systemClass = Class.forName("model." + systemUnits.get(arg0.getItem().toString()));
 				Constructor<?> construct = systemClass.getConstructor(new Class[]{Double.TYPE, String.class});
 					
@@ -178,6 +179,7 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 		{
 			try
 			{
+				//instantiate class given in system JcomboBox
 				Class<?> systemClass = Class.forName("model." + systemUnits.get(arg0.getItem().toString()));
 				Constructor<?> construct = systemClass.getConstructor(new Class[]{Double.TYPE, String.class});
 					
@@ -186,9 +188,6 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 				
 				this.sysRight = (Unit)o;
 				tab = this.sysRight.getList();
-				
-//				for(int i = 0; i < tab.length; i++)
-//					System.out.println(tab[i].toString());
 				
 				showUnitsRight(tab);
 			} 
@@ -213,7 +212,7 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 	
 	/**
 	 * 
-	 * @param tab list of Unit (peta, zetta, centi...)
+	 * @param tab list of Unit (peta, zetta, centi...) for left Unit JComboBox
 	 */
 	private void showUnitsLeft(Object[] tab)
 	{
@@ -222,6 +221,10 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 			dView.getListLeft().addItem(tab[i]);
 	}
 	
+	/**
+	 * 
+	 * @param tab list of Unit (peta, zetta, centi...) for right Unit JComboBox
+	 */
 	private void showUnitsRight(Object[] tab)
 	{
 		dView.getListRight().removeAllItems();
