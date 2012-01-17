@@ -46,7 +46,7 @@ public abstract class NonSI extends Unit
 	 */
 	public double toReference()
 	{
-		return this.getQuantity() * MesSystem.get(this.getReference());
+		return this.getQuantity() * MesSystem.get(this.getName());
 	}
 
 	/* (non-Javadoc)
@@ -54,7 +54,7 @@ public abstract class NonSI extends Unit
 	 */
 	public void fromReference(double qtOfRef)
 	{
-		this.setQuantity(qtOfRef / MesSystem.get(this.getReference()));
+		this.setQuantity(qtOfRef / MesSystem.get(this.getName()));
 	}
 	
 	/* (non-Javadoc)

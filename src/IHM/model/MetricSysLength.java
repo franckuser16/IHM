@@ -20,7 +20,8 @@ public class MetricSysLength extends SI
 				quantity,
 				MetricSysLength.MSL_NAME,
 				MetricSysLength.MSL_K_CONV,
-				prefix, "",
+				prefix,
+				SI.NO_PREFIX,
 				1);
 	}
 	/**

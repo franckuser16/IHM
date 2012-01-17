@@ -7,12 +7,12 @@ package model;
 public abstract class Unit
 {
 	private static final double NULL_QUANTITY = 0;
-	private static final String NULL_REFERENCE = "";
+	private static final String NO_NAME = "";
 	private static final double NO_CONVERSION = -1;
 
 	private Dimension dim;
 	private double quantity;
-	private String reference;
+	private String name;
 	private double KofConversion;
 	
 	/**
@@ -22,7 +22,7 @@ public abstract class Unit
 	{
 		this.dim = new Dimension(Dimension.NO_DIMENSION);
 		this.quantity = Unit.NULL_QUANTITY;
-		this.reference = Unit.NULL_REFERENCE;
+		this.name = Unit.NO_NAME;
 		this.KofConversion = Unit.NO_CONVERSION;
 	}
 
@@ -36,7 +36,7 @@ public abstract class Unit
 	{
 		this.dim = dim;
 		this.quantity = quantity;
-		this.reference = reference;
+		this.name = reference;
 		this.KofConversion = KofConversion;
 	}
 
@@ -117,15 +117,15 @@ public abstract class Unit
 	/**
 	 * @return
 	 */
-	public String getReference() {
-		return this.reference;
+	public String getName() {
+		return this.name;
 	}
 
 	/**
 	 * @param reference
 	 */
-	public void setReference(String reference) {
-		this.reference = reference;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	/**
