@@ -28,13 +28,13 @@ public class UnitFactory {
 	
 	public static Unit createUnit(String unitDesc){
 		
-		if (unitDesc == UnitFactory.METRIC_SYSTEM_LENGTH)
+		if (unitDesc.equals(UnitFactory.METRIC_SYSTEM_LENGTH))
 			return new MetricSysLength(0.0, "");
-		else if (unitDesc == UnitFactory.METRIC_SYSTEM_VOLUME)
+		else if (unitDesc.equals(UnitFactory.METRIC_SYSTEM_VOLUME))
 			return new MetricSysVolume(0.0, "");
-		else if (unitDesc == UnitFactory.IMPERIAL_SYSTEM_LENGTH)
+		else if (unitDesc.equals(UnitFactory.IMPERIAL_SYSTEM_LENGTH))
 			return new ImperialSysVolume(0.0, "");
-		else if (unitDesc == UnitFactory.IMPERIAL_SYSTEM_VOLUME)
+		else if (unitDesc.equals(UnitFactory.IMPERIAL_SYSTEM_VOLUME))
 			return new ImperialSysVolume(0.0, "");
 		
 		return null;
