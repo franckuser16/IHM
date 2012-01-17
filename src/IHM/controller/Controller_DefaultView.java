@@ -28,31 +28,33 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 	
 	private static final HashMap<String, String[]> systemUnits = UnitFactory.getUnitList();
 	
+	/**
+	 * Constructeur du Controller
+	 * @param dv: la vue auquelle le controller répond
+	 */
 	public Controller_DefaultView(DefaultView dv)
 	{
 		dView = dv;
 	}
 	
 	/**
-	 * Listeners for buttons, menu items
+	 * Gère les écouteurs des boutons de conversion, des menus et des différents item du menu
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		//we have click on "left2right" button
+		//on a cliqué sur le bouton de conversion de la gauche vers la droite ("-->")
 		if(e.getSource() == dView.getLeft2right())
 		{
-			if(dView.getTextLeft().getText().isEmpty())
+			if(dView.getTextLeft().getText().isEmpty())		//le champ valeur est vide
 			{
-				//show error indications
+				//affichage d'une erreur
 				dView.getErrors().setText("Veuillez renseigner une valeur.");
 				dView.getTextLeft().setBackground(Color.PINK);						
 			}
-			
-			//TODO tester si on a bien un double
 			else
 			{
-				//hide error indications
+				//on cache les éventuelles erreurs précédentes
 				dView.getErrors().setText("");
 				dView.getTextLeft().setBackground(Color.WHITE);
 				dView.getTextRight().setBackground(Color.WHITE);
@@ -60,6 +62,7 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 				//conversion
 				try
 				{
+					//on récupère la valeur que l'on souhaite convertir
 					Double qte = Double.parseDouble(dView.getTextLeft().getText().toString());
 					sysLeft.setQuantity(qte);
 					sysLeft.setReference(unitLeft);
@@ -76,7 +79,8 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 						dView.getTextRight().setText(Double.toString(sysRight.getQuantity()));
 					}
 				}
-				catch(NumberFormatException nfe)
+				//on a rentré des lettres ou caractères spéciaux dans le champs texte
+				catch(NumberFormatException nfe)	
 				{
 					dView.getErrors().setText("Veuillez renseigner un nombre (ex: 2.5)");
 					dView.getTextLeft().setText("");
@@ -84,18 +88,18 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 			}
 		}
 			
-		//we have click on "right2left" button
+		//on a cliqué sur le bouton de conversion de la droite vers la gauche ("<--")
 		else if(e.getSource() == dView.getRight2left())
 		{
-			if(dView.getTextRight().getText().isEmpty())
+			if(dView.getTextRight().getText().isEmpty())	//le champ valeur est vide
 			{
-				//show error indications
+				//affichage d'une erreur
 				dView.getErrors().setText("Veuillez renseigner une valeur.");
 				dView.getTextRight().setBackground(Color.PINK);
 			}
 			else
 			{
-				//hide error indications
+				//on cache les éventuelles erreurs précédentes
 				dView.getErrors().setText("");
 				dView.getTextRight().setBackground(Color.WHITE);
 				dView.getTextLeft().setBackground(Color.WHITE);
@@ -119,6 +123,7 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 						dView.getTextLeft().setText(Double.toString(sysLeft.getQuantity()));
 					}
 				}
+				//on a rentré des lettres ou caractères spéciaux dans le champs texte
 				catch(NumberFormatException nfe)
 				{
 					dView.getErrors().setText("Veuillez renseigner un nombre (ex: 2.5)");
@@ -127,109 +132,123 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 			}
 		}
 		
-		//we have choose "Quit" in the menu
+		//on a cliqué sur Quit dans le menu
 		else if(e.getSource() == dView.getMenu_quit())
 			System.exit(0);
 		
-		//show the OtherView
+		//on a cliqué sur View 2 dans le menu, on charge donc OtherView
 		else if(e.getSource() == dView.getMenu_view2())
 		{
 			OtherView view = new OtherView(true);
 			
-			//--- beginning modifications
+			//--- début des modifications
+			//On pré-rempli les champs contenant la liste des Systèmes  
 			Iterator<Map.Entry<String, String[]>> it = systemUnits.entrySet().iterator();
 			while(it.hasNext())
 			{
 				@SuppressWarnings("rawtypes")
 				Map.Entry pairs = (Map.Entry)it.next();
+				
+				//ajoute les en-têtes (Volume, longueur, masse...)
 				view.getFromModelListSystem().addElement("--- " + pairs.getKey() + " ---");
 				view.getToModelListSystem().addElement("--- " + pairs.getKey() + " ---");
 				
+				//ajoute les systèmes (Metric, Imperial...)
 				for(int i = 0; i < systemUnits.get(pairs.getKey()).length; i++)
 				{
 					view.getFromModelListSystem().addElement(systemUnits.get(pairs.getKey())[i] + " " + pairs.getKey());
 					view.getToModelListSystem().addElement(systemUnits.get(pairs.getKey())[i] + " " + pairs.getKey());
 				}
 			}
-			//--- end modifications
+			//--- fin des modifications
 			
 			view.buildUI();
 			
-			//close old window
+			//on ferme l'ancienne vue
 			dView.getConverter().dispose();
 		}			
 		
-		//show the DefaultView
+		//on a cliqué sur View 1 dans le menu, on charge donc DefaultView
 		else if(e.getSource() == dView.getMenu_view1())
 		{
 			DefaultView view = new DefaultView(true);
-			//Object[] allValues = new Object[]{};
 			
-			//allValues = this.concat(isl.getList(), isv.getList());
-			
-			//--- beginning modifications	        
+			////--- début des modifications
+			//On pré-rempli les champs contenant la liste des Systèmes 	        
 			Iterator<Map.Entry<String, String[]>> it = systemUnits.entrySet().iterator();
 			while(it.hasNext())
 			{
 				@SuppressWarnings("rawtypes")
 				Map.Entry pairs = (Map.Entry)it.next();
+				
+				//ajoute les en-têtes (Volume, longueur, masse...)
 				view.getSystemLeft().addItem("--- " + pairs.getKey() + " ---");
 				view.getSystemRight().addItem("--- " + pairs.getKey() + " ---");
 				
+				//ajoute les systèmes (Metric, Imperial...)
 				for(int i = 0; i < systemUnits.get(pairs.getKey()).length; i++)
 				{
 					view.getSystemLeft().addItem(systemUnits.get(pairs.getKey())[i] + " " + pairs.getKey());
 					view.getSystemRight().addItem(systemUnits.get(pairs.getKey())[i] + " " + pairs.getKey());
 				}
 			}
-	        //--- end modifications
+	        //--- fin des modifications
 	        
 			view.buildUI();
 			
-			//close old window
+			//on ferme l'ancienne vue
 			dView.getConverter().dispose();
 		}	
 	}
 
 	/**
-	 * Listeners for JComboBox
+	 * Gère les écouteurs des quatre listes déroulantes
 	 */
 	@Override
 	public void itemStateChanged(ItemEvent arg0)
 	{
-		String choice = arg0.getItem().toString();
+		String choice = arg0.getItem().toString();	//récupère le texte de l'item choisi
 		
-		if(arg0.getSource() == dView.getSystemLeft())						//Left System JComboBox
+		//On a sélectionné un item dans liste déroulante contenant les différents systèmes de gauche
+		if(arg0.getSource() == dView.getSystemLeft())
 		{
 			try
 			{
+				//si on a choisi autre chose qu'une en-tête (--- Volume ----, --- Length ---, ...)
 				if(!choice.startsWith("---"))
 				{
-					Object[] tab;			
+					Object[] tab;
+					//récupère l'instanciation de la classe correspondante au système sélectionné dans la liste déroulante
 					this.sysLeft = UnitFactory.createUnit(choice);
+					//récupère la liste des unités correspondantes au système sélectionné (à l'aide de l'instanciation précédente)
 					tab = this.sysLeft.getList();
+					//rempli la liste déroulante des unités
 					showUnitsLeft(tab);
 				}
-				else
+				else	//on a choisi une en-tête, on vide le champ des unités
 					dView.getListLeft().removeAllItems();
 				
 			} 
 			catch (Exception e)
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} 
 			
 		}			
-		else if(arg0.getSource() == dView.getSystemRight())						//Right System JComboBox
+		//On a sélectionné un item dans liste déroulante contenant les différents systèmes de droite
+		else if(arg0.getSource() == dView.getSystemRight())
 		{
 			try
 			{
+				//si on a choisi autre chose qu'une en-tête (--- Volume ----, --- Length ---, ...)
 				if(!choice.startsWith("---"))
 				{
 					Object[] tab;
+					//récupère l'instanciation de la classe correspondante au système sélectionné dans la liste déroulante
 					this.sysRight = UnitFactory.createUnit(arg0.getItem().toString());
+					//récupère la liste des unités correspondantes au système sélectionné (à l'aide de l'instanciation précédente)
 					tab = this.sysRight.getList();
+					//rempli la liste déroulante des unités
 					showUnitsRight(tab);
 				}
 				else
@@ -237,26 +256,28 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 			} 
 			catch (Exception e)
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} 
 		}
-		//unit left ComboBox
-		else if(arg0.getSource() == dView.getListLeft())						//Left Unit JComboBox
+		//On a sélectionné un item dans liste déroulante contenant les différentes unités de gauche
+		else if(arg0.getSource() == dView.getListLeft())
 		{
+			//On stock l'item choisi
 			this.unitLeft = choice;
 		}
-		//unit right ComboBox
-		else if(arg0.getSource() == dView.getListRight())						//Right Unit JComboBox
+		//On a sélectionné un item dans liste déroulante contenant les différentes unités de droite
+		else if(arg0.getSource() == dView.getListRight())
 		{
+			//On stock l'item choisi
 			this.unitRight = choice;
 		}
 		
 	}	
 	
 	/**
-	 * 
-	 * @param tab list of Unit (peta, zetta, centi...) for left Unit JComboBox
+	 * Affiche les unités disponibles (dans la deuxième liste déroulante de gauche) 
+	 * en fonctions du système sélectionné (dans la première liste déroulante de gauche)
+	 * @param tab: le tableau contenant toutes les unités
 	 */
 	private void showUnitsLeft(Object[] tab)
 	{
@@ -266,8 +287,9 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 	}
 	
 	/**
-	 * 
-	 * @param tab list of Unit (peta, zetta, centi...) for right Unit JComboBox
+	 * Affiche les unités disponibles (dans la deuxième liste déroulante de droite) 
+	 * en fonctions du système sélectionné (dans la première liste déroulante de droite)
+	 * @param tab: le tableau contenant toutes les unités
 	 */
 	private void showUnitsRight(Object[] tab)
 	{

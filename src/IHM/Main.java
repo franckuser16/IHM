@@ -1,5 +1,9 @@
 import view.DefaultView;
 
+/**
+*
+* @author Jérémy Filhoulaud
+*/
 public class Main 
 {	
 	public static void createAndShowGUI()
@@ -10,8 +14,7 @@ public class Main
         
         view.getMenu_view1().setEnabled(true);
         
-        //This does the same thing as if a user have click on "View1" in the menu.
-        //So it initializes the application via the controller; 
+        //Simule le clic d'un utilisateur sur le bouton View1 du menu
         view.getMenu_view1().doClick();
     }
 
