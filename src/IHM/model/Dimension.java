@@ -45,9 +45,4 @@ public class Dimension
 	{
 		return this.nature;
 	}
-	
-	public static HashMap<String, String[]>getExtListDim()
-	{
-		return new HashMap<String, String[]>();
-	}
 }
