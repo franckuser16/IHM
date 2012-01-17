@@ -56,6 +56,8 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 				dView.getErrors().setText("Veuillez renseigner une valeur.");
 				dView.getTextLeft().setBackground(Color.PINK);						
 			}
+			
+			//TODO tester si on a bien un double
 
 			else
 			{
