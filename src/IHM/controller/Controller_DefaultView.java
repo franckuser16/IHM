@@ -58,20 +58,28 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 				dView.getTextRight().setBackground(Color.WHITE);
 				
 				//conversion
-				Double qte = Double.parseDouble(dView.getTextLeft().getText().toString());
-				sysLeft.setQuantity(qte);
-				sysLeft.setReference(unitLeft);
-				sysRight.setReference(unitRight);
-				
-				Converter cvt = sysLeft.getConverterTo(sysRight);
-				if(cvt == null)
+				try
 				{
-					dView.getErrors().setText("Les deux systèmes sont incompatibles");
+					Double qte = Double.parseDouble(dView.getTextLeft().getText().toString());
+					sysLeft.setQuantity(qte);
+					sysLeft.setReference(unitLeft);
+					sysRight.setReference(unitRight);
+					
+					Converter cvt = sysLeft.getConverterTo(sysRight);
+					if(cvt == null)
+					{
+						dView.getErrors().setText("Les deux systèmes sont incompatibles");
+					}
+					else
+					{
+						sysRight = (Unit)cvt.convert();					
+						dView.getTextRight().setText(Double.toString(sysRight.getQuantity()));
+					}
 				}
-				else
+				catch(NumberFormatException nfe)
 				{
-					sysRight = (Unit)cvt.convert();					
-					dView.getTextRight().setText(Double.toString(sysRight.getQuantity()));
+					dView.getErrors().setText("Veuillez renseigner un nombre (ex: 2.5)");
+					dView.getTextLeft().setText("");
 				}
 			}
 		}
@@ -93,20 +101,28 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 				dView.getTextLeft().setBackground(Color.WHITE);
 				
 				//conversion
-				Double qte = Double.parseDouble(dView.getTextRight().getText().toString());
-				sysRight.setQuantity(qte);
-				sysRight.setReference(unitRight);
-				sysLeft.setReference(unitLeft);
-				
-				Converter cvt = sysRight.getConverterTo(sysLeft);
-				if(cvt == null)
+				try
 				{
-					dView.getErrors().setText("Les deux systèmes sont incompatibles");
+					Double qte = Double.parseDouble(dView.getTextRight().getText().toString());
+					sysRight.setQuantity(qte);
+					sysRight.setReference(unitRight);
+					sysLeft.setReference(unitLeft);
+					
+					Converter cvt = sysRight.getConverterTo(sysLeft);
+					if(cvt == null)
+					{
+						dView.getErrors().setText("Les deux systèmes sont incompatibles");
+					}
+					else
+					{
+						sysLeft= (Unit)cvt.convert();
+						dView.getTextLeft().setText(Double.toString(sysLeft.getQuantity()));
+					}
 				}
-				else
+				catch(NumberFormatException nfe)
 				{
-					sysLeft= (Unit)cvt.convert();
-					dView.getTextLeft().setText(Double.toString(sysLeft.getQuantity()));
+					dView.getErrors().setText("Veuillez renseigner un nombre (ex: 2.5)");
+					dView.getTextRight().setText("");
 				}
 			}
 		}
@@ -228,12 +244,12 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 		//unit left ComboBox
 		else if(arg0.getSource() == dView.getListLeft())						//Left Unit JComboBox
 		{
-			this.unitLeft = arg0.getItem().toString();
+			this.unitLeft = choice;
 		}
 		//unit right ComboBox
 		else if(arg0.getSource() == dView.getListRight())						//Right Unit JComboBox
 		{
-			this.unitRight = arg0.getItem().toString();
+			this.unitRight = choice;
 		}
 		
 	}	

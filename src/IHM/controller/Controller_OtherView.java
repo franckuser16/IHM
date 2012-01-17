@@ -11,6 +11,7 @@ import javax.swing.JList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import model.Converter;
 import model.Unit;
 import model.UnitFactory;
 import view.DefaultView;
@@ -67,6 +68,29 @@ public class Controller_OtherView implements ActionListener, ListSelectionListen
 				oView.getAmountText().setBackground(Color.WHITE);
 				
 				//conversion
+				try
+				{
+					Double qte = Double.parseDouble(oView.getAmountText().getText().toString());
+					sysFrom.setQuantity(qte);
+					sysFrom.setReference(unitFrom);
+					sysTo.setReference(unitTo);
+					
+					Converter cvt = sysFrom.getConverterTo(sysTo);
+					if(cvt == null)
+					{
+						oView.getErrors().setText("Les deux systèmes sont incompatibles");
+					}
+					else
+					{
+						sysTo = (Unit)cvt.convert();
+						oView.getResult().setText(Double.toString(sysTo.getQuantity()));
+					}
+				}
+				catch(NumberFormatException nfe)
+				{
+					oView.getErrors().setText("Veuillez renseigner un nombre (ex: 2.5)");
+					oView.getAmountText().setText("");
+				}
 			}
 		}
 		
@@ -141,7 +165,6 @@ public class Controller_OtherView implements ActionListener, ListSelectionListen
 			{
 				Object[] tab;			
 				this.sysFrom = UnitFactory.createUnit(choice);
-				System.out.println(choice);
 				tab = this.sysFrom.getList();
 				showUnitsFrom(tab);
 			}
@@ -164,12 +187,12 @@ public class Controller_OtherView implements ActionListener, ListSelectionListen
 		//"from" list Units
 		else if(arg0.getSource() == oView.getFromListUnits())
 		{			
-//			oView.getResult().setText(l.getSelectedValue().toString());
+			this.unitFrom = choice;
 		}
 		//"to" list Units
 		else if(arg0.getSource() == oView.getToListUnits())
 		{
-//			oView.getResult().setText(l.getSelectedValue().toString());
+			this.unitTo = choice;
 		}
 		
 	}	
