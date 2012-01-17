@@ -211,6 +211,10 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 		
 	}	
 	
+	/**
+	 * 
+	 * @param tab list of Unit (peta, zetta, centi...)
+	 */
 	private void showUnitsLeft(Object[] tab)
 	{
 		dView.getListLeft().removeAllItems();

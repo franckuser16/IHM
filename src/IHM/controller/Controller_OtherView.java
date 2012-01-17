@@ -68,9 +68,10 @@ public class Controller_OtherView implements ActionListener, ListSelectionListen
 			DefaultView view = new DefaultView(true);
 			
 			//--- beginning modifications	        
-	        Object[] units = new Object[]{"m","cm","mm","µm"};
-	        JComboBox leftCombo = new JComboBox(units);
-	        view.setListLeft(leftCombo);
+//			JComboBox leftComboSystem = new JComboBox(systemUnits.keySet().toArray());
+//	        view.setSystemLeft(leftComboSystem);
+//	        JComboBox rightComboSystem = new JComboBox(systemUnits.keySet().toArray());
+//	        view.setSystemRight(rightComboSystem);
         	//--- end modifications
 	        
 			view.buildUI();
