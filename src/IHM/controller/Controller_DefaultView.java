@@ -72,8 +72,15 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 				sysRight.setReference(unitRight);
 				
 				Converter cvt = sysLeft.getConverterTo(sysRight);
-				sysRight = (Unit)cvt.convert();
-				dView.getTextRight().setText(Double.toString(sysRight.getQuantity()));	
+				if(cvt == null)
+				{
+					dView.getErrors().setText("Les deux systèmes sont incompatibles");
+				}
+				else
+				{
+					sysRight = (Unit)cvt.convert();					
+					dView.getTextRight().setText(Double.toString(sysRight.getQuantity()));
+				}
 			}
 		}
 			
@@ -100,8 +107,15 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 				sysLeft.setReference(unitLeft);
 				
 				Converter cvt = sysRight.getConverterTo(sysLeft);
-				sysLeft= (Unit)cvt.convert();
-				dView.getTextLeft().setText(Double.toString(sysLeft.getQuantity()));				
+				if(cvt == null)
+				{
+					dView.getErrors().setText("Les deux systèmes sont incompatibles");
+				}
+				else
+				{
+					sysLeft= (Unit)cvt.convert();
+					dView.getTextLeft().setText(Double.toString(sysLeft.getQuantity()));
+				}
 			}
 		}
 		

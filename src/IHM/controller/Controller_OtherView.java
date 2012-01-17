@@ -24,8 +24,10 @@ public class Controller_OtherView implements ActionListener, ListSelectionListen
 	public void actionPerformed(ActionEvent e){
 		
 		//we have click on "Convert" button
-		if(e.getSource() == oView.getConvert())	{
-			if(oView.getAmountText().getText().isEmpty()){
+		if(e.getSource() == oView.getConvert())	
+		{
+			if(oView.getAmountText().getText().isEmpty())
+			{
 				//show error indications
 				oView.getErrors().setText("Veuillez renseigner une valeur.");
 				oView.getAmountText().setBackground(Color.PINK);
@@ -46,7 +48,8 @@ public class Controller_OtherView implements ActionListener, ListSelectionListen
 			{
 				oView.getErrors().setText("Veuillez sélectionner une valeur dans la liste \"To\" units");
 			}
-			else{
+			else
+			{
 				//hide error indications
 				oView.getErrors().setText("");
 				oView.getAmountText().setBackground(Color.WHITE);
