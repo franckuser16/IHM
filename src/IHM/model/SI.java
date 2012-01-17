@@ -60,8 +60,8 @@ public abstract class SI extends Unit
 		super(dim, quantity, prefix, KofConversion);
 		this.base = base;
 		this.pas = pas;
-		this.prefix = Math.pow(10, (SI.PREFIX.get(prefix) * this.pas));
-		this.prefix_ref = Math.pow(10, (SI.PREFIX.get(prefix_ref) * this.pas));
+		this.prefix = Math.pow(10, (SI.PREFIX.get(prefix.replace(base, "")) * this.pas));
+		this.prefix_ref = Math.pow(10, (SI.PREFIX.get(prefix_ref.replace(base, "")) * this.pas));
 	}
 
 	/**
@@ -116,7 +116,7 @@ public abstract class SI extends Unit
 		ArrayList<String> liste = new ArrayList<String>();
 		
 		for (int i=0; i<SI.PREFIX.size(); i++)
-			liste.add(SI.PREFIX.keySet().toArray()[i] + "-" + this.getBase());
+			liste.add(SI.PREFIX.keySet().toArray()[i] + this.getBase());
 		
 		return liste.toArray();
 	}
