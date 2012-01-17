@@ -33,9 +33,9 @@ public class MetricSysLength extends SI
 			Unit unitA = new MetricSysLength(120, "");
 			Unit unitB = new ImperialSysLength(0, "Mile");
 			
-			Converter cvt = unitA.getConverterTo(unitB);
-			unitB = (ImperialSysLength)cvt.convert();
-			System.out.println(unitB);
+			Converter cvt = unitB.getConverterTo(unitA);
+			unitA = cvt.convert();
+			System.out.println(unitA);
 			
 			Unit unitE = new MetricSysLength(0, "");
 			Unit unitF = new MetricSysLength(0, "");
@@ -45,15 +45,15 @@ public class MetricSysLength extends SI
 			unitF.setReference("centimeter");
 			
 			Converter cvt2 = unitE.getConverterTo(unitF);
-			unitF = (Unit)cvt2.convert();
+			unitF = cvt2.convert();
 			System.out.println(unitF);
 			
-			Unit unitC = new MetricSysVolume(367, "");
-			Unit unitD = new ImperialSysVolume(0, "Cubic inch");
+			Unit unitC = new MetricSysVolume(0, "");
+			Unit unitD = new ImperialSysVolume(367, "Cubic inch");
 
-			Converter cvt1 = unitC.getConverterTo(unitD);
-			unitD = (ImperialSysVolume)cvt1.convert();
-			System.out.println(unitD);
+			Converter cvt1 = unitD.getConverterTo(unitC);
+			unitC = cvt1.convert();
+			System.out.println(unitC);
 			
 			//for (int i=0; i<unitA.getList().length;i++)
 			//	System.out.println(unitA.getList()[i]);

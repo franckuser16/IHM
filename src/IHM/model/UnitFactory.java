@@ -33,7 +33,7 @@ public class UnitFactory {
 		else if (unitDesc.equals(UnitFactory.METRIC_SYSTEM_VOLUME))
 			return new MetricSysVolume(0.0, "");
 		else if (unitDesc.equals(UnitFactory.IMPERIAL_SYSTEM_LENGTH))
-			return new ImperialSysVolume(0.0, "");
+			return new ImperialSysLength(0.0, "");
 		else if (unitDesc.equals(UnitFactory.IMPERIAL_SYSTEM_VOLUME))
 			return new ImperialSysVolume(0.0, "");
 		
