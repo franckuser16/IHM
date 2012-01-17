@@ -11,6 +11,7 @@ import java.util.HashMap;
 import javax.swing.JComboBox;
 
 import model.Converter;
+import model.SysLib;
 import model.Unit;
 import view.DefaultView;
 import view.OtherView;
@@ -27,14 +28,16 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 	private Unit sysRight;
 	private String unitRight;
 	
-	@SuppressWarnings("serial")
-	private static final HashMap<String, String> systemUnits = new HashMap<String, String>() {{
-
-		put ("Imperial system -> Volume", "ImperialSysVolume");
-		put ("Imperial system -> Length", "ImperialSysLength");
-		put ("Metric system -> Volume", "MetricSysVolume");
-		put ("Metric system -> Length", "MetricSysLength");
-	}};
+//	@SuppressWarnings("serial")
+//	private static final HashMap<String, String> systemUnits = new HashMap<String, String>() {{
+//
+//		put ("Imperial system -> Volume", "ImperialSysVolume");
+//		put ("Imperial system -> Length", "ImperialSysLength");
+//		put ("Metric system -> Volume", "MetricSysVolume");
+//		put ("Metric system -> Length", "MetricSysLength");
+//	}};
+	
+	private static final HashMap<String, String[]> systemUnits = new SysLib().getUnitList();  
 	
 	public Controller_DefaultView(DefaultView dv)
 	{
