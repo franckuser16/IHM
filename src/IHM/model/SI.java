@@ -63,6 +63,12 @@ public abstract class SI extends Unit
 		this.prefix = Math.pow(10, (SI.PREFIX.get(prefix.replace(base, "")) * this.pas));
 		this.prefix_ref = Math.pow(10, (SI.PREFIX.get(prefix_ref.replace(base, "")) * this.pas));
 	}
+	
+	public void setReference(String reference){
+		
+		super.setReference(reference);
+		this.prefix = Math.pow(10, (SI.PREFIX.get(reference.replace(base, "")) * this.pas));
+	}
 
 	/**
 	 * @param dim
