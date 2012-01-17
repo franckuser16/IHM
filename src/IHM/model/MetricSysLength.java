@@ -42,16 +42,23 @@ public class MetricSysLength extends SI
 			unitA = cvt.convert();
 			System.out.println(unitA);
 			
-			Unit unitE = new MetricSysLength(0, "");
-			Unit unitF = new MetricSysLength(0, "");
+			Unit unitE = new ImperialSysMass(250, "Ounce");
+			Unit unitF = new IntSysMass(0, "milli");
 			
-			unitE.setQuantity(120);
-			unitE.setReference("");
-			unitF.setReference("centimeter");
-			
-			Converter cvt2 = unitE.getConverterTo(unitF);
-			unitF = cvt2.convert();
+			Converter cvt3 = unitE.getConverterTo(unitF);
+			unitF = cvt3.convert();
 			System.out.println(unitF);
+			
+//			Unit unitE = new ImperialSysMass(0, "");
+//			Unit unitF = new IntSysMass(0, "");
+//			
+//			unitE.setQuantity(250);
+//			unitE.setReference("milli");
+//			unitF.setReference("Drachm");
+//			
+//			Converter cvt2 = unitE.getConverterTo(unitF);
+//			unitF = cvt2.convert();
+//			System.out.println(unitF);
 			
 			Unit unitC = new MetricSysVolume(5, "");
 			Unit unitD = new ImperialSysVolume(367, "Cubic inch");
