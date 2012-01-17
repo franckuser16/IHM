@@ -10,10 +10,7 @@ import java.util.HashMap;
 
 import javax.swing.JComboBox;
 
-import model.ImperialSysLength;
-import model.ImperialSysVolume;
-import model.MetricSysLength;
-import model.MetricSysVolume;
+import model.Converter;
 import model.Unit;
 import view.DefaultView;
 import view.OtherView;
@@ -26,9 +23,9 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 {
 	private final DefaultView dView;
 	private Unit sysLeft;
-	private Unit unitLeft;
+	private String unitLeft;
 	private Unit sysRight;
-	private Unit unitRight;
+	private String unitRight;
 	
 	@SuppressWarnings("serial")
 	private static final HashMap<String, String> systemUnits = new HashMap<String, String>() {{
@@ -59,7 +56,7 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 				dView.getErrors().setText("Veuillez renseigner une valeur.");
 				dView.getTextLeft().setBackground(Color.PINK);						
 			}
-			
+
 			else
 			{
 				//hide error indications
@@ -67,15 +64,19 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 				dView.getTextLeft().setBackground(Color.WHITE);
 				dView.getTextRight().setBackground(Color.WHITE);
 				
-				//conversion
-				/*
-				ImperialSysLength unitA = new ImperialSysLength(Integer.parseInt(dView.getTextLeft().getText()), unitLeft);
-				ImperialSysLength unitB = new ImperialSysLength(0, unitRight);
+				System.out.println(this.unitLeft);
+				System.out.println(this.unitRight);
 				
-				Converter cvt = unitA.getConverterTo(unitB);
-				unitB = (ImperialSysLength)cvt.convert();
-				dView.getTextRight().setText(unitB.toString());
-				*/
+				Double qte = Double.parseDouble(dView.getTextLeft().getText().toString());
+				
+				//conversion
+				sysLeft.setQuantity(qte);													
+				
+				System.out.println(this.sysLeft.getQuantity());
+				
+				Converter cvt = sysLeft.getConverterTo(sysRight);
+				sysRight = (Unit)cvt.convert();
+				dView.getTextRight().setText(Double.toString(sysRight.getQuantity()));	
 			}
 		}
 			
@@ -96,64 +97,7 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 				dView.getTextLeft().setBackground(Color.WHITE);
 				
 				//conversion
-				/*
-				ImperialSysLength unitA = new ImperialSysLength(0, unitLeft);
-				ImperialSysLength unitB = new ImperialSysLength(0, unitRight);
-				
-				Converter cvt = unitA.getConverterTo(unitB);
-				unitB = (ImperialSysLength)cvt.convert();
-				dView.getTextRight().setText(unitB.toString());
-				*/
-				try
-				{
-					Class<?> systemClass = Class.forName("model." + systemUnits.get(sysLeft));
-					Constructor<?> construct = systemClass.getConstructor(new Class[]{Double.TYPE, String.class});					
-					Object o = construct.newInstance(new Object[]{new Double(1.5), new String("")});
-					
-					if (systemUnits.get(sysLeft).equals("ImperialSysVolume"))
-					{
-						ImperialSysVolume isv = (ImperialSysVolume)o;
-					}
-					else if (systemUnits.get(sysLeft).equals("ImperialSysLength"))
-					{
-						ImperialSysLength isl = (ImperialSysLength)o;
-					}
-					else if (systemUnits.get(sysLeft).equals("MetricSysVolume"))
-					{
-						MetricSysVolume msv = (MetricSysVolume)o;
-					}
-					else if (systemUnits.get(sysLeft).equals("MetricSysLength"))
-					{
-						MetricSysLength msl = (MetricSysLength)o;
-					}
-					
-					systemClass = Class.forName("model." + systemUnits.get(sysRight));
-					construct = systemClass.getConstructor(new Class[]{Double.TYPE, String.class});					
-					o = construct.newInstance(new Object[]{new Double(1.5), new String("")});
-					
-
-					if (systemUnits.get(sysRight).equals("ImperialSysVolume"))
-					{
-						ImperialSysVolume isv = (ImperialSysVolume)o;
-					}
-					else if (systemUnits.get(sysRight).equals("ImperialSysLength"))
-					{
-						ImperialSysLength isl = (ImperialSysLength)o;
-					}
-					else if (systemUnits.get(sysRight).equals("MetricSysVolume"))
-					{
-						MetricSysVolume msv = (MetricSysVolume)o;
-					}
-					else if (systemUnits.get(sysRight).equals("MetricSysLength"))
-					{
-						MetricSysLength msl = (MetricSysLength)o;
-					}
-				} 
-				catch (Exception e1)
-				{
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+							
 			}
 		}
 		
@@ -208,19 +152,14 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 		{
 			try
 			{
-				String choice = arg0.getItem().toString();
-				
-				Class<?> systemClass = Class.forName("model." + systemUnits.get(choice));
-				//System.out.println(arg0.getItem().toString() + ": " + systemClass.toString());
+				Class<?> systemClass = Class.forName("model." + systemUnits.get(arg0.getItem().toString()));
 				Constructor<?> construct = systemClass.getConstructor(new Class[]{Double.TYPE, String.class});
-				
-				//System.out.println(arg0.getItem().toString() + ": " + construct.toString());
 					
 				Object o = construct.newInstance(new Object[]{new Double(1.5), new String("")});
 				Object[] tab;
 				
-				Unit isv = (Unit)o;
-				tab = isv.getList();
+				this.sysLeft = (Unit)o;
+				tab = this.sysLeft.getList();
 				
 				showUnitsLeft(tab);
 			} 
@@ -233,7 +172,24 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 		}			
 		else if(arg0.getSource() == dView.getSystemRight())						//Right System JComboBox
 		{
-			
+			try
+			{
+				Class<?> systemClass = Class.forName("model." + systemUnits.get(arg0.getItem().toString()));
+				Constructor<?> construct = systemClass.getConstructor(new Class[]{Double.TYPE, String.class});
+					
+				Object o = construct.newInstance(new Object[]{new Double(1.5), new String("")});
+				Object[] tab;
+				
+				this.sysRight = (Unit)o;
+				tab = this.sysRight.getList();
+				
+				showUnitsRight(tab);
+			} 
+			catch (Exception e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
 		}
 		//unit left ComboBox
 		else if(arg0.getSource() == dView.getListLeft())						//Left Unit JComboBox

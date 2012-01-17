@@ -20,6 +20,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JSeparator;
+import javax.swing.JTextField;
 
 import controller.Controller_DefaultView;
 
@@ -57,12 +58,12 @@ public class DefaultView
     //Composition of first unit box
     private JComboBox systemLeft = new JComboBox();
     private JComboBox listLeft = new JComboBox();
-    private JFormattedTextField textLeft = new JFormattedTextField(NumberFormat.getNumberInstance());
+    private JTextField textLeft = new JTextField();
     
     //Composition of second unit box
     private JComboBox systemRight = new JComboBox();
     private JComboBox listRight = new JComboBox();
-    private JFormattedTextField textRight = new JFormattedTextField(NumberFormat.getNumberInstance());
+    private JTextField textRight = new JTextField();
     
     //buttons to convert
     private JButton left2right;
@@ -127,15 +128,16 @@ public class DefaultView
     	/*
     	 * add all listeners
     	 */
-    	left2right.addActionListener(new Controller_DefaultView(this));
-    	right2left.addActionListener(new Controller_DefaultView(this));
-    	menu_quit.addActionListener(new Controller_DefaultView(this));
-    	menu_view2.addActionListener(new Controller_DefaultView(this));
-    	menu_view1.addActionListener(new Controller_DefaultView(this));
-    	listLeft.addItemListener(new Controller_DefaultView(this));
-    	listRight.addItemListener(new Controller_DefaultView(this));
-    	systemLeft.addItemListener(new Controller_DefaultView(this));
-    	systemRight.addItemListener(new Controller_DefaultView(this));
+        Controller_DefaultView cdv = new Controller_DefaultView(this);
+    	left2right.addActionListener(cdv);
+    	right2left.addActionListener(cdv);
+    	menu_quit.addActionListener(cdv);
+    	menu_view2.addActionListener(cdv);
+    	menu_view1.addActionListener(cdv);
+    	listLeft.addItemListener(cdv);
+    	listRight.addItemListener(cdv);
+    	systemLeft.addItemListener(cdv);
+    	systemRight.addItemListener(cdv);
     	
     	//keyboard shorcut
     	menu.setMnemonic(KeyEvent.VK_M);			//ALT + M to open menu    	
@@ -282,16 +284,16 @@ public class DefaultView
 	 *
 	 * @return the left text field
 	 */
-	public JFormattedTextField getTextLeft()
+	public JTextField getTextLeft()
 	{
 		return textLeft;
 	}
 
 	/**
 	 * Set the left text field
-	 * @param textLeft: the new JFormattedTextField
+	 * @param textLeft: the new JTextField
 	 */
-	public void setTextLeft(JFormattedTextField textLeft)
+	public void setTextLeft(JTextField textLeft)
 	{
 		this.textLeft = textLeft;
 	}
@@ -336,16 +338,16 @@ public class DefaultView
 	 * 
 	 * @return the right text field
 	 */
-	public JFormattedTextField getTextRight()
+	public JTextField getTextRight()
 	{
 		return textRight;
 	}
 
 	/**
 	 * Set the right text field
-	 * @param textRight: the new JFormattedTextField
+	 * @param textRight: the new JTextField
 	 */
-	public void setTextRight(JFormattedTextField textRight)
+	public void setTextRight(JTextField textRight)
 	{
 		this.textRight = textRight;
 	}
