@@ -5,19 +5,19 @@ import java.util.HashMap;
 public class SysLib {
 
 	@SuppressWarnings("serial")
-	private HashMap<Integer, String[]> unitList = new HashMap<Integer, String[]>(){{
+	private HashMap<String, String[]> unitList = new HashMap<String, String[]>(){{
 		
-		put(Dimension.AREA, new String[]{"Metric System","Imperial System"});
-		put(Dimension.VOLUME, new String[]{"Metric System","Imperial System"});
+		put("Area", new String[]{"Metric System","Imperial System"});
+		put("Volume", new String[]{"Metric System","Imperial System"});
 	}};
 	
 	public SysLib(){}
 
-	public HashMap<Integer, String[]> getUnitList() {
+	public HashMap<String, String[]> getUnitList() {
 		return unitList;
 	}
 
-	public void setUnitList(HashMap<Integer, String[]> unitList) {
+	public void setUnitList(HashMap<String, String[]> unitList) {
 		this.unitList = unitList;
 	}
 }
