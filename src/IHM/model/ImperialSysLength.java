@@ -4,13 +4,17 @@ import java.util.HashMap;
 
 /**
  *
- * @author jeremy
+ * @author franck
  */
 public class ImperialSysLength extends NonSI
 {
 	private static final double ISL_K_CONV = 0.0254;
 	private static final Dimension ISL_DIMENSION = new Dimension(Dimension.LENGTH);
 
+	/**
+	 * 
+	 */
+	@SuppressWarnings("serial")
 	private static final HashMap<String, Double> ISL_Units = new HashMap<String, Double>() {{
 
 		put ("Inch", new Double(1.0));
@@ -19,9 +23,13 @@ public class ImperialSysLength extends NonSI
 		put ("Mile", new Double(63360.0));
 	}};
 
+	/**
+	 * @param quantity
+	 * @param name
+	 */
 	public ImperialSysLength(double quantity, String name) 
 	{
-		//!!! name est employ� comme reference : faux
+		//!!! name est employe comme reference : faux
 		super(ImperialSysLength.ISL_DIMENSION, quantity, name, ImperialSysLength.ISL_K_CONV, ISL_Units);
 		//selectionner la bonne valeur d'enum depuis la reference
 	}

@@ -1,20 +1,29 @@
 package model;
 
 /**
+ * @author franck
  *
- * @author jeremy
  */
 public class Converter {
 
 	private Unit unitIn;
 	private Unit unitOut;
 
+	/**
+	 * @param unitIn
+	 * @param unitOut
+	 */
 	private Converter(Unit unitIn, Unit unitOut)
 	{
 		this.unitIn = unitIn;
 		this.unitOut = unitOut;
 	}
 
+	/**
+	 * @param unitIn
+	 * @param unitOut
+	 * @return
+	 */
 	public static Converter createConverter(Unit unitIn, Unit unitOut)
 	{
 		//trouver o� placer le isCompatible
@@ -24,6 +33,9 @@ public class Converter {
 			return null;
 	}
 
+	/**
+	 * @return
+	 */
 	public Unit convert()
 	{
 		double unitInQtOfRef = unitIn.toReference();
