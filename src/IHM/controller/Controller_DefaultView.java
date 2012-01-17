@@ -5,18 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.awt.geom.Rectangle2D;
-import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.ListIterator;
 import java.util.Map;
-
-import javax.swing.JComboBox;
-
 import model.Converter;
-import model.SysLib;
 import model.Unit;
+import model.UnitFactory;
 import view.DefaultView;
 import view.OtherView;
 
@@ -41,7 +35,7 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 //		put ("Metric system -> Length", "MetricSysLength");
 //	}};
 	
-	private static final HashMap<String, String[]> systemUnits = new SysLib().getUnitList();
+	private static final HashMap<String, String[]> systemUnits = UnitFactory.getUnitList();
 	
 	public Controller_DefaultView(DefaultView dv)
 	{
@@ -188,6 +182,8 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 	@Override
 	public void itemStateChanged(ItemEvent arg0)
 	{
+		String choice = arg0.getItem().toString();
+		
 		if(arg0.getSource() == dView.getSystemLeft())						//Left System JComboBox
 		{
 			try
@@ -197,12 +193,15 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 //				Constructor<?> construct = systemClass.getConstructor(new Class[]{Double.TYPE, String.class});
 //					
 //				Object o = construct.newInstance(new Object[]{new Double(1.5), new String("")});
-//				Object[] tab;
-//				
-//				this.sysLeft = (Unit)o;
-//				tab = this.sysLeft.getList();
-//				
-//				showUnitsLeft(tab);
+
+				if(!choice.startsWith("---"))
+				{
+					Object[] tab;			
+					this.sysLeft = UnitFactory.createUnit(choice);
+					tab = this.sysLeft.getList();
+					showUnitsLeft(tab);
+				}
+				
 			} 
 			catch (Exception e)
 			{
@@ -220,12 +219,13 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 //				Constructor<?> construct = systemClass.getConstructor(new Class[]{Double.TYPE, String.class});
 //					
 //				Object o = construct.newInstance(new Object[]{new Double(1.5), new String("")});
-//				Object[] tab;
-//				
-//				this.sysRight = (Unit)o;
-//				tab = this.sysRight.getList();
-//				
-//				showUnitsRight(tab);
+				if(!choice.startsWith("---"))
+				{
+					Object[] tab;
+					this.sysRight = UnitFactory.createUnit(arg0.getItem().toString());
+					tab = this.sysRight.getList();
+					showUnitsRight(tab);
+				}
 			} 
 			catch (Exception e)
 			{
