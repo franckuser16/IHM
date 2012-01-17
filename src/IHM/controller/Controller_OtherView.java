@@ -1,11 +1,9 @@
 package controller;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -69,13 +67,9 @@ public class Controller_OtherView implements ActionListener, ListSelectionListen
 		else if(e.getSource() == oView.getMenu_view1()){
 			DefaultView view = new DefaultView(true);
 			
-			//--- beginning modifications
-	        view.setTitleLeft(new JLabel("Meter"));
-	        
+			//--- beginning modifications	        
 	        Object[] units = new Object[]{"m","cm","mm","µm"};
 	        JComboBox leftCombo = new JComboBox(units);
-	        leftCombo.setPreferredSize(new Dimension(250, 25));
-	        leftCombo.setMaximumSize(leftCombo.getPreferredSize());
 	        view.setListLeft(leftCombo);
         	//--- end modifications
 	        

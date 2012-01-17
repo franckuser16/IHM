@@ -55,12 +55,12 @@ public class DefaultView
     private JLabel errors = new JLabel();
     
     //Composition of first unit box
-    private JLabel titleLeft = new JLabel("Unit 1");
+    private JComboBox systemLeft = new JComboBox();
     private JComboBox listLeft = new JComboBox();
     private JFormattedTextField textLeft = new JFormattedTextField(NumberFormat.getNumberInstance());
     
     //Composition of second unit box
-    private JLabel titleRight = new JLabel("Unit 2");
+    private JComboBox systemRight = new JComboBox();
     private JComboBox listRight = new JComboBox();
     private JFormattedTextField textRight = new JFormattedTextField(NumberFormat.getNumberInstance());
     
@@ -84,7 +84,7 @@ public class DefaultView
     	
     	//about JFrame...
         converter.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        converter.setPreferredSize(new Dimension(450, 200));
+        converter.setPreferredSize(new Dimension(550, 250));
         
         //title of application
         title.setFont(new Font("Calibri", Font.TYPE1_FONT, 20));
@@ -93,21 +93,14 @@ public class DefaultView
         
         //look&feel errors messages
         errors.setForeground(Color.RED);
-    	
-        //elements of first unit box        
-        listLeft.setPreferredSize(sizeControls);
-        listLeft.setMaximumSize(listLeft.getPreferredSize());        
-        
-        textLeft.setPreferredSize(sizeControls);        
-        textLeft.setMaximumSize(textLeft.getPreferredSize());
         
         //elements of button's box
         left2right = new JButton("-->");
         right2left = new JButton("<--");
 
-        //size of JComboBox
-        listRight.setPreferredSize(sizeControls);
-        listRight.setMaximumSize(listRight.getPreferredSize());
+        //size of JTextField
+        textLeft.setPreferredSize(sizeControls);        
+        textLeft.setMaximumSize(textLeft.getPreferredSize());
         textRight.setPreferredSize(sizeControls);
         textRight.setMaximumSize(textRight.getPreferredSize());
     }
@@ -121,6 +114,16 @@ public class DefaultView
     	menu_view1.setSelected(true);
     	menu_view1.setEnabled(false);
     	
+    	//sizes of JComboBox
+    	listLeft.setPreferredSize(sizeControls);
+        listLeft.setMaximumSize(listLeft.getPreferredSize());
+        listRight.setPreferredSize(sizeControls);
+        listRight.setMaximumSize(listRight.getPreferredSize());
+        systemLeft.setPreferredSize(sizeControls);
+        systemLeft.setMaximumSize(systemLeft.getPreferredSize());
+        systemRight.setPreferredSize(sizeControls);
+        systemRight.setMaximumSize(systemRight.getPreferredSize());
+    	
     	/*
     	 * add all listeners
     	 */
@@ -131,6 +134,8 @@ public class DefaultView
     	menu_view1.addActionListener(new Controller_DefaultView(this));
     	listLeft.addItemListener(new Controller_DefaultView(this));
     	listRight.addItemListener(new Controller_DefaultView(this));
+    	systemLeft.addItemListener(new Controller_DefaultView(this));
+    	systemRight.addItemListener(new Controller_DefaultView(this));
     	
     	//keyboard shorcut
     	menu.setMnemonic(KeyEvent.VK_M);			//ALT + M to open menu    	
@@ -141,8 +146,8 @@ public class DefaultView
     	menu_quit.setMnemonic(KeyEvent.VK_Q);		//ALT + Q to quit
     	
     	//align controls in boxes
-    	titleRight.setAlignmentX(Component.CENTER_ALIGNMENT);
-        titleLeft.setAlignmentX(Component.CENTER_ALIGNMENT);
+    	systemRight.setAlignmentX(Component.CENTER_ALIGNMENT);
+        systemLeft.setAlignmentX(Component.CENTER_ALIGNMENT);
         listLeft.setAlignmentX(Component.CENTER_ALIGNMENT);
         textLeft.setAlignmentX(Component.CENTER_ALIGNMENT);
         listRight.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -162,8 +167,8 @@ public class DefaultView
         
         //add all the elements in first unit box
         boxUnit1.add(Box.createGlue());
-        boxUnit1.add(titleLeft);
-        boxUnit1.add(Box.createRigidArea(new Dimension(0, 10)));
+        boxUnit1.add(systemLeft);
+        boxUnit1.add(Box.createRigidArea(new Dimension(0, 20)));
         boxUnit1.add(listLeft);
         boxUnit1.add(Box.createRigidArea(new Dimension(0, 20)));
         boxUnit1.add(textLeft);
@@ -171,8 +176,8 @@ public class DefaultView
         
         //add all the elements in second unit box
         boxUnit2.add(Box.createGlue());
-        boxUnit2.add(titleRight);
-        boxUnit2.add(Box.createRigidArea(new Dimension(0, 10)));
+        boxUnit2.add(systemRight);
+        boxUnit2.add(Box.createRigidArea(new Dimension(0, 20)));
         boxUnit2.add(listRight);
         boxUnit2.add(Box.createRigidArea(new Dimension(0, 20)));
         boxUnit2.add(textRight);
@@ -241,18 +246,18 @@ public class DefaultView
 	 * 
 	 * @return title (unit string) of left box 
 	 */
-	public JLabel getTitleLeft()
+	public JComboBox getSystemLeft()
 	{
-		return titleLeft;
+		return systemLeft;
 	}
 
 	/**
-	 * Set title (unit string) of left box
-	 * @param titleLeft: the new JLabel
+	 * Set system of left box
+	 * @param systemLeft: the new JComboBox
 	 */
-	public void setTitleLeft(JLabel titleLeft)
+	public void setSystemLeft(JComboBox systemLeft)
 	{
-		this.titleLeft = titleLeft;
+		this.systemLeft = systemLeft;
 	}
 
 	/**
@@ -293,20 +298,20 @@ public class DefaultView
 
 	/**
 	 * 
-	 * @return title (unit string) of right box 
+	 * @return system of right box 
 	 */
-	public JLabel getTitleRight()
+	public JComboBox getSystemRight()
 	{
-		return titleRight;
+		return systemRight;
 	}
 
 	/**
-	 * Set title (unit string) of right box
-	 * @param titleLeft: the new JLabel
+	 * Set system of right box
+	 * @param systemLeft: the new JComboBox
 	 */
-	public void setTitleRight(JLabel titleRight)
+	public void setSystemRight(JComboBox systemRight)
 	{
-		this.titleRight = titleRight;
+		this.systemRight = systemRight;
 	}
 
 	/**

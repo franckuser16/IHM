@@ -1,13 +1,20 @@
 package controller;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.lang.reflect.Constructor;
+import java.util.HashMap;
+
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
+
+import model.ImperialSysLength;
+import model.ImperialSysVolume;
+import model.MetricSysLength;
+import model.MetricSysVolume;
+import model.Unit;
 import view.DefaultView;
 import view.OtherView;
 
@@ -18,13 +25,28 @@ import view.OtherView;
 public class Controller_DefaultView implements ActionListener, ItemListener
 {
 	private final DefaultView dView;
+	private Unit sysLeft;
+	private Unit unitLeft;
+	private Unit sysRight;
+	private Unit unitRight;
+	
+	@SuppressWarnings("serial")
+	private static final HashMap<String, String> systemUnits = new HashMap<String, String>() {{
+
+		put ("Imperial system -> Volume", "ImperialSysVolume");
+		put ("Imperial system -> Length", "ImperialSysLength");
+		put ("Metric system -> Volume", "MetricSysVolume");
+		put ("Metric system -> Length", "MetricSysLength");
+	}};
 	
 	public Controller_DefaultView(DefaultView dv)
 	{
 		dView = dv;
 	}
 	
-	//Method for ActionListener
+	/**
+	 * Listeners for buttons, menu items
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
@@ -35,7 +57,7 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 			{
 				//show error indications
 				dView.getErrors().setText("Veuillez renseigner une valeur.");
-				dView.getTextLeft().setBackground(Color.PINK);
+				dView.getTextLeft().setBackground(Color.PINK);						
 			}
 			
 			else
@@ -46,6 +68,14 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 				dView.getTextRight().setBackground(Color.WHITE);
 				
 				//conversion
+				/*
+				ImperialSysLength unitA = new ImperialSysLength(Integer.parseInt(dView.getTextLeft().getText()), unitLeft);
+				ImperialSysLength unitB = new ImperialSysLength(0, unitRight);
+				
+				Converter cvt = unitA.getConverterTo(unitB);
+				unitB = (ImperialSysLength)cvt.convert();
+				dView.getTextRight().setText(unitB.toString());
+				*/
 			}
 		}
 			
@@ -66,6 +96,64 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 				dView.getTextLeft().setBackground(Color.WHITE);
 				
 				//conversion
+				/*
+				ImperialSysLength unitA = new ImperialSysLength(0, unitLeft);
+				ImperialSysLength unitB = new ImperialSysLength(0, unitRight);
+				
+				Converter cvt = unitA.getConverterTo(unitB);
+				unitB = (ImperialSysLength)cvt.convert();
+				dView.getTextRight().setText(unitB.toString());
+				*/
+				try
+				{
+					Class<?> systemClass = Class.forName("model." + systemUnits.get(sysLeft));
+					Constructor<?> construct = systemClass.getConstructor(new Class[]{Double.TYPE, String.class});					
+					Object o = construct.newInstance(new Object[]{new Double(1.5), new String("")});
+					
+					if (systemUnits.get(sysLeft).equals("ImperialSysVolume"))
+					{
+						ImperialSysVolume isv = (ImperialSysVolume)o;
+					}
+					else if (systemUnits.get(sysLeft).equals("ImperialSysLength"))
+					{
+						ImperialSysLength isl = (ImperialSysLength)o;
+					}
+					else if (systemUnits.get(sysLeft).equals("MetricSysVolume"))
+					{
+						MetricSysVolume msv = (MetricSysVolume)o;
+					}
+					else if (systemUnits.get(sysLeft).equals("MetricSysLength"))
+					{
+						MetricSysLength msl = (MetricSysLength)o;
+					}
+					
+					systemClass = Class.forName("model." + systemUnits.get(sysRight));
+					construct = systemClass.getConstructor(new Class[]{Double.TYPE, String.class});					
+					o = construct.newInstance(new Object[]{new Double(1.5), new String("")});
+					
+
+					if (systemUnits.get(sysRight).equals("ImperialSysVolume"))
+					{
+						ImperialSysVolume isv = (ImperialSysVolume)o;
+					}
+					else if (systemUnits.get(sysRight).equals("ImperialSysLength"))
+					{
+						ImperialSysLength isl = (ImperialSysLength)o;
+					}
+					else if (systemUnits.get(sysRight).equals("MetricSysVolume"))
+					{
+						MetricSysVolume msv = (MetricSysVolume)o;
+					}
+					else if (systemUnits.get(sysRight).equals("MetricSysLength"))
+					{
+						MetricSysLength msl = (MetricSysLength)o;
+					}
+				} 
+				catch (Exception e1)
+				{
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		}
 		
@@ -92,15 +180,15 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 		else if(e.getSource() == dView.getMenu_view1())
 		{
 			DefaultView view = new DefaultView(true);
+			//Object[] allValues = new Object[]{};
 			
-			//--- beginning modifications
-	        view.setTitleLeft(new JLabel("Meter"));
-	        
-	        Object[] units = new Object[]{"m","cm","mm","µm"};
-	        JComboBox leftCombo = new JComboBox(units);
-	        leftCombo.setPreferredSize(new Dimension(250, 25));
-	        leftCombo.setMaximumSize(leftCombo.getPreferredSize());
-	        view.setListLeft(leftCombo);
+			//allValues = this.concat(isl.getList(), isv.getList());
+			
+			//--- beginning modifications	        
+	        JComboBox leftComboSystem = new JComboBox(systemUnits.keySet().toArray());
+	        view.setSystemLeft(leftComboSystem);
+	        JComboBox rightComboSystem = new JComboBox(systemUnits.keySet().toArray());
+	        view.setSystemRight(rightComboSystem);
 	        //--- end modifications
 	        
 			view.buildUI();
@@ -110,18 +198,69 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 		}	
 	}
 
-	//Method for the JComboBox
+	/**
+	 * Listeners for JComboBox
+	 */
 	@Override
 	public void itemStateChanged(ItemEvent arg0)
 	{
-		if(arg0.getSource() == dView.getListLeft())						//Left JComboBox
+		if(arg0.getSource() == dView.getSystemLeft())						//Left System JComboBox
 		{
-			dView.getTextLeft().setText(arg0.getItem().toString());
+			try
+			{
+				String choice = arg0.getItem().toString();
+				
+				Class<?> systemClass = Class.forName("model." + systemUnits.get(choice));
+				//System.out.println(arg0.getItem().toString() + ": " + systemClass.toString());
+				Constructor<?> construct = systemClass.getConstructor(new Class[]{Double.TYPE, String.class});
+				
+				//System.out.println(arg0.getItem().toString() + ": " + construct.toString());
+					
+				Object o = construct.newInstance(new Object[]{new Double(1.5), new String("")});
+				Object[] tab;
+				
+				Unit isv = (Unit)o;
+				tab = isv.getList();
+				
+				showUnitsLeft(tab);
+			} 
+			catch (Exception e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+			
+		}			
+		else if(arg0.getSource() == dView.getSystemRight())						//Right System JComboBox
+		{
+			
 		}
-		else
+		//unit left ComboBox
+		else if(arg0.getSource() == dView.getListLeft())						//Left Unit JComboBox
 		{
-			dView.getTextRight().setText(arg0.getItem().toString());	//Right JComboBox
+			String[] tabLeft = arg0.getItem().toString().split(" - ");
+			this.unitLeft = tabLeft[0];
+		}
+		//unit right ComboBox
+		else if(arg0.getSource() == dView.getListRight())						//Right Unit JComboBox
+		{
+			String[] tabRight = arg0.getItem().toString().split(" - ");
+			this.unitRight = tabRight[0];
 		}
 		
 	}	
+	
+	private void showUnitsLeft(Object[] tab)
+	{
+		dView.getListLeft().removeAllItems();
+		for(int i = 0; i < tab.length; i++)
+			dView.getListLeft().addItem(tab[i]);
+	}
+	
+	private void showUnitsRight(Object[] tab)
+	{
+		dView.getListRight().removeAllItems();
+		for(int i = 0; i < tab.length; i++)
+			dView.getListRight().addItem(tab[i]);
+	}
 }
