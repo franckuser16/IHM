@@ -2,7 +2,7 @@ package model;
 
 import java.util.HashMap;
 
-public class SysLib {
+public class UnitFactory {
 
 	@SuppressWarnings("serial")
 	private HashMap<String, String[]> unitList = new HashMap<String, String[]>(){{
@@ -11,7 +11,7 @@ public class SysLib {
 		put("Volume", new String[]{"Metric System","Imperial System"});
 	}};
 	
-	public SysLib(){}
+	public UnitFactory(){}
 
 	public HashMap<String, String[]> getUnitList() {
 		return unitList;
