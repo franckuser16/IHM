@@ -3,16 +3,28 @@ package controller;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JComboBox;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
 import javax.swing.JList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+
+import model.Unit;
+import model.UnitFactory;
 import view.DefaultView;
 import view.OtherView;
 
 public class Controller_OtherView implements ActionListener, ListSelectionListener
 {
 	private final OtherView oView;
+	private Unit sysTo;
+	private String unitTo;
+	private Unit sysFrom;
+	private String unitFrom;
+	
+	private static final HashMap<String, String[]> systemUnits = UnitFactory.getUnitList();
 	
 	public Controller_OtherView(OtherView ov)
 	{
@@ -67,7 +79,20 @@ public class Controller_OtherView implements ActionListener, ListSelectionListen
 			OtherView view = new OtherView(true);
 			
 			//--- beginning modifications
-			
+			Iterator<Map.Entry<String, String[]>> it = systemUnits.entrySet().iterator();
+			while(it.hasNext())
+			{
+				@SuppressWarnings("rawtypes")
+				Map.Entry pairs = (Map.Entry)it.next();
+				view.getFromModelListSystem().addElement("--- " + pairs.getKey() + " ---");
+				view.getToModelListSystem().addElement("--- " + pairs.getKey() + " ---");
+				
+				for(int i = 0; i < systemUnits.get(pairs.getKey()).length; i++)
+				{
+					view.getFromModelListSystem().addElement(systemUnits.get(pairs.getKey())[i] + " " + pairs.getKey());
+					view.getToModelListSystem().addElement(systemUnits.get(pairs.getKey())[i] + " " + pairs.getKey());
+				}
+			}
 			//--- end modifications
 			
 			view.buildUI();						
@@ -81,10 +106,20 @@ public class Controller_OtherView implements ActionListener, ListSelectionListen
 			DefaultView view = new DefaultView(true);
 			
 			//--- beginning modifications	        
-//			JComboBox leftComboSystem = new JComboBox(systemUnits.keySet().toArray());
-//	        view.setSystemLeft(leftComboSystem);
-//	        JComboBox rightComboSystem = new JComboBox(systemUnits.keySet().toArray());
-//	        view.setSystemRight(rightComboSystem);
+			Iterator<Map.Entry<String, String[]>> it = systemUnits.entrySet().iterator();
+			while(it.hasNext())
+			{
+				@SuppressWarnings("rawtypes")
+				Map.Entry pairs = (Map.Entry)it.next();
+				view.getSystemLeft().addItem("--- " + pairs.getKey() + " ---");
+				view.getSystemRight().addItem("--- " + pairs.getKey() + " ---");
+				
+				for(int i = 0; i < systemUnits.get(pairs.getKey()).length; i++)
+				{
+					view.getSystemLeft().addItem(systemUnits.get(pairs.getKey())[i] + " " + pairs.getKey());
+					view.getSystemRight().addItem(systemUnits.get(pairs.getKey())[i] + " " + pairs.getKey());
+				}
+			}
         	//--- end modifications
 	        
 			view.buildUI();
@@ -97,16 +132,34 @@ public class Controller_OtherView implements ActionListener, ListSelectionListen
 	@Override
 	public void valueChanged(ListSelectionEvent arg0){
 		JList l = (JList)arg0.getSource();
+		String choice = l.getSelectedValue().toString();
 		
 		//"from" list System
 		if(arg0.getSource() == oView.getFromListSystem())
-		{			
-//			oView.getResult().setText(l.getSelectedValue().toString());
+		{	
+			if(!choice.startsWith("---"))
+			{
+				Object[] tab;			
+				this.sysFrom = UnitFactory.createUnit(choice);
+				System.out.println(choice);
+				tab = this.sysFrom.getList();
+				showUnitsFrom(tab);
+			}
+			else
+				oView.getFromModelListUnits().removeAllElements();
 		}
 		//"to" list System
 		else if(arg0.getSource() == oView.getToListSystem())
-		{
-//			oView.getResult().setText(l.getSelectedValue().toString());
+		{			
+			if(!choice.startsWith("---"))
+			{
+				Object[] tab;			
+				this.sysTo = UnitFactory.createUnit(choice);
+				tab = this.sysTo.getList();
+				showUnitsTo(tab);
+			}
+			else
+				oView.getToModelListUnits().removeAllElements();
 		}
 		//"from" list Units
 		else if(arg0.getSource() == oView.getFromListUnits())
@@ -120,4 +173,26 @@ public class Controller_OtherView implements ActionListener, ListSelectionListen
 		}
 		
 	}	
+	
+	/**
+	 * 
+	 * @param tab list of Unit (peta, zetta, centi...) for left Unit JComboBox
+	 */
+	private void showUnitsFrom(Object[] tab)
+	{
+		oView.getFromModelListUnits().removeAllElements();
+		for(int i = 0; i < tab.length; i++)
+			oView.getFromModelListUnits().addElement(tab[i]);
+	}
+	
+	/**
+	 * 
+	 * @param tab list of Unit (peta, zetta, centi...) for right Unit JComboBox
+	 */
+	private void showUnitsTo(Object[] tab)
+	{
+		oView.getToModelListUnits().removeAllElements();
+		for(int i = 0; i < tab.length; i++)
+			oView.getToModelListUnits().addElement(tab[i]);
+	}
 }

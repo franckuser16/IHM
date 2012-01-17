@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -54,15 +55,19 @@ public class OtherView{
     private JTextField amountText = new JTextField();
     
     private JLabel fromLabel = new JLabel("From: ");
-    private JList fromListSystem = new JList();
+    private DefaultListModel fromModelListSystem = new DefaultListModel();
+    private JList fromListSystem = new JList(fromModelListSystem);
     private JScrollPane fromPaneSystem = new JScrollPane(fromListSystem);
-    private JList fromListUnits = new JList();
+    private DefaultListModel fromModelListUnits = new DefaultListModel();
+    private JList fromListUnits = new JList(fromModelListUnits);
     private JScrollPane fromPaneUnits = new JScrollPane(fromListUnits);
     
     private JLabel toLabel = new JLabel("To: ");
-    private JList toListSystem = new JList();
+    private DefaultListModel toModelListSystem = new DefaultListModel();
+    private JList toListSystem = new JList(toModelListSystem);
     private JScrollPane toPaneSystem = new JScrollPane(toListSystem);
-    private JList toListUnits = new JList();
+    private DefaultListModel toModelListUnits = new DefaultListModel();
+    private JList toListUnits = new JList(toModelListUnits);
     private JScrollPane toPaneUnits = new JScrollPane(toListUnits);
     
     private JButton convert = new JButton("Convert");
@@ -125,12 +130,8 @@ public class OtherView{
     	//only ONE selection on the list
     	fromListSystem.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         toListSystem.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-//        fromListSystem.setVisibleRowCount(1);
-//        toListSystem.setVisibleRowCount(1);
         fromListUnits.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         toListUnits.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-//        fromListUnits.setVisibleRowCount(1);
-//        toListUnits.setVisibleRowCount(1);
         
     	//listeners
         Controller_OtherView controller = new Controller_OtherView(this);
@@ -252,47 +253,8 @@ public class OtherView{
 		this.result = result;
 	}
 
-	public JList getFromListSystem()
+	public JFrame getConverter()
 	{
-		return fromListSystem;
-	}
-
-	public void setFromListSystem(JList fromListSystem)
-	{
-		this.fromListSystem = fromListSystem;
-	}
-
-	public JList getFromListUnits()
-	{
-		return fromListUnits;
-	}
-
-	public void setFromListUnits(JList fromListUnits)
-	{
-		this.fromListUnits = fromListUnits;
-	}
-
-	public JList getToListSystem()
-	{
-		return toListSystem;
-	}
-
-	public void setToListSystem(JList toListSystem)
-	{
-		this.toListSystem = toListSystem;
-	}
-
-	public JList getToListUnits()
-	{
-		return toListUnits;
-	}
-
-	public void setToListUnits(JList toListUnits)
-	{
-		this.toListUnits = toListUnits;
-	}
-
-	public JFrame getConverter(){
 		return converter;
 	}
 
@@ -311,4 +273,45 @@ public class OtherView{
 	public void setAmountText(JTextField amountText){
 		this.amountText = amountText;
 	}
+
+	public DefaultListModel getFromModelListSystem()
+	{
+		return fromModelListSystem;
+	}
+
+	public DefaultListModel getFromModelListUnits()
+	{
+		return fromModelListUnits;
+	}
+
+	public DefaultListModel getToModelListSystem()
+	{
+		return toModelListSystem;
+	}
+
+	public DefaultListModel getToModelListUnits()
+	{
+		return toModelListUnits;
+	}
+
+	public JList getFromListSystem()
+	{
+		return fromListSystem;
+	}
+
+	public JList getFromListUnits()
+	{
+		return fromListUnits;
+	}
+
+	public JList getToListSystem()
+	{
+		return toListSystem;
+	}
+
+	public JList getToListUnits()
+	{
+		return toListUnits;
+	}
+	
 }

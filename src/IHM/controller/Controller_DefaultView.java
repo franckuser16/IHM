@@ -26,15 +26,6 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 	private Unit sysRight;
 	private String unitRight;
 	
-//	@SuppressWarnings("serial")
-//	private static final HashMap<String, String> systemUnits = new HashMap<String, String>() {{
-//
-//		put ("Imperial system -> Volume", "ImperialSysVolume");
-//		put ("Imperial system -> Length", "ImperialSysLength");
-//		put ("Metric system -> Volume", "MetricSysVolume");
-//		put ("Metric system -> Length", "MetricSysLength");
-//	}};
-	
 	private static final HashMap<String, String[]> systemUnits = UnitFactory.getUnitList();
 	
 	public Controller_DefaultView(DefaultView dv)
@@ -130,7 +121,20 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 			OtherView view = new OtherView(true);
 			
 			//--- beginning modifications
-			
+			Iterator<Map.Entry<String, String[]>> it = systemUnits.entrySet().iterator();
+			while(it.hasNext())
+			{
+				@SuppressWarnings("rawtypes")
+				Map.Entry pairs = (Map.Entry)it.next();
+				view.getFromModelListSystem().addElement("--- " + pairs.getKey() + " ---");
+				view.getToModelListSystem().addElement("--- " + pairs.getKey() + " ---");
+				
+				for(int i = 0; i < systemUnits.get(pairs.getKey()).length; i++)
+				{
+					view.getFromModelListSystem().addElement(systemUnits.get(pairs.getKey())[i] + " " + pairs.getKey());
+					view.getToModelListSystem().addElement(systemUnits.get(pairs.getKey())[i] + " " + pairs.getKey());
+				}
+			}
 			//--- end modifications
 			
 			view.buildUI();
@@ -148,11 +152,6 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 			//allValues = this.concat(isl.getList(), isv.getList());
 			
 			//--- beginning modifications	        
-//	        JComboBox leftComboSystem = new JComboBox(systemUnits.keySet().toArray());
-//	        view.setSystemLeft(leftComboSystem);
-//	        JComboBox rightComboSystem = new JComboBox(systemUnits.keySet().toArray());
-//	        view.setSystemRight(rightComboSystem);
-			
 			Iterator<Map.Entry<String, String[]>> it = systemUnits.entrySet().iterator();
 			while(it.hasNext())
 			{
