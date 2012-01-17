@@ -58,7 +58,6 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 			}
 			
 			//TODO tester si on a bien un double
-
 			else
 			{
 				//hide error indications
@@ -66,15 +65,11 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 				dView.getTextLeft().setBackground(Color.WHITE);
 				dView.getTextRight().setBackground(Color.WHITE);
 				
-				System.out.println(this.unitLeft);
-				System.out.println(this.unitRight);
-				
-				Double qte = Double.parseDouble(dView.getTextLeft().getText().toString());
-				
 				//conversion
-				sysLeft.setQuantity(qte);													
-				
-				System.out.println(this.sysLeft.getQuantity());
+				Double qte = Double.parseDouble(dView.getTextLeft().getText().toString());
+				sysLeft.setQuantity(qte);
+				sysLeft.setReference(unitLeft);
+				sysRight.setReference(unitRight);
 				
 				Converter cvt = sysLeft.getConverterTo(sysRight);
 				sysRight = (Unit)cvt.convert();
@@ -99,7 +94,14 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 				dView.getTextLeft().setBackground(Color.WHITE);
 				
 				//conversion
-							
+				Double qte = Double.parseDouble(dView.getTextRight().getText().toString());
+				sysRight.setQuantity(qte);
+				sysRight.setReference(unitRight);
+				sysLeft.setReference(unitLeft);
+				
+				Converter cvt = sysRight.getConverterTo(sysLeft);
+				sysLeft= (Unit)cvt.convert();
+				dView.getTextLeft().setText(Double.toString(sysLeft.getQuantity()));				
 			}
 		}
 		
