@@ -29,13 +29,11 @@ public class ImperialSysMass extends NonSI {
 	 */
 	public ImperialSysMass(double quantity, String name) 
 	{
-		//!!! name est employe comme reference : faux
 		super(	ImperialSysMass.ISM_DIMENSION,
 				quantity,
 				name,
 				ImperialSysMass.ISM_K_CONV,
 				ISM_Units);
-		//selectionner la bonne valeur d'enum depuis la reference
 	}
 
 }
