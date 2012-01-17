@@ -6,7 +6,7 @@ public class UnitFactory {
 
 	private static final String METRIC_SYSTEM_LENGTH = "Metric System Length";
 	private static final String METRIC_SYSTEM_VOLUME = "Metric System Volume";
-	private static final String IMPERIAL_SYSTEM_LENGTH = "Imperial System Length ";
+	private static final String IMPERIAL_SYSTEM_LENGTH = "Imperial System Length";
 	private static final String IMPERIAL_SYSTEM_VOLUME = "Imperial System Volume";
 	
 	@SuppressWarnings("serial")
