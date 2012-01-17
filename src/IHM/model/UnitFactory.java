@@ -4,12 +4,12 @@ import java.util.HashMap;
 
 public class UnitFactory {
 
-	private static final String METRIC_SYSTEM_LENGTH		= "Metric System Length";
-	private static final String METRIC_SYSTEM_VOLUME		= "Metric System Volume";
-	private static final String IMPERIAL_SYSTEM_LENGTH		= "Imperial System Length";
-	private static final String IMPERIAL_SYSTEM_VOLUME		= "Imperial System Volume";
-	private static final String INTERNATIONAL_SYSTEM_MASS	= "International System Mass";
-	private static final String IMPERIAL_SYSTEM_MASS		= "Imperial System Mass";
+	protected static final String METRIC_SYSTEM_LENGTH		= "Metric System Length";
+	protected static final String METRIC_SYSTEM_VOLUME		= "Metric System Volume";
+	protected static final String IMPERIAL_SYSTEM_LENGTH		= "Imperial System Length";
+	protected static final String IMPERIAL_SYSTEM_VOLUME		= "Imperial System Volume";
+	protected static final String INTERNATIONAL_SYSTEM_MASS	= "International System Mass";
+	protected static final String IMPERIAL_SYSTEM_MASS		= "Imperial System Mass";
 	
 	@SuppressWarnings("serial")
 	private HashMap<String, String[]> unitList = new HashMap<String, String[]>(){{
