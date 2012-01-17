@@ -12,6 +12,7 @@ import java.util.Map.Entry;
  */
 public abstract class SI extends Unit
 {
+	protected static final String NO_PREFIX = "";
 	/**
 	 * 
 	 */
@@ -28,7 +29,7 @@ public abstract class SI extends Unit
 		put ("milli",	 -3);
 		put ("centi",	 -2);
 		put ("deci",	 -1);
-		put ("",	  	  0);
+		put (SI.NO_PREFIX,0);
 		put ("deca",	  1);
 		put ("hecto",	  2);
 		put ("kilo",	  3);
@@ -71,10 +72,10 @@ public abstract class SI extends Unit
 		//System.out.println(this.prefix+ " " + this.prefix_ref);
 	}
 	
-	public void setReference(String reference){
+	public void setName(String name){
 		
-		super.setReference(reference);
-		this.prefix = Math.pow(10, (SI.PREFIX.get(reference.replace(base, "")) * this.pas));
+		super.setName(name);
+		this.prefix = Math.pow(10, (SI.PREFIX.get(name.replace(base, "")) * this.pas));
 	}
 
 	/**
