@@ -16,7 +16,7 @@ public class MetricSysLength extends SI
 	 */
 	public MetricSysLength(double quantity, String prefix)
 	{
-		super(MetricSysLength.MSL_DIMENSION, quantity, MetricSysLength.MSL_NAME, MetricSysLength.MSL_K_CONV, prefix, "none", 1);
+		super(MetricSysLength.MSL_DIMENSION, quantity, MetricSysLength.MSL_NAME, MetricSysLength.MSL_K_CONV, prefix, "", 1);
 	}
 	/**
 	 * @param quantity
