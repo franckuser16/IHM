@@ -159,7 +159,11 @@ public class Controller_OtherView implements ActionListener, ListSelectionListen
 	@Override
 	public void valueChanged(ListSelectionEvent arg0){
 		JList l = (JList)arg0.getSource();
-		String choice = l.getSelectedValue().toString();
+		String choice;
+		if(l.getSelectedValue() != null)
+			choice = l.getSelectedValue().toString();
+		else
+			choice = null;
 		
 		//"from" list System
 		if(arg0.getSource() == oView.getFromListSystem())
@@ -189,13 +193,15 @@ public class Controller_OtherView implements ActionListener, ListSelectionListen
 		}
 		//"from" list Units
 		else if(arg0.getSource() == oView.getFromListUnits())
-		{			
-			this.unitFrom = choice;
+		{		
+			if(choice != null)
+				this.unitFrom = choice;
 		}
 		//"to" list Units
 		else if(arg0.getSource() == oView.getToListUnits())
 		{
-			this.unitTo = choice;
+			if(choice != null)
+				this.unitTo = choice;
 		}
 		
 	}	

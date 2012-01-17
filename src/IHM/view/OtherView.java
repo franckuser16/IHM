@@ -89,7 +89,7 @@ public class OtherView{
     	
     	//about JFrame...
         converter.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        converter.setPreferredSize(new Dimension(450, 440));
+        converter.setPreferredSize(new Dimension(550, 440));
         
         //title of application
         title.setFont(new Font("Calibri", Font.TYPE1_FONT, 20));
