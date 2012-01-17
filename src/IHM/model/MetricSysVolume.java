@@ -16,7 +16,13 @@ public class MetricSysVolume extends SI
 	 */
 	public MetricSysVolume(double quantity, String prefix)
 	{
-		super(MetricSysVolume.MSV_DIMENSION, quantity, MetricSysVolume.MSV_NAME, MetricSysVolume.MSV_K_CONV, prefix, "centi", 3);
+		super(	MetricSysVolume.MSV_DIMENSION,
+				quantity,
+				MetricSysVolume.MSV_NAME,
+				MetricSysVolume.MSV_K_CONV,
+				prefix,
+				"centi",
+				3);
 	}
 	
 	/**

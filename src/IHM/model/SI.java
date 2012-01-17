@@ -55,7 +55,13 @@ public abstract class SI extends Unit
 	 * @param prefix_ref
 	 * @param pas
 	 */
-	public SI(Dimension dim, double quantity, String base, double KofConversion, String prefix, String prefix_ref, double pas)
+	public SI(	Dimension dim,
+				double quantity,
+				String base,
+				double KofConversion,
+				String prefix,
+				String prefix_ref,
+				double pas)
 	{
 		super(dim, quantity, prefix, KofConversion);
 		this.base = base;
