@@ -26,7 +26,9 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 	private Unit sysRight;
 	private String unitRight;
 	
-	private static final HashMap<String, String[]> systemUnits = UnitFactory.getUnitList();
+	private UnitFactory uf;
+	
+	private static final HashMap<String, String[]> systemUnits = new UnitFactory().getUnitList();
 	
 	/**
 	 * Constructeur du Controller
@@ -34,7 +36,8 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 	 */
 	public Controller_DefaultView(DefaultView dv)
 	{
-		dView = dv;
+		this.dView = dv;
+		this.uf = new UnitFactory();
 	}
 	
 	/**
@@ -65,8 +68,8 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 					//on récupère la valeur que l'on souhaite convertir
 					Double qte = Double.parseDouble(dView.getTextLeft().getText().toString());
 					sysLeft.setQuantity(qte);
-					sysLeft.setReference(unitLeft);
-					sysRight.setReference(unitRight);
+					sysLeft.setName(unitLeft);
+					sysRight.setName(unitRight);
 					
 					Converter cvt = sysLeft.getConverterTo(sysRight);
 					if(cvt == null)
@@ -109,8 +112,8 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 				{
 					Double qte = Double.parseDouble(dView.getTextRight().getText().toString());
 					sysRight.setQuantity(qte);
-					sysRight.setReference(unitRight);
-					sysLeft.setReference(unitLeft);
+					sysRight.setName(unitRight);
+					sysLeft.setName(unitLeft);
 					
 					Converter cvt = sysRight.getConverterTo(sysLeft);
 					if(cvt == null)
@@ -219,7 +222,7 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 				{
 					Object[] tab;
 					//récupère l'instanciation de la classe correspondante au système sélectionné dans la liste déroulante
-					this.sysLeft = UnitFactory.createUnit(choice);
+					this.sysLeft = uf.createUnit(choice);
 					//récupère la liste des unités correspondantes au système sélectionné (à l'aide de l'instanciation précédente)
 					tab = this.sysLeft.getList();
 					//rempli la liste déroulante des unités
@@ -245,7 +248,7 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 				{
 					Object[] tab;
 					//récupère l'instanciation de la classe correspondante au système sélectionné dans la liste déroulante
-					this.sysRight = UnitFactory.createUnit(arg0.getItem().toString());
+					this.sysRight = uf.createUnit(arg0.getItem().toString());
 					//récupère la liste des unités correspondantes au système sélectionné (à l'aide de l'instanciation précédente)
 					tab = this.sysRight.getList();
 					//rempli la liste déroulante des unités

@@ -25,11 +25,14 @@ public class Controller_OtherView implements ActionListener, ListSelectionListen
 	private Unit sysFrom;
 	private String unitFrom;
 	
-	private static final HashMap<String, String[]> systemUnits = UnitFactory.getUnitList();
+	private UnitFactory uf;
+	
+	private static final HashMap<String, String[]> systemUnits = new UnitFactory().getUnitList();
 	
 	public Controller_OtherView(OtherView ov)
 	{
 		oView = ov;
+		uf = new UnitFactory();
 	}
 	
 	//Methods for ActionListener
@@ -72,8 +75,8 @@ public class Controller_OtherView implements ActionListener, ListSelectionListen
 				{
 					Double qte = Double.parseDouble(oView.getAmountText().getText().toString());
 					sysFrom.setQuantity(qte);
-					sysFrom.setReference(unitFrom);
-					sysTo.setReference(unitTo);
+					sysFrom.setName(unitFrom);
+					sysTo.setName(unitTo);
 					
 					Converter cvt = sysFrom.getConverterTo(sysTo);
 					if(cvt == null)
@@ -164,7 +167,7 @@ public class Controller_OtherView implements ActionListener, ListSelectionListen
 			if(!choice.startsWith("---"))
 			{
 				Object[] tab;			
-				this.sysFrom = UnitFactory.createUnit(choice);
+				this.sysFrom = uf.createUnit(choice);
 				tab = this.sysFrom.getList();
 				showUnitsFrom(tab);
 			}
@@ -177,7 +180,7 @@ public class Controller_OtherView implements ActionListener, ListSelectionListen
 			if(!choice.startsWith("---"))
 			{
 				Object[] tab;			
-				this.sysTo = UnitFactory.createUnit(choice);
+				this.sysTo = uf.createUnit(choice);
 				tab = this.sysTo.getList();
 				showUnitsTo(tab);
 			}
