@@ -187,6 +187,9 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 				this.sysRight = (Unit)o;
 				tab = this.sysRight.getList();
 				
+//				for(int i = 0; i < tab.length; i++)
+//					System.out.println(tab[i].toString());
+				
 				showUnitsRight(tab);
 			} 
 			catch (Exception e)
@@ -198,13 +201,14 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 		//unit left ComboBox
 		else if(arg0.getSource() == dView.getListLeft())						//Left Unit JComboBox
 		{
-			String[] tabLeft = arg0.getItem().toString().split(" - ");
-			this.unitLeft = tabLeft[0];
+//			String[] tabLeft = arg0.getItem().toString().split("-");
+//			this.unitLeft = tabLeft[0];
+			this.unitLeft = arg0.getItem().toString();
 		}
 		//unit right ComboBox
 		else if(arg0.getSource() == dView.getListRight())						//Right Unit JComboBox
 		{
-			String[] tabRight = arg0.getItem().toString().split(" - ");
+			String[] tabRight = arg0.getItem().toString().split("-");
 			this.unitRight = tabRight[0];
 		}
 		
