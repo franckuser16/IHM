@@ -188,12 +188,6 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 		{
 			try
 			{
-				//instantiate class given in system JcomboBox
-//				Class<?> systemClass = Class.forName("model." + systemUnits.get(arg0.getItem().toString()));
-//				Constructor<?> construct = systemClass.getConstructor(new Class[]{Double.TYPE, String.class});
-//					
-//				Object o = construct.newInstance(new Object[]{new Double(1.5), new String("")});
-
 				if(!choice.startsWith("---"))
 				{
 					Object[] tab;			
@@ -201,6 +195,8 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 					tab = this.sysLeft.getList();
 					showUnitsLeft(tab);
 				}
+				else
+					dView.getListLeft().removeAllItems();
 				
 			} 
 			catch (Exception e)
@@ -214,11 +210,6 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 		{
 			try
 			{
-				//instantiate class given in system JcomboBox
-//				Class<?> systemClass = Class.forName("model." + systemUnits.get(arg0.getItem().toString()));
-//				Constructor<?> construct = systemClass.getConstructor(new Class[]{Double.TYPE, String.class});
-//					
-//				Object o = construct.newInstance(new Object[]{new Double(1.5), new String("")});
 				if(!choice.startsWith("---"))
 				{
 					Object[] tab;
@@ -226,6 +217,8 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 					tab = this.sysRight.getList();
 					showUnitsRight(tab);
 				}
+				else
+					dView.getListRight().removeAllItems();
 			} 
 			catch (Exception e)
 			{
