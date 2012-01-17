@@ -116,7 +116,7 @@ public abstract class SI extends Unit
 		ArrayList<String> liste = new ArrayList<String>();
 		
 		for (int i=0; i<SI.PREFIX.size(); i++)
-			liste.add(SI.PREFIX.keySet().toArray()[i] + "-" + this.getReference());
+			liste.add(SI.PREFIX.keySet().toArray()[i] + "-" + this.getBase());
 		
 		return liste.toArray();
 	}
