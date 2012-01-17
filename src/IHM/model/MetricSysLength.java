@@ -16,7 +16,12 @@ public class MetricSysLength extends SI
 	 */
 	public MetricSysLength(double quantity, String prefix)
 	{
-		super(MetricSysLength.MSL_DIMENSION, quantity, MetricSysLength.MSL_NAME, MetricSysLength.MSL_K_CONV, prefix, "", 1);
+		super(	MetricSysLength.MSL_DIMENSION,
+				quantity,
+				MetricSysLength.MSL_NAME,
+				MetricSysLength.MSL_K_CONV,
+				prefix, "",
+				1);
 	}
 	/**
 	 * @param quantity
@@ -31,7 +36,7 @@ public class MetricSysLength extends SI
 	public static void main(String[] args)
 	{
 			Unit unitA = new MetricSysLength(120, "");
-			Unit unitB = new ImperialSysLength(0, "Mile");
+			Unit unitB = new ImperialSysLength(5, "Mile");
 			
 			Converter cvt = unitB.getConverterTo(unitA);
 			unitA = cvt.convert();
@@ -48,7 +53,7 @@ public class MetricSysLength extends SI
 			unitF = cvt2.convert();
 			System.out.println(unitF);
 			
-			Unit unitC = new MetricSysVolume(0, "");
+			Unit unitC = new MetricSysVolume(5, "");
 			Unit unitD = new ImperialSysVolume(367, "Cubic inch");
 
 			Converter cvt1 = unitD.getConverterTo(unitC);

@@ -31,7 +31,11 @@ public abstract class NonSI extends Unit
 	 * @param KofConversion
 	 * @param MesSystem
 	 */
-	public NonSI(Dimension dim, double quantity, String reference, double KofConversion, HashMap<String, Double> MesSystem)
+	public NonSI(	Dimension dim,
+					double quantity,
+					String reference,
+					double KofConversion,
+					HashMap<String, Double> MesSystem)
 	{
 		super(dim, quantity, reference, KofConversion);
 		setMesSystem(MesSystem);

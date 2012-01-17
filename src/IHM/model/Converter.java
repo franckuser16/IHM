@@ -41,6 +41,7 @@ public class Converter {
 		double unitInQtOfRef = unitIn.toReference();
 		double unitOutQtOfRef = ( (unitInQtOfRef * unitIn.getKofConversion()) / unitOut.getKofConversion() );
 		unitOut.fromReference(unitOutQtOfRef);
+		//System.out.println(unitInQtOfRef+" "+unitOutQtOfRef);
 
 		return unitOut;
 	}

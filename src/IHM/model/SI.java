@@ -55,13 +55,20 @@ public abstract class SI extends Unit
 	 * @param prefix_ref
 	 * @param pas
 	 */
-	public SI(Dimension dim, double quantity, String base, double KofConversion, String prefix, String prefix_ref, double pas)
+	public SI(	Dimension dim,
+				double quantity,
+				String base,
+				double KofConversion,
+				String prefix,
+				String prefix_ref,
+				double pas)
 	{
 		super(dim, quantity, prefix, KofConversion);
 		this.base = base;
 		this.pas = pas;
 		this.prefix = Math.pow(10, (SI.PREFIX.get(prefix.replace(base, "")) * this.pas));
 		this.prefix_ref = Math.pow(10, (SI.PREFIX.get(prefix_ref.replace(base, "")) * this.pas));
+		//System.out.println(this.prefix+ " " + this.prefix_ref);
 	}
 	
 	public void setReference(String reference){
@@ -101,7 +108,7 @@ public abstract class SI extends Unit
 	 */
 	public void fromReference(double qtOfRef)
 	{
-		this.setQuantity( (long) ((qtOfRef / this.prefix) * this.prefix_ref) );
+		this.setQuantity( ((qtOfRef / this.prefix) * this.prefix_ref) );
 	}
 
 	/**

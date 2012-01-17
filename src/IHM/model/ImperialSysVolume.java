@@ -33,7 +33,11 @@ public class ImperialSysVolume extends NonSI
 	public ImperialSysVolume(double quantity, String name) 
 	{
 		//!!! name est employe comme reference : faux
-		super(ImperialSysVolume.ISV_DIMENSION, quantity, name, ImperialSysVolume.ISV_K_CONV, ISV_Units);
+		super(	ImperialSysVolume.ISV_DIMENSION,
+				quantity,
+				name,
+				ImperialSysVolume.ISV_K_CONV,
+				ISV_Units);
 		//selectionner la bonne valeur d'enum depuis la reference
 	}
 	
