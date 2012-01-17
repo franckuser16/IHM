@@ -5,8 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.geom.Rectangle2D;
 import java.lang.reflect.Constructor;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.ListIterator;
+import java.util.Map;
 
 import javax.swing.JComboBox;
 
@@ -37,7 +41,7 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 //		put ("Metric system -> Length", "MetricSysLength");
 //	}};
 	
-	private static final HashMap<String, String[]> systemUnits = new SysLib().getUnitList();  
+	private static final HashMap<String, String[]> systemUnits = new SysLib().getUnitList();
 	
 	public Controller_DefaultView(DefaultView dv)
 	{
@@ -150,10 +154,25 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 			//allValues = this.concat(isl.getList(), isv.getList());
 			
 			//--- beginning modifications	        
-	        JComboBox leftComboSystem = new JComboBox(systemUnits.keySet().toArray());
-	        view.setSystemLeft(leftComboSystem);
-	        JComboBox rightComboSystem = new JComboBox(systemUnits.keySet().toArray());
-	        view.setSystemRight(rightComboSystem);
+//	        JComboBox leftComboSystem = new JComboBox(systemUnits.keySet().toArray());
+//	        view.setSystemLeft(leftComboSystem);
+//	        JComboBox rightComboSystem = new JComboBox(systemUnits.keySet().toArray());
+//	        view.setSystemRight(rightComboSystem);
+			
+			Iterator<Map.Entry<String, String[]>> it = systemUnits.entrySet().iterator();
+			while(it.hasNext())
+			{
+				@SuppressWarnings("rawtypes")
+				Map.Entry pairs = (Map.Entry)it.next();
+				view.getSystemLeft().addItem("--- " + pairs.getKey() + " ---");
+				view.getSystemRight().addItem("--- " + pairs.getKey() + " ---");
+				
+				for(int i = 0; i < systemUnits.get(pairs.getKey()).length; i++)
+				{
+					view.getSystemLeft().addItem(systemUnits.get(pairs.getKey())[i] + " " + pairs.getKey());
+					view.getSystemRight().addItem(systemUnits.get(pairs.getKey())[i] + " " + pairs.getKey());
+				}
+			}
 	        //--- end modifications
 	        
 			view.buildUI();
@@ -174,16 +193,16 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 			try
 			{
 				//instantiate class given in system JcomboBox
-				Class<?> systemClass = Class.forName("model." + systemUnits.get(arg0.getItem().toString()));
-				Constructor<?> construct = systemClass.getConstructor(new Class[]{Double.TYPE, String.class});
-					
-				Object o = construct.newInstance(new Object[]{new Double(1.5), new String("")});
-				Object[] tab;
-				
-				this.sysLeft = (Unit)o;
-				tab = this.sysLeft.getList();
-				
-				showUnitsLeft(tab);
+//				Class<?> systemClass = Class.forName("model." + systemUnits.get(arg0.getItem().toString()));
+//				Constructor<?> construct = systemClass.getConstructor(new Class[]{Double.TYPE, String.class});
+//					
+//				Object o = construct.newInstance(new Object[]{new Double(1.5), new String("")});
+//				Object[] tab;
+//				
+//				this.sysLeft = (Unit)o;
+//				tab = this.sysLeft.getList();
+//				
+//				showUnitsLeft(tab);
 			} 
 			catch (Exception e)
 			{
@@ -197,16 +216,16 @@ public class Controller_DefaultView implements ActionListener, ItemListener
 			try
 			{
 				//instantiate class given in system JcomboBox
-				Class<?> systemClass = Class.forName("model." + systemUnits.get(arg0.getItem().toString()));
-				Constructor<?> construct = systemClass.getConstructor(new Class[]{Double.TYPE, String.class});
-					
-				Object o = construct.newInstance(new Object[]{new Double(1.5), new String("")});
-				Object[] tab;
-				
-				this.sysRight = (Unit)o;
-				tab = this.sysRight.getList();
-				
-				showUnitsRight(tab);
+//				Class<?> systemClass = Class.forName("model." + systemUnits.get(arg0.getItem().toString()));
+//				Constructor<?> construct = systemClass.getConstructor(new Class[]{Double.TYPE, String.class});
+//					
+//				Object o = construct.newInstance(new Object[]{new Double(1.5), new String("")});
+//				Object[] tab;
+//				
+//				this.sysRight = (Unit)o;
+//				tab = this.sysRight.getList();
+//				
+//				showUnitsRight(tab);
 			} 
 			catch (Exception e)
 			{
