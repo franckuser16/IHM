@@ -1,5 +1,7 @@
 package model;
 
+import java.util.HashMap;
+
 /**
  * @author franck
  *
@@ -30,6 +32,7 @@ public class Dimension
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
+	@Override
 	public boolean equals(Object dimOut)
 	{
 		return this.nature == ((Dimension)dimOut).getNature();
@@ -41,5 +44,10 @@ public class Dimension
 	public int getNature()
 	{
 		return this.nature;
+	}
+	
+	public static HashMap<String, String[]>getExtListDim()
+	{
+		return new HashMap<String, String[]>();
 	}
 }
