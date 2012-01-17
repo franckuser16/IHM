@@ -10,7 +10,7 @@ public class UnitFactory {
 	private static final String IMPERIAL_SYSTEM_VOLUME = "Imperial System Volume";
 	
 	@SuppressWarnings("serial")
-	private HashMap<String, String[]> unitList = new HashMap<String, String[]>(){{
+	private static HashMap<String, String[]> unitList = new HashMap<String, String[]>(){{
 		
 		put("Length", new String[]{"Metric System","Imperial System"});
 		put("Volume", new String[]{"Metric System","Imperial System"});
@@ -18,7 +18,7 @@ public class UnitFactory {
 	
 	public UnitFactory(){}
 
-	public HashMap<String, String[]> getUnitList() {
+	public static HashMap<String, String[]> getUnitList() {
 		return unitList;
 	}
 
@@ -26,7 +26,7 @@ public class UnitFactory {
 		this.unitList = unitList;
 	}
 	
-	public Unit createUnit(String unitDesc){
+	public static Unit createUnit(String unitDesc){
 		
 		if (unitDesc == UnitFactory.METRIC_SYSTEM_LENGTH)
 			return new MetricSysLength(0.0, "");
