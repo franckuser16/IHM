@@ -14,9 +14,7 @@ public abstract class Unit
 	private double quantity;
 	private String reference;
 	private double KofConversion;
-	//pas besoin de Converter en param, il est retourne par getConverterTo()
-	//private Converter converter;
-
+	
 	/**
 	 * 
 	 */
@@ -66,6 +64,11 @@ public abstract class Unit
 	public Converter getConverterTo(Unit unitOut)
 	{
 		return Converter.createConverter(this, unitOut);
+	}
+
+	public void setDimension(Dimension dim)
+	{
+		this.dim = dim;
 	}
 
 	/**

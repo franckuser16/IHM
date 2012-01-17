@@ -10,6 +10,7 @@ public class ImperialSysLength extends NonSI
 {
 	private static final double ISL_K_CONV = 0.0254;
 	private static final Dimension ISL_DIMENSION = new Dimension(Dimension.LENGTH);
+	private static final String ISL_NAME = "Inch";
 
 	/**
 	 * 

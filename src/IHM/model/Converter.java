@@ -26,7 +26,7 @@ public class Converter {
 	 */
 	public static Converter createConverter(Unit unitIn, Unit unitOut)
 	{
-		//trouver o� placer le isCompatible
+		//trouver ou placer le isCompatible
 		if (unitIn.isCompatible(unitOut))
 			return new Converter(unitIn, unitOut);
 		else
